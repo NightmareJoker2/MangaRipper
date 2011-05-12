@@ -84,12 +84,10 @@ namespace MangaRipper
 
         private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
-
-            var arg = new RunWorkerCompletedEventArgs(null, e.Error, cancelled);
-
             if (DownloadImageCompleted != null)
             {
+                bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
+                var arg = new RunWorkerCompletedEventArgs(null, e.Error, cancelled);
                 DownloadImageCompleted(this, arg);
             }
         }
