@@ -51,7 +51,7 @@ namespace MangaRipper
 
             if (e.Error != null)
             {
-                MessageBox.Show(e.Error.Message);
+                toolStripStatusLabel1.Text = e.Error.Message;
             }
         }
 
@@ -156,6 +156,11 @@ namespace MangaRipper
             }
 
             ReBindQueueList();
+
+            if (e.Error != null)
+            {
+                toolStripStatusLabel1.Text = e.Error.Message;
+            }
 
             if (e.Cancelled == false)
             {

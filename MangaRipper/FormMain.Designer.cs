@@ -338,8 +338,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(59, 17);
-            this.toolStripStatusLabel1.Text = "Message: ";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(22, 17);
+            this.toolStripStatusLabel1.Text = "     ";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -352,16 +352,16 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn3.ActiveLinkColor = System.Drawing.Color.Maroon;
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
             this.dataGridViewTextBoxColumn3.HeaderText = "Address";
             this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.Black;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Black;
             // 
             // FormMain
             // 
