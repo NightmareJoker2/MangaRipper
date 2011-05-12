@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Manga\MangaShare\ChapterMangaShare.cs" />
+    <Compile Include="Site\MangaShare\ChapterMangaShare.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,7 +65,7 @@
     </Compile>
     <Compile Include="OldCode\Chapter.cs" />
     <Compile Include="Code\ChapterBase.cs" />
-    <Compile Include="Manga\MangaFox\ChapterMangaFox.cs" />
+    <Compile Include="Site\MangaFox\ChapterMangaFox.cs" />
     <Compile Include="OldCode\Common.cs" />
     <Compile Include="OldCode\FormMain1.cs">
       <SubType>Form</SubType>
@@ -80,8 +80,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\TitleBase.cs" />
     <Compile Include="Code\TitleFactory.cs" />
-    <Compile Include="Manga\MangaFox\TitleMangaFox.cs" />
-    <Compile Include="Manga\MangaShare\TitleMangaShare.cs" />
+    <Compile Include="Site\MangaFox\TitleMangaFox.cs" />
+    <Compile Include="Site\MangaShare\TitleMangaShare.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

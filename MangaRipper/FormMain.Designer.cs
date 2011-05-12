@@ -38,12 +38,12 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnRemoveAll = new System.Windows.Forms.Button();
             this.dgvQueueChapter = new System.Windows.Forms.DataGridView();
-            this.txtSaveTo = new System.Windows.Forms.TextBox();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSaveTo = new System.Windows.Forms.TextBox();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,33 +151,6 @@
             this.dgvQueueChapter.Size = new System.Drawing.Size(510, 239);
             this.dgvQueueChapter.TabIndex = 9;
             // 
-            // txtSaveTo
-            // 
-            this.txtSaveTo.Location = new System.Drawing.Point(333, 225);
-            this.txtSaveTo.Name = "txtSaveTo";
-            this.txtSaveTo.Size = new System.Drawing.Size(168, 20);
-            this.txtSaveTo.TabIndex = 10;
-            this.txtSaveTo.Text = "d:\\Personal Files\\Comics\\321321\\";
-            // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(527, 264);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 11;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(286, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Support www.mangafox.com and read.mangashare.com url";
-            // 
             // ColChapterName
             // 
             this.ColChapterName.DataPropertyName = "Name";
@@ -204,6 +177,34 @@
             this.ColChapterUrl.ReadOnly = true;
             this.ColChapterUrl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColChapterUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // txtSaveTo
+            // 
+            this.txtSaveTo.Location = new System.Drawing.Point(333, 225);
+            this.txtSaveTo.Name = "txtSaveTo";
+            this.txtSaveTo.Size = new System.Drawing.Size(168, 20);
+            this.txtSaveTo.TabIndex = 10;
+            this.txtSaveTo.Text = "d:\\Personal Files\\Comics\\321321\\";
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(527, 264);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 11;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Visible = false;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(286, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Support www.mangafox.com and read.mangashare.com url";
             // 
             // FormMain
             // 
