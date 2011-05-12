@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btnGetChapter = new System.Windows.Forms.Button();
             this.pbGetChapterProgress = new System.Windows.Forms.ProgressBar();
             this.txtTitleUrl = new System.Windows.Forms.TextBox();
@@ -224,6 +225,7 @@
             this.Controls.Add(this.txtTitleUrl);
             this.Controls.Add(this.pbGetChapterProgress);
             this.Controls.Add(this.btnGetChapter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).EndInit();
             this.ResumeLayout(false);
