@@ -84,9 +84,13 @@ namespace MangaRipper
 
         private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            bool cancelled = (_bw.CancellationPending == true || e.Cancelled == true);
+
+            var arg = new RunWorkerCompletedEventArgs(e.Result, e.Error, cancelled);
+
             if (DownloadImageCompleted != null)
             {
-                DownloadImageCompleted(this, e);
+                DownloadImageCompleted(this, arg);
             }
         }
 
@@ -127,11 +131,7 @@ namespace MangaRipper
                 countHtml++;
 
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
-                var ev = new ProgressChangedEventArgs(percent, null);
-                if (DownloadImageProgressChanged != null)
-                {
-                    DownloadImageProgressChanged(this, ev);
-                }
+                _bw.ReportProgress(percent);
 
                 sb.AppendLine(content);
             }
@@ -157,11 +157,7 @@ namespace MangaRipper
 
                 countImage++;
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
-                var ev = new ProgressChangedEventArgs(percent, null);
-                if (DownloadImageProgressChanged != null)
-                {
-                    DownloadImageProgressChanged(this, ev);
-                }
+                _bw.ReportProgress(percent);
             }
         }
     }
