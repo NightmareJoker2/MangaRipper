@@ -8,9 +8,9 @@ namespace MangaRipper
 {
     public interface IChapter
     {
-        event RunWorkerCompletedEventHandler RefreshImageUrlCompleted;
+        event RunWorkerCompletedEventHandler DownloadImageCompleted;
 
-        event System.ComponentModel.ProgressChangedEventHandler RefreshImageUrlProgressChanged;
+        event System.ComponentModel.ProgressChangedEventHandler DownloadImageProgressChanged;
     
         string Name
         {
@@ -37,8 +37,8 @@ namespace MangaRipper
             get;
         }
 
-        void RefreshImageUrlAsync(string fileName);
+        void DownloadImageAsync(string fileName);
 
-        void CancelRefreshImageUrl();
+        void CancelDownloadImage();
     }
 }

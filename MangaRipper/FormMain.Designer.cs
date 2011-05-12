@@ -37,6 +37,9 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnRemoveAll = new System.Windows.Forms.Button();
             this.dgvQueueChapter = new System.Windows.Forms.DataGridView();
+            this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSaveTo = new System.Windows.Forms.TextBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnChangeSaveTo = new System.Windows.Forms.Button();
@@ -45,19 +48,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.dgvSupportedSites = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvChapter = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -66,7 +66,6 @@
             // 
             // btnGetChapter
             // 
-            this.btnGetChapter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGetChapter.Location = new System.Drawing.Point(876, 9);
             this.btnGetChapter.Name = "btnGetChapter";
             this.btnGetChapter.Size = new System.Drawing.Size(116, 24);
@@ -77,15 +76,14 @@
             // 
             // txtTitleUrl
             // 
-            this.txtTitleUrl.Location = new System.Drawing.Point(38, 12);
+            this.txtTitleUrl.Location = new System.Drawing.Point(38, 10);
             this.txtTitleUrl.Name = "txtTitleUrl";
-            this.txtTitleUrl.Size = new System.Drawing.Size(796, 20);
+            this.txtTitleUrl.Size = new System.Drawing.Size(791, 22);
             this.txtTitleUrl.TabIndex = 1;
             this.txtTitleUrl.Text = "http://www.mangafox.com/manga/mirai_nikki/";
             // 
             // btnDownload
             // 
-            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDownload.Location = new System.Drawing.Point(665, 551);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(216, 23);
@@ -96,7 +94,6 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Location = new System.Drawing.Point(12, 287);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(210, 23);
@@ -107,7 +104,6 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAll.Location = new System.Drawing.Point(227, 287);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(210, 23);
@@ -118,7 +114,6 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Location = new System.Drawing.Point(443, 551);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(105, 23);
@@ -129,7 +124,6 @@
             // 
             // btnRemoveAll
             // 
-            this.btnRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveAll.Location = new System.Drawing.Point(554, 551);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(105, 23);
@@ -158,130 +152,6 @@
             this.dgvQueueChapter.Size = new System.Drawing.Size(549, 507);
             this.dgvQueueChapter.TabIndex = 12;
             // 
-            // txtSaveTo
-            // 
-            this.txtSaveTo.Location = new System.Drawing.Point(66, 318);
-            this.txtSaveTo.Name = "txtSaveTo";
-            this.txtSaveTo.ReadOnly = true;
-            this.txtSaveTo.Size = new System.Drawing.Size(252, 20);
-            this.txtSaveTo.TabIndex = 8;
-            this.txtSaveTo.Text = "D:\\Personal Files\\Comics\\321321\\";
-            // 
-            // btnStop
-            // 
-            this.btnStop.Enabled = false;
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.Location = new System.Drawing.Point(887, 551);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(105, 23);
-            this.btnStop.TabIndex = 16;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // btnChangeSaveTo
-            // 
-            this.btnChangeSaveTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeSaveTo.Location = new System.Drawing.Point(324, 316);
-            this.btnChangeSaveTo.Name = "btnChangeSaveTo";
-            this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
-            this.btnChangeSaveTo.TabIndex = 9;
-            this.btnChangeSaveTo.Text = "...";
-            this.btnChangeSaveTo.UseVisualStyleBackColor = true;
-            this.btnChangeSaveTo.Click += new System.EventHandler(this.btnChangeSaveTo_Click);
-            // 
-            // btnOpenFolder
-            // 
-            this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFolder.Location = new System.Drawing.Point(360, 316);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(77, 23);
-            this.btnOpenFolder.TabIndex = 10;
-            this.btnOpenFolder.Text = "Open Folder";
-            this.btnOpenFolder.UseVisualStyleBackColor = true;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
-            // 
-            // lbSaveTo
-            // 
-            this.lbSaveTo.AutoSize = true;
-            this.lbSaveTo.Location = new System.Drawing.Point(12, 321);
-            this.lbSaveTo.Name = "lbSaveTo";
-            this.lbSaveTo.Size = new System.Drawing.Size(48, 13);
-            this.lbSaveTo.TabIndex = 7;
-            this.lbSaveTo.Text = "Save To";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Url";
-            // 
-            // txtPercent
-            // 
-            this.txtPercent.Location = new System.Drawing.Point(835, 12);
-            this.txtPercent.Name = "txtPercent";
-            this.txtPercent.ReadOnly = true;
-            this.txtPercent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPercent.Size = new System.Drawing.Size(35, 20);
-            this.txtPercent.TabIndex = 2;
-            // 
-            // dgvSupportedSites
-            // 
-            this.dgvSupportedSites.AllowUserToAddRows = false;
-            this.dgvSupportedSites.AllowUserToDeleteRows = false;
-            this.dgvSupportedSites.AllowUserToResizeRows = false;
-            this.dgvSupportedSites.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dgvSupportedSites.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvSupportedSites.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSupportedSites.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3});
-            this.dgvSupportedSites.Location = new System.Drawing.Point(12, 345);
-            this.dgvSupportedSites.MultiSelect = false;
-            this.dgvSupportedSites.Name = "dgvSupportedSites";
-            this.dgvSupportedSites.ReadOnly = true;
-            this.dgvSupportedSites.RowHeadersVisible = false;
-            this.dgvSupportedSites.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSupportedSites.Size = new System.Drawing.Size(425, 200);
-            this.dgvSupportedSites.TabIndex = 11;
-            this.dgvSupportedSites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupportedSites_CellContentClick);
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(123, 551);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "How To Use && F.A.Q.";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(12, 551);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Option";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Enabled = false;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(332, 551);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(105, 23);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "About";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // ColChapterName
             // 
             this.ColChapterName.DataPropertyName = "Name";
@@ -309,6 +179,144 @@
             this.ColChapterUrl.ReadOnly = true;
             this.ColChapterUrl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColChapterUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // txtSaveTo
+            // 
+            this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
+            this.txtSaveTo.Name = "txtSaveTo";
+            this.txtSaveTo.ReadOnly = true;
+            this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
+            this.txtSaveTo.TabIndex = 8;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(887, 551);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(105, 23);
+            this.btnStop.TabIndex = 16;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnChangeSaveTo
+            // 
+            this.btnChangeSaveTo.Location = new System.Drawing.Point(312, 316);
+            this.btnChangeSaveTo.Name = "btnChangeSaveTo";
+            this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
+            this.btnChangeSaveTo.TabIndex = 9;
+            this.btnChangeSaveTo.Text = "...";
+            this.btnChangeSaveTo.UseVisualStyleBackColor = true;
+            this.btnChangeSaveTo.Click += new System.EventHandler(this.btnChangeSaveTo_Click);
+            // 
+            // btnOpenFolder
+            // 
+            this.btnOpenFolder.Location = new System.Drawing.Point(348, 316);
+            this.btnOpenFolder.Name = "btnOpenFolder";
+            this.btnOpenFolder.Size = new System.Drawing.Size(89, 23);
+            this.btnOpenFolder.TabIndex = 10;
+            this.btnOpenFolder.Text = "Open Folder";
+            this.btnOpenFolder.UseVisualStyleBackColor = true;
+            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+            // 
+            // lbSaveTo
+            // 
+            this.lbSaveTo.AutoSize = true;
+            this.lbSaveTo.Location = new System.Drawing.Point(12, 320);
+            this.lbSaveTo.Name = "lbSaveTo";
+            this.lbSaveTo.Size = new System.Drawing.Size(45, 13);
+            this.lbSaveTo.TabIndex = 7;
+            this.lbSaveTo.Text = "Save To";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Url";
+            // 
+            // txtPercent
+            // 
+            this.txtPercent.Location = new System.Drawing.Point(835, 10);
+            this.txtPercent.Name = "txtPercent";
+            this.txtPercent.ReadOnly = true;
+            this.txtPercent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtPercent.Size = new System.Drawing.Size(35, 22);
+            this.txtPercent.TabIndex = 2;
+            // 
+            // dgvSupportedSites
+            // 
+            this.dgvSupportedSites.AllowUserToAddRows = false;
+            this.dgvSupportedSites.AllowUserToDeleteRows = false;
+            this.dgvSupportedSites.AllowUserToResizeRows = false;
+            this.dgvSupportedSites.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvSupportedSites.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvSupportedSites.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSupportedSites.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn3});
+            this.dgvSupportedSites.Location = new System.Drawing.Point(12, 345);
+            this.dgvSupportedSites.MultiSelect = false;
+            this.dgvSupportedSites.Name = "dgvSupportedSites";
+            this.dgvSupportedSites.ReadOnly = true;
+            this.dgvSupportedSites.RowHeadersVisible = false;
+            this.dgvSupportedSites.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSupportedSites.Size = new System.Drawing.Size(425, 200);
+            this.dgvSupportedSites.TabIndex = 11;
+            this.dgvSupportedSites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupportedSites_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(123, 551);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(203, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "How To Use && F.A.Q.";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(12, 551);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(105, 23);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Option";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(332, 551);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(105, 23);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "About";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // dgvChapter
             // 
@@ -355,28 +363,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(59, 17);
             this.toolStripStatusLabel1.Text = "Message: ";
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +389,7 @@
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.txtTitleUrl);
             this.Controls.Add(this.btnGetChapter);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

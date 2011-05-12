@@ -8,9 +8,9 @@ namespace MangaRipper
 {
     public interface ITitle
     {
-        event RunWorkerCompletedEventHandler RefreshChapterCompleted;
+        event RunWorkerCompletedEventHandler PopulateChapterCompleted;
 
-        event ProgressChangedEventHandler RefreshChapterProgressChanged;
+        event ProgressChangedEventHandler PopulateChapterProgressChanged;
 
         List<IChapter> Chapters
         {
@@ -27,8 +27,8 @@ namespace MangaRipper
             get;
         }
 
-        void RefreshChapterAsync();
+        void PopulateChapterAsync();
 
-        void CancelRefreshChapter();
+        void CancelPopulateChapter();
     }
 }

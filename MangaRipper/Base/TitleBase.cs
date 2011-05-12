@@ -10,9 +10,9 @@ namespace MangaRipper
 {
     public abstract class TitleBase : ITitle
     {
-        public event RunWorkerCompletedEventHandler RefreshChapterCompleted;
+        public event RunWorkerCompletedEventHandler PopulateChapterCompleted;
 
-        public event ProgressChangedEventHandler RefreshChapterProgressChanged;
+        public event ProgressChangedEventHandler PopulateChapterProgressChanged;
 
         protected BackgroundWorker _bw;
 
@@ -45,7 +45,7 @@ namespace MangaRipper
             }
         }
 
-        public void CancelRefreshChapter()
+        public void CancelPopulateChapter()
         {
             if (_bw != null && _bw.IsBusy == true)
             {
@@ -53,7 +53,7 @@ namespace MangaRipper
             }
         }
 
-        public void RefreshChapterAsync()
+        public void PopulateChapterAsync()
         {
             if (_bw == null || _bw.IsBusy == false)
             {
@@ -71,17 +71,17 @@ namespace MangaRipper
 
         private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (RefreshChapterCompleted != null)
+            if (PopulateChapterCompleted != null)
             {
-                RefreshChapterCompleted(this, e);
+                PopulateChapterCompleted(this, e);
             }
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (RefreshChapterProgressChanged != null)
+            if (PopulateChapterProgressChanged != null)
             {
-                RefreshChapterProgressChanged(this, e);
+                PopulateChapterProgressChanged(this, e);
             }
         }
 
@@ -108,11 +108,11 @@ namespace MangaRipper
                     string content = client.DownloadString(item);
                     sb.AppendLine(content);
                     count++;
-                    RefreshChapterProgressChanged(this, new ProgressChangedEventArgs(count * 100 / uris.Count, null));
+                    PopulateChapterProgressChanged(this, new ProgressChangedEventArgs(count * 100 / uris.Count, null));
                 }
             }
 
-            RefreshChapterProgressChanged(this, new ProgressChangedEventArgs(100, null));
+            PopulateChapterProgressChanged(this, new ProgressChangedEventArgs(100, null));
 
             if (sb.Length == 0)
             {

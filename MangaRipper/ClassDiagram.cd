@@ -3,8 +3,8 @@
   <Class Name="MangaRipper.TitleBase">
     <Position X="7.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAUAAIAAAAAAIABABIAAAAAAKAIAAQAAQAA=</HashCode>
-      <FileName>Code\TitleBase.cs</FileName>
+      <HashCode>ACBAAAAAAAUAABAAAAAAIABABABAAIAAKAAAAQAAAAA=</HashCode>
+      <FileName>Base\TitleBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -18,8 +18,8 @@
   <Class Name="MangaRipper.ChapterBase">
     <Position X="1.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAwAAAUIAAAAAAAAIARAAAAAAAAAiAAAAQAEAAE=</HashCode>
-      <FileName>Code\ChapterBase.cs</FileName>
+      <HashCode>AAAAQAwgAAUAAAAAIACAIARAAAAEAAAACAAAAQAAAAE=</HashCode>
+      <FileName>Base\ChapterBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -47,15 +47,15 @@
   <Interface Name="MangaRipper.ITitle">
     <Position X="14" Y="0.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAAIAAAAAAAABAAIAAAAAACAIAAAAAQAA=</HashCode>
-      <FileName>Code\ITitle.cs</FileName>
+      <HashCode>ACBAAAAAAAAAABAAAAAAAABAAABAAIAACAAAAAAAAAA=</HashCode>
+      <FileName>Base\ITitle.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="MangaRipper.IChapter">
     <Position X="11" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAQAgAAAAIAAAAAAAAAARAAAAAAAAAiAAAAAAEAAE=</HashCode>
-      <FileName>Code\IChapter.cs</FileName>
+      <HashCode>AAAAQAggAAAAAAAAIACAAARAAAAEAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Base\IChapter.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

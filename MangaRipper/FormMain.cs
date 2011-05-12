@@ -23,15 +23,15 @@ namespace MangaRipper
         {
             var titleUrl = new Uri(txtTitleUrl.Text);
             ITitle title = TitleFactory.CreateTitle(titleUrl);
-            title.RefreshChapterCompleted += new RunWorkerCompletedEventHandler(title_RefreshChapterCompleted);
-            title.RefreshChapterProgressChanged += new ProgressChangedEventHandler(title_RefreshChapterProgressChanged);
+            title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
+            title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
 
             btnGetChapter.Enabled = false;
-            title.RefreshChapterAsync();
+            title.PopulateChapterAsync();
             txtPercent.Text = "0%";
         }
 
-        void title_RefreshChapterProgressChanged(object sender, ProgressChangedEventArgs e)
+        protected void ITitle_PopulateChapterProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (this.InvokeRequired)
             {
@@ -43,7 +43,7 @@ namespace MangaRipper
             }
         }
 
-        void title_RefreshChapterCompleted(object sender, RunWorkerCompletedEventArgs e)
+        protected void ITitle_PopulateChapterCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             btnGetChapter.Enabled = true;
             ITitle title = (ITitle)sender;
@@ -133,12 +133,12 @@ namespace MangaRipper
             {
                 IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
 
-                chapter.RefreshImageUrlProgressChanged += new ProgressChangedEventHandler(chapter_RefreshPageProgressChanged);
-                chapter.RefreshImageUrlCompleted += new RunWorkerCompletedEventHandler(chapter_RefreshPageCompleted);
+                chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
+                chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
 
                 btnDownload.Enabled = false;
                 dgvQueueChapter.Rows[0].Cells["ColChapterStatus"].Value = "0%";
-                chapter.RefreshImageUrlAsync(txtSaveTo.Text);
+                chapter.DownloadImageAsync(txtSaveTo.Text);
             }
             else
             {
@@ -146,18 +146,28 @@ namespace MangaRipper
             }
         }
 
-        void chapter_RefreshPageCompleted(object sender, RunWorkerCompletedEventArgs e)
+        protected void IChapter_DownloadImageCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             IChapter chapter = (IChapter)sender;
+
             if (e.Cancelled == false && e.Error == null)
             {
                 queue.Remove(chapter);
             }
+
             ReBindQueueList();
-            DownloadChapter();
+
+            if (e.Cancelled == false)
+            {
+                DownloadChapter();
+            }
+            else
+            {
+                btnDownload.Enabled = true;
+            }
         }
 
-        void chapter_RefreshPageProgressChanged(object sender, ProgressChangedEventArgs e)
+        protected void IChapter_DownloadImageProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             IChapter chapter = (IChapter)sender;
             foreach (DataGridViewRow item in dgvQueueChapter.Rows)
@@ -175,7 +185,7 @@ namespace MangaRipper
             if (dgvQueueChapter.Rows.Count > 0)
             {
                 IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
-                chapter.CancelRefreshImageUrl();
+                chapter.CancelDownloadImage();
             }
         }
 
@@ -210,6 +220,8 @@ namespace MangaRipper
 
             dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
+
+            txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
 }

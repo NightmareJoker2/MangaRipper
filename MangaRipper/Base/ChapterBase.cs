@@ -10,9 +10,9 @@ namespace MangaRipper
 {
     public abstract class ChapterBase : IChapter
     {
-        public event RunWorkerCompletedEventHandler RefreshImageUrlCompleted;
+        public event RunWorkerCompletedEventHandler DownloadImageCompleted;
 
-        public event ProgressChangedEventHandler RefreshImageUrlProgressChanged;
+        public event ProgressChangedEventHandler DownloadImageProgressChanged;
 
         protected BackgroundWorker _bw;
 
@@ -57,7 +57,7 @@ namespace MangaRipper
             }
         }
 
-        public void RefreshImageUrlAsync(string fileName)
+        public void DownloadImageAsync(string fileName)
         {
             SaveTo = fileName;
             if (_bw == null || _bw.IsBusy == false)
@@ -74,7 +74,7 @@ namespace MangaRipper
             }
         }
 
-        public void CancelRefreshImageUrl()
+        public void CancelDownloadImage()
         {
             if (_bw != null && _bw.IsBusy == true)
             {
@@ -84,17 +84,17 @@ namespace MangaRipper
 
         private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (RefreshImageUrlCompleted != null)
+            if (DownloadImageCompleted != null)
             {
-                RefreshImageUrlCompleted(this, e);
+                DownloadImageCompleted(this, e);
             }
         }
 
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (RefreshImageUrlProgressChanged != null)
+            if (DownloadImageProgressChanged != null)
             {
-                RefreshImageUrlProgressChanged(this, e);
+                DownloadImageProgressChanged(this, e);
             }
         }
 
@@ -117,14 +117,20 @@ namespace MangaRipper
             int countImage = 0;
             foreach (Uri item in uris)
             {
+                if (_bw.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+
                 string content = client.DownloadString(item);
                 countHtml++;
 
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
                 var ev = new ProgressChangedEventArgs(percent, null);
-                if (RefreshImageUrlProgressChanged != null)
+                if (DownloadImageProgressChanged != null)
                 {
-                    RefreshImageUrlProgressChanged(this, ev);
+                    DownloadImageProgressChanged(this, ev);
                 }
 
                 sb.AppendLine(content);
@@ -132,22 +138,29 @@ namespace MangaRipper
 
             ImageUrls = ParseImageUrlFromHtml(sb.ToString());
 
-            foreach (Uri url in ImageUrls)
-            {
-                string saveToFolder = SaveTo + "\\" + this.Name
+            string saveToFolder = SaveTo + "\\" + this.Name
                         .Replace("\\", "").Replace("/", "").Replace(":", "")
                         .Replace("*", "").Replace("?", "").Replace("\"", "")
                         .Replace("<", "").Replace(">", "").Replace("|", "");
-                Directory.CreateDirectory(saveToFolder);
+            Directory.CreateDirectory(saveToFolder);
+
+            foreach (Uri url in ImageUrls)
+            {
+                if (_bw.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+
                 string filename = Path.GetFileName(url.LocalPath);
                 client.DownloadFile(url, saveToFolder + "\\" + filename);
 
                 countImage++;
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
                 var ev = new ProgressChangedEventArgs(percent, null);
-                if (RefreshImageUrlProgressChanged != null)
+                if (DownloadImageProgressChanged != null)
                 {
-                    RefreshImageUrlProgressChanged(this, ev);
+                    DownloadImageProgressChanged(this, ev);
                 }
             }
         }
