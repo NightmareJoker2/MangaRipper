@@ -86,7 +86,7 @@ namespace MangaRipper
         {
             bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
 
-            var arg = new RunWorkerCompletedEventArgs(e.Result, e.Error, cancelled);
+            var arg = new RunWorkerCompletedEventArgs(null, e.Error, cancelled);
 
             if (DownloadImageCompleted != null)
             {
