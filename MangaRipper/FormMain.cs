@@ -17,6 +17,7 @@ namespace MangaRipper
         {
             InitializeComponent();
             dgvQueueChapter.AutoGenerateColumns = false;
+            dgvChapter.AutoGenerateColumns = false;
             this.Text = String.Format("{0} {1}", Application.ProductName, Application.ProductVersion.Remove(Application.ProductVersion.LastIndexOf(".")));
         }
 
@@ -48,8 +49,7 @@ namespace MangaRipper
         {
             btnGetChapter.Enabled = true;
             ITitle title = (ITitle)sender;
-            lbChapter.DataSource = title.Chapters;
-            lbChapter.DisplayMember = "Name";
+            dgvChapter.DataSource = title.Chapters;
 
             if (e.Error != null)
             {
@@ -59,8 +59,16 @@ namespace MangaRipper
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var items = lbChapter.SelectedItems.Cast<IChapter>();
-            items = items.Reverse();
+            var items = new List<IChapter>();
+            foreach (DataGridViewRow row in dgvChapter.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    items.Add((IChapter)row.DataBoundItem);
+                }
+            }
+
+            items.Reverse();
             foreach (IChapter item in items)
             {
                 if (queue.IndexOf(item) < 0)
@@ -80,8 +88,12 @@ namespace MangaRipper
 
         private void btnAddAll_Click(object sender, EventArgs e)
         {
-            var items = lbChapter.Items.Cast<IChapter>();
-            items = items.Reverse();
+            var items = new List<IChapter>();
+            foreach (DataGridViewRow row in dgvChapter.Rows)
+            {
+                items.Add((IChapter)row.DataBoundItem);
+            }
+            items.Reverse();
             foreach (IChapter item in items)
             {
                 if (queue.IndexOf(item) < 0)
@@ -98,7 +110,7 @@ namespace MangaRipper
             foreach (DataGridViewRow item in dgvQueueChapter.SelectedRows)
             {
                 IChapter chapter = (IChapter)item.DataBoundItem;
-                if (queue.IndexOf(chapter) >= 0)
+                if (chapter.IsBusy == false)
                 {
                     queue.Remove(chapter);
                 }
@@ -108,7 +120,7 @@ namespace MangaRipper
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
         {
-            queue.Clear();
+            queue.RemoveAll(r => r.IsBusy == false);
             ReBindQueueList();
         }
 
@@ -127,6 +139,7 @@ namespace MangaRipper
                 chapter.RefreshImageUrlCompleted += new RunWorkerCompletedEventHandler(chapter_RefreshPageCompleted);
 
                 btnDownload.Enabled = false;
+                dgvQueueChapter.Rows[0].Cells["ColChapterStatus"].Value = "0%";
                 chapter.RefreshImageUrlAsync(txtSaveTo.Text);
             }
             else
@@ -149,7 +162,14 @@ namespace MangaRipper
         void chapter_RefreshPageProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             IChapter chapter = (IChapter)sender;
-            dgvQueueChapter.Rows[0].Cells["ColChapterStatus"].Value = e.ProgressPercentage.ToString() + "%";
+            foreach (DataGridViewRow item in dgvQueueChapter.Rows)
+            {
+                if (chapter == item.DataBoundItem)
+                {
+                    item.Cells["ColChapterStatus"].Value = e.ProgressPercentage.ToString() + "%";
+                    break;
+                }
+            }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
