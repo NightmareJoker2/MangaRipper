@@ -29,19 +29,18 @@ namespace MangaRipper
 
             btnGetChapter.Enabled = false;
             title.RefreshChapterAsync();
-            pbGetChapterProgress.Value = 0;
-
+            txtPercent.Text = "0%";
         }
 
         void title_RefreshChapterProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action(() => pbGetChapterProgress.Value = e.ProgressPercentage));
+                this.Invoke(new Action(() => txtPercent.Text = e.ProgressPercentage + "%"));
             }
             else
             {
-                pbGetChapterProgress.Value = e.ProgressPercentage;
+                txtPercent.Text = e.ProgressPercentage + "%";
             }
         }
 
