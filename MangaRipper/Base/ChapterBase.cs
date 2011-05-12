@@ -118,7 +118,6 @@ namespace MangaRipper
             var sb = new StringBuilder();
 
             int countHtml = 0;
-            int countImage = 0;
             foreach (Uri item in uris)
             {
                 if (_bw.CancellationPending == true)
@@ -130,10 +129,10 @@ namespace MangaRipper
                 string content = client.DownloadString(item);
                 countHtml++;
 
-                int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
-                _bw.ReportProgress(percent);
-
                 sb.AppendLine(content);
+
+                int percent = countHtml * 100 / (uris.Count * 2);
+                _bw.ReportProgress(percent);
             }
 
             ImageUrls = ParseImageUrlFromHtml(sb.ToString());
@@ -143,6 +142,8 @@ namespace MangaRipper
                         .Replace("*", "").Replace("?", "").Replace("\"", "")
                         .Replace("<", "").Replace(">", "").Replace("|", "");
             Directory.CreateDirectory(saveToFolder);
+
+            int countImage = 0;
 
             foreach (Uri url in ImageUrls)
             {

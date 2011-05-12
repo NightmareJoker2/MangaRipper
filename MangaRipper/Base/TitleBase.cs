@@ -108,11 +108,11 @@ namespace MangaRipper
                     string content = client.DownloadString(item);
                     sb.AppendLine(content);
                     count++;
-                    PopulateChapterProgressChanged(this, new ProgressChangedEventArgs(count * 100 / uris.Count, null));
+                    _bw.ReportProgress(count * 100 / uris.Count);
                 }
             }
 
-            PopulateChapterProgressChanged(this, new ProgressChangedEventArgs(100, null));
+            _bw.ReportProgress(100);
 
             if (sb.Length == 0)
             {
