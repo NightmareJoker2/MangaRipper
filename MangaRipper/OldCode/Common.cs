@@ -11,34 +11,6 @@ namespace MangaRipper
 {
     static class Common
     {
-        private delegate void MessageBoxThreadSafeDelegate(Form owner, string text, string caption, MessageBoxButtons button, MessageBoxIcon icon);
-
-        private delegate void SetControlPropertyThreadSafeDelegate(Control control, string propertyName, object propertyValue);
-
-        public static void MessageBoxThreadSafe(Form owner, string text, string caption, MessageBoxButtons button, MessageBoxIcon icon)
-        {
-            if (owner.InvokeRequired)
-            {
-                owner.Invoke(new MessageBoxThreadSafeDelegate(MessageBoxThreadSafe), owner, text, caption, button, icon);
-            }
-            else
-            {
-                MessageBox.Show(owner, text, caption, button, icon);
-            }
-        }
-
-        public static void SetControlPropertyThreadSafe(Control control, string propertyName, object propertyValue)
-        {
-            if (control.InvokeRequired)
-            {
-                control.Invoke(new SetControlPropertyThreadSafeDelegate(SetControlPropertyThreadSafe), new object[] { control, propertyName, propertyValue });
-            }
-            else
-            {
-                control.GetType().InvokeMember(propertyName, BindingFlags.SetProperty, null, control, new object[] { propertyValue });
-            }
-        }
-
         public static string DownloadWebsite(string url, int retryMax, ref bool isCancel)
         {
             int retryCount = 0;
