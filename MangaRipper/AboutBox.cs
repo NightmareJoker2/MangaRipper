@@ -17,7 +17,7 @@ namespace MangaRipper
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion.Remove(AssemblyVersion.LastIndexOf(".")));
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
-            //this.textBoxDescription.Text = AssemblyDescription;
+            this.textBoxDescription.Text = AssemblyDescription;
         }
 
         #region Assembly Attribute Accessors
@@ -102,7 +102,7 @@ namespace MangaRipper
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://mangaripper.wordpress.com/");
+            System.Diagnostics.Process.Start("http://mangaripper.codeplex.com/");
         }
     }
 }

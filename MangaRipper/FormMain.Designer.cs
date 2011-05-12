@@ -50,8 +50,8 @@
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.dgvSupportedSites = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnOptions = new System.Windows.Forms.Button();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.dgvChapter = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -285,25 +285,25 @@
             this.button1.Text = "How To Use && F.A.Q.";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnOptions
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(12, 551);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Option";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnOptions.Enabled = false;
+            this.btnOptions.Location = new System.Drawing.Point(12, 551);
+            this.btnOptions.Name = "btnOptions";
+            this.btnOptions.Size = new System.Drawing.Size(105, 23);
+            this.btnOptions.TabIndex = 17;
+            this.btnOptions.Text = "Options";
+            this.btnOptions.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnAbout
             // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(332, 551);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(105, 23);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "About";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAbout.Location = new System.Drawing.Point(332, 551);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(105, 23);
+            this.btnAbout.TabIndex = 19;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // dgvChapter
             // 
@@ -378,8 +378,8 @@
             this.ClientSize = new System.Drawing.Size(1004, 606);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvChapter);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.btnOptions);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvSupportedSites);
             this.Controls.Add(this.txtPercent);
@@ -432,8 +432,8 @@
         private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.DataGridView dgvSupportedSites;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnOptions;
+        private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterUrl;

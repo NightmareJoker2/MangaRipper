@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MangaRipper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Auto download your favorites mangas from some read manga online websites.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nguyen Dan Phuong")]
 [assembly: AssemblyProduct("MangaRipper")]

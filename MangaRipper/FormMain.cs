@@ -228,5 +228,11 @@ namespace MangaRipper
 
             txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            var about = new AboutBox();
+            about.ShowDialog(this);
+        }
     }
 }
