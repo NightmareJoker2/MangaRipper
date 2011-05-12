@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btnGetChapter = new System.Windows.Forms.Button();
             this.txtTitleUrl = new System.Windows.Forms.TextBox();
@@ -55,10 +54,10 @@
             this.dgvChapter = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -67,6 +66,7 @@
             // 
             // btnGetChapter
             // 
+            this.btnGetChapter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGetChapter.Location = new System.Drawing.Point(876, 9);
             this.btnGetChapter.Name = "btnGetChapter";
             this.btnGetChapter.Size = new System.Drawing.Size(116, 24);
@@ -85,6 +85,7 @@
             // 
             // btnDownload
             // 
+            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDownload.Location = new System.Drawing.Point(665, 551);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(216, 23);
@@ -95,6 +96,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Location = new System.Drawing.Point(12, 287);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(210, 23);
@@ -105,6 +107,7 @@
             // 
             // btnAddAll
             // 
+            this.btnAddAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAll.Location = new System.Drawing.Point(227, 287);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(210, 23);
@@ -115,6 +118,7 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Location = new System.Drawing.Point(443, 551);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(105, 23);
@@ -125,6 +129,7 @@
             // 
             // btnRemoveAll
             // 
+            this.btnRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveAll.Location = new System.Drawing.Point(554, 551);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(105, 23);
@@ -165,6 +170,7 @@
             // btnStop
             // 
             this.btnStop.Enabled = false;
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Location = new System.Drawing.Point(887, 551);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(105, 23);
@@ -175,6 +181,7 @@
             // 
             // btnChangeSaveTo
             // 
+            this.btnChangeSaveTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeSaveTo.Location = new System.Drawing.Point(324, 316);
             this.btnChangeSaveTo.Name = "btnChangeSaveTo";
             this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
@@ -185,6 +192,7 @@
             // 
             // btnOpenFolder
             // 
+            this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenFolder.Location = new System.Drawing.Point(360, 316);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(77, 23);
@@ -231,14 +239,6 @@
             this.dgvSupportedSites.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSupportedSites.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSupportedSites.Location = new System.Drawing.Point(12, 345);
             this.dgvSupportedSites.MultiSelect = false;
             this.dgvSupportedSites.Name = "dgvSupportedSites";
@@ -252,6 +252,7 @@
             // button1
             // 
             this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(123, 551);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(203, 23);
@@ -262,6 +263,7 @@
             // button2
             // 
             this.button2.Enabled = false;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(12, 551);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(105, 23);
@@ -272,6 +274,7 @@
             // button3
             // 
             this.button3.Enabled = false;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(332, 551);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(105, 23);
@@ -335,26 +338,6 @@
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -371,6 +354,28 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(59, 17);
             this.toolStripStatusLabel1.Text = "Message: ";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             // 
             // FormMain
             // 
@@ -440,9 +445,9 @@
         private System.Windows.Forms.DataGridView dgvChapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
     }
 }
