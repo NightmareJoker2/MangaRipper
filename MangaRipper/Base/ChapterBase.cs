@@ -14,7 +14,7 @@ namespace MangaRipper
 
         public event ProgressChangedEventHandler DownloadImageProgressChanged;
 
-        protected BackgroundWorker _bw;
+        protected BackgroundWorker worker;
 
         abstract protected List<Uri> ParsePageUrlFromHtml(string html);
 
@@ -49,9 +49,9 @@ namespace MangaRipper
             get
             {
                 bool busy = false;
-                if (_bw != null)
+                if (worker != null)
                 {
-                    busy = _bw.IsBusy;
+                    busy = worker.IsBusy;
                 }
                 return busy;
             }
@@ -60,31 +60,31 @@ namespace MangaRipper
         public void DownloadImageAsync(string fileName)
         {
             SaveTo = fileName;
-            if (_bw == null || _bw.IsBusy == false)
+            if (worker == null || worker.IsBusy == false)
             {
-                _bw = new BackgroundWorker();
-                _bw.WorkerReportsProgress = true;
-                _bw.WorkerSupportsCancellation = true;
+                worker = new BackgroundWorker();
+                worker.WorkerReportsProgress = true;
+                worker.WorkerSupportsCancellation = true;
 
-                _bw.DoWork += new DoWorkEventHandler(DoWork);
-                _bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-                _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
+                worker.DoWork += new DoWorkEventHandler(DoWork);
+                worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
 
-                _bw.RunWorkerAsync();
+                worker.RunWorkerAsync();
             }
         }
 
         public void CancelDownloadImage()
         {
-            if (_bw != null && _bw.IsBusy == true)
+            if (worker != null && worker.IsBusy == true)
             {
-                _bw.CancelAsync();
+                worker.CancelAsync();
             }
         }
 
         private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            bool cancelled = (_bw.CancellationPending == true || e.Cancelled == true);
+            bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
 
             var arg = new RunWorkerCompletedEventArgs(e.Result, e.Error, cancelled);
 
@@ -104,7 +104,7 @@ namespace MangaRipper
 
         private void DoWork(object sender, DoWorkEventArgs e)
         {
-            if (_bw.CancellationPending == true)
+            if (worker.CancellationPending == true)
             {
                 e.Cancel = true;
                 return;
@@ -120,7 +120,7 @@ namespace MangaRipper
             int countHtml = 0;
             foreach (Uri item in uris)
             {
-                if (_bw.CancellationPending == true)
+                if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
                     return;
@@ -132,7 +132,7 @@ namespace MangaRipper
                 sb.AppendLine(content);
 
                 int percent = countHtml * 100 / (uris.Count * 2);
-                _bw.ReportProgress(percent);
+                worker.ReportProgress(percent);
             }
 
             ImageUrls = ParseImageUrlFromHtml(sb.ToString());
@@ -147,7 +147,7 @@ namespace MangaRipper
 
             foreach (Uri url in ImageUrls)
             {
-                if (_bw.CancellationPending == true)
+                if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
                     return;
@@ -158,7 +158,7 @@ namespace MangaRipper
 
                 countImage++;
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
-                _bw.ReportProgress(percent);
+                worker.ReportProgress(percent);
             }
         }
     }

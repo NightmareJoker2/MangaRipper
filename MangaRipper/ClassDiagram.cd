@@ -3,7 +3,7 @@
   <Class Name="MangaRipper.TitleBase">
     <Position X="7.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ACBAAAAAAAUAABAAAAAAIABABABAAIAAKAAAAQAAAAA=</HashCode>
+      <HashCode>ACBAAAAAAAUQABAAAAAAAABABABAAIAAKAAAAQAAAAA=</HashCode>
       <FileName>Base\TitleBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -18,7 +18,7 @@
   <Class Name="MangaRipper.ChapterBase">
     <Position X="1.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAwgAAUAAAAAIACAIARAAAAEAAAACAAAAQAAAAE=</HashCode>
+      <HashCode>AAAAQAwgAAUQAAAAIACAAARAAAAEAAAACAAAAQAAAAE=</HashCode>
       <FileName>Base\ChapterBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

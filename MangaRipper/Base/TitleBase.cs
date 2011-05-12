@@ -14,7 +14,7 @@ namespace MangaRipper
 
         public event ProgressChangedEventHandler PopulateChapterProgressChanged;
 
-        protected BackgroundWorker _bw;
+        protected BackgroundWorker worker;
 
         abstract protected List<Uri> ParseChapterUrlFromHtml(string html);
 
@@ -37,9 +37,9 @@ namespace MangaRipper
             get
             {
                 bool busy = false;
-                if (_bw != null)
+                if (worker != null)
                 {
-                    busy = _bw.IsBusy;
+                    busy = worker.IsBusy;
                 }
                 return busy;
             }
@@ -47,25 +47,25 @@ namespace MangaRipper
 
         public void CancelPopulateChapter()
         {
-            if (_bw != null && _bw.IsBusy == true)
+            if (worker != null && worker.IsBusy == true)
             {
-                _bw.CancelAsync();
+                worker.CancelAsync();
             }
         }
 
         public void PopulateChapterAsync()
         {
-            if (_bw == null || _bw.IsBusy == false)
+            if (worker == null || worker.IsBusy == false)
             {
-                _bw = new BackgroundWorker();
-                _bw.WorkerReportsProgress = true;
-                _bw.WorkerSupportsCancellation = true;
+                worker = new BackgroundWorker();
+                worker.WorkerReportsProgress = true;
+                worker.WorkerSupportsCancellation = true;
 
-                _bw.DoWork += new DoWorkEventHandler(DoWork);
-                _bw.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-                _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
+                worker.DoWork += new DoWorkEventHandler(DoWork);
+                worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
 
-                _bw.RunWorkerAsync();
+                worker.RunWorkerAsync();
             }
         }
 
@@ -87,7 +87,7 @@ namespace MangaRipper
 
         private void DoWork(object sender, DoWorkEventArgs e)
         {
-            if (_bw.CancellationPending == true)
+            if (worker.CancellationPending == true)
             {
                 e.Cancel = true;
                 return;
@@ -108,11 +108,11 @@ namespace MangaRipper
                     string content = client.DownloadString(item);
                     sb.AppendLine(content);
                     count++;
-                    _bw.ReportProgress(count * 100 / uris.Count);
+                    worker.ReportProgress(count * 100 / uris.Count);
                 }
             }
 
-            _bw.ReportProgress(100);
+            worker.ReportProgress(100);
 
             if (sb.Length == 0)
             {
