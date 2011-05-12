@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace MangaRipper
 {
@@ -16,9 +17,6 @@ namespace MangaRipper
         public FormMain()
         {
             InitializeComponent();
-            dgvQueueChapter.AutoGenerateColumns = false;
-            dgvChapter.AutoGenerateColumns = false;
-            this.Text = String.Format("{0} {1}", Application.ProductName, Application.ProductVersion.Remove(Application.ProductVersion.LastIndexOf(".")));
         }
 
         private void btnGetChapter_Click(object sender, EventArgs e)
@@ -179,6 +177,39 @@ namespace MangaRipper
                 IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
                 chapter.CancelRefreshImageUrl();
             }
+        }
+
+        private void btnChangeSaveTo_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = txtSaveTo.Text;
+            DialogResult dr = folderBrowserDialog1.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                txtSaveTo.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            Process.Start(txtSaveTo.Text);
+        }
+
+        private void dgvSupportedSites_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                Process.Start(dgvSupportedSites.Rows[e.RowIndex].Cells[1].Value.ToString());
+            }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            dgvQueueChapter.AutoGenerateColumns = false;
+            dgvChapter.AutoGenerateColumns = false;
+            this.Text = String.Format("{0} {1}", Application.ProductName, Application.ProductVersion.Remove(Application.ProductVersion.LastIndexOf(".")));
+
+            dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
+            dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
         }
     }
 }
