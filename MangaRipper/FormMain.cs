@@ -220,7 +220,7 @@ namespace MangaRipper
 
         private void dgvSupportedSites_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 Process.Start(dgvSupportedSites.Rows[e.RowIndex].Cells[1].Value.ToString());
             }
@@ -230,7 +230,9 @@ namespace MangaRipper
         {
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
-            this.Text = String.Format("{0} {1}", Application.ProductName, DeploymentVersion);
+
+            this.Text = String.Format("{0} {1}", Application.ProductName, AppInfo.DeploymentVersion);
+
             dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
             dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
@@ -251,33 +253,6 @@ namespace MangaRipper
         {
             var about = new AboutBox();
             about.ShowDialog(this);
-        }
-
-        public string DeploymentVersion
-        {
-            get
-            {
-                System.Reflection.Assembly _assemblyInfo =
-                   System.Reflection.Assembly.GetExecutingAssembly();
-
-                string ourVersion = string.Empty;
-
-                // if running the deployed application, you can get the version
-                // from the ApplicationDeployment information. If you try
-                // to access this when you are running in Visual Studio, it will not work.
-                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-                {
-                    ourVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-                }
-                else
-                {
-                    if (_assemblyInfo != null)
-                    {
-                        ourVersion = _assemblyInfo.GetName().Version.ToString();
-                    }
-                }
-                return ourVersion;
-            }
         }
 
         private void btnHowToUse_Click(object sender, EventArgs e)

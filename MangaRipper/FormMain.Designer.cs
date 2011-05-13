@@ -37,14 +37,11 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnRemoveAll = new System.Windows.Forms.Button();
             this.dgvQueueChapter = new System.Windows.Forms.DataGridView();
-            this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnChangeSaveTo = new System.Windows.Forms.Button();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.lbSaveTo = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUrl = new System.Windows.Forms.Label();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.dgvSupportedSites = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +56,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtSaveTo = new System.Windows.Forms.TextBox();
             this.txtTitleUrl = new System.Windows.Forms.TextBox();
+            this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -145,34 +145,6 @@
             this.dgvQueueChapter.Size = new System.Drawing.Size(549, 507);
             this.dgvQueueChapter.TabIndex = 12;
             // 
-            // ColChapterName
-            // 
-            this.ColChapterName.DataPropertyName = "Name";
-            this.ColChapterName.HeaderText = "Chapter Name";
-            this.ColChapterName.Name = "ColChapterName";
-            this.ColChapterName.ReadOnly = true;
-            this.ColChapterName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColChapterName.Width = 200;
-            // 
-            // ColChapterStatus
-            // 
-            this.ColChapterStatus.HeaderText = "%";
-            this.ColChapterStatus.Name = "ColChapterStatus";
-            this.ColChapterStatus.ReadOnly = true;
-            this.ColChapterStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColChapterStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColChapterStatus.Width = 35;
-            // 
-            // ColChapterUrl
-            // 
-            this.ColChapterUrl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColChapterUrl.DataPropertyName = "Url";
-            this.ColChapterUrl.HeaderText = "Address";
-            this.ColChapterUrl.Name = "ColChapterUrl";
-            this.ColChapterUrl.ReadOnly = true;
-            this.ColChapterUrl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColChapterUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // btnStop
             // 
             this.btnStop.Location = new System.Drawing.Point(887, 551);
@@ -212,14 +184,14 @@
             this.lbSaveTo.TabIndex = 7;
             this.lbSaveTo.Text = "Save To";
             // 
-            // label2
+            // lblUrl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Url";
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Location = new System.Drawing.Point(12, 13);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(22, 13);
+            this.lblUrl.TabIndex = 0;
+            this.lblUrl.Text = "Url";
             // 
             // txtPercent
             // 
@@ -374,6 +346,34 @@
             this.txtTitleUrl.TabIndex = 1;
             this.txtTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
             // 
+            // ColChapterName
+            // 
+            this.ColChapterName.DataPropertyName = "Name";
+            this.ColChapterName.HeaderText = "Chapter Name";
+            this.ColChapterName.Name = "ColChapterName";
+            this.ColChapterName.ReadOnly = true;
+            this.ColChapterName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColChapterName.Width = 200;
+            // 
+            // ColChapterStatus
+            // 
+            this.ColChapterStatus.HeaderText = "%";
+            this.ColChapterStatus.Name = "ColChapterStatus";
+            this.ColChapterStatus.ReadOnly = true;
+            this.ColChapterStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColChapterStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColChapterStatus.Width = 35;
+            // 
+            // ColChapterUrl
+            // 
+            this.ColChapterUrl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColChapterUrl.DataPropertyName = "Url";
+            this.ColChapterUrl.HeaderText = "Address";
+            this.ColChapterUrl.Name = "ColChapterUrl";
+            this.ColChapterUrl.ReadOnly = true;
+            this.ColChapterUrl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColChapterUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,7 +386,7 @@
             this.Controls.Add(this.btnHowToUse);
             this.Controls.Add(this.dgvSupportedSites);
             this.Controls.Add(this.txtPercent);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.txtSaveTo);
             this.Controls.Add(this.lbSaveTo);
             this.Controls.Add(this.btnChangeSaveTo);
@@ -432,15 +432,12 @@
         private System.Windows.Forms.Button btnChangeSaveTo;
         private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.Label lbSaveTo;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.DataGridView dgvSupportedSites;
         private System.Windows.Forms.Button btnHowToUse;
         private System.Windows.Forms.Button btnOptions;
         private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterUrl;
         private System.Windows.Forms.DataGridView dgvChapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
@@ -448,5 +445,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterUrl;
     }
 }
