@@ -17,7 +17,7 @@ namespace MangaRipper
             get;
         }
 
-        Uri Url
+        Uri Address
         {
             get;
         }

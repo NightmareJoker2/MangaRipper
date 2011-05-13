@@ -8,11 +8,11 @@ namespace MangaRipper
 {
     public class TitleMangaFox : TitleBase
     {
-        public TitleMangaFox(Uri url)
+        public TitleMangaFox(Uri address)
         {
-            Url = url;
+            Address = address;
         }
-        protected override List<IChapter> ParseChapterFromHtml(string html)
+        protected override List<IChapter> GetChapterObjects(string html)
         {
             var list = new List<IChapter>();
             Regex reg = new Regex("<a href=\"(?<Value>[^\"]+)\" class=\"ch\" title=\"[^\"]+\">(?<Text>.+?)</a>(?<Tag>[^<]+)</td>",
@@ -20,7 +20,7 @@ namespace MangaRipper
             Match m = reg.Match(html);
             while (m.Success)
             {
-                var value = new Uri(Url, m.Groups["Value"].Value);
+                var value = new Uri(Address, m.Groups["Value"].Value);
                 string name = m.Groups["Text"].Value;
 
                 IChapter chapter = new ChapterMangaFox(name, value);
@@ -31,7 +31,7 @@ namespace MangaRipper
             return list;
         }
 
-        protected override List<Uri> ParseChapterUrlFromHtml(string html)
+        protected override List<Uri> GetChapterAddresses(string html)
         {
             return null;
         }

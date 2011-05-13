@@ -12,13 +12,13 @@ namespace MangaRipper
         public ChapterBleachExile(string name, Uri url)
         {
             Name = name;
-            Url = url;
+            Address = url;
         }
 
-        protected override List<Uri> ParsePageUrlFromHtml(string html)
+        protected override List<Uri> GetPageAddresses(string html)
         {
             var list = new List<Uri>();
-            list.Add(Url);
+            list.Add(Address);
             Regex reg = new Regex(@"changePage\('(?<serie>[^']+)', '(?<chapter>[^']+)', value\)",
                 RegexOptions.IgnoreCase);
             Match m = reg.Match(html);
@@ -37,7 +37,7 @@ namespace MangaRipper
                 {
                     string value = m.Groups["Value"].Value;
                     string link = String.Format("/{0}-chapter-{1}-page-{2}.html", serie, chapter, value);
-                    var url = new Uri(Url, link);
+                    var url = new Uri(Address, link);
 
                     var same = list.Where(r => r.AbsoluteUri == url.AbsoluteUri).FirstOrDefault();
 
@@ -52,7 +52,7 @@ namespace MangaRipper
             return list;
         }
 
-        protected override List<Uri> ParseImageUrlFromHtml(string html)
+        protected override List<Uri> GetImageAddresses(string html)
         {
             var list = new List<Uri>();
             Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" border=\"0\"",
@@ -60,7 +60,7 @@ namespace MangaRipper
             Match m = reg.Match(html);
             while (m.Success)
             {
-                var value = new Uri(Url, m.Groups["Value"].Value);
+                var value = new Uri(Address, m.Groups["Value"].Value);
                 list.Add(value);
                 m = m.NextMatch();
             }

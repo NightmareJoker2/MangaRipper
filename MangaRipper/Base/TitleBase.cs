@@ -16,9 +16,9 @@ namespace MangaRipper
 
         protected BackgroundWorker worker;
 
-        abstract protected List<Uri> ParseChapterUrlFromHtml(string html);
+        abstract protected List<Uri> GetChapterAddresses(string html);
 
-        abstract protected List<IChapter> ParseChapterFromHtml(string html);
+        abstract protected List<IChapter> GetChapterObjects(string html);
 
         public List<IChapter> Chapters
         {
@@ -26,7 +26,7 @@ namespace MangaRipper
             protected set;
         }
 
-        public Uri Url
+        public Uri Address
         {
             get;
             protected set;
@@ -99,9 +99,9 @@ namespace MangaRipper
 
             var client = new WebClient();
             client.Proxy = null;
-            string html = client.DownloadString(Url);
+            string html = client.DownloadString(Address);
 
-            List<Uri> uris = ParseChapterUrlFromHtml(html);
+            List<Uri> uris = GetChapterAddresses(html);
             var sb = new StringBuilder();
 
             if (uris != null)
@@ -123,7 +123,7 @@ namespace MangaRipper
                 sb.AppendLine(html);
             }
 
-            Chapters = ParseChapterFromHtml(sb.ToString());
+            Chapters = GetChapterObjects(sb.ToString());
         }
     }
 }

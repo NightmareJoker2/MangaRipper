@@ -9,13 +9,13 @@ namespace MangaRipper
     [Serializable]
     public class ChapterMangaFox : ChapterBase
     {
-        public ChapterMangaFox(string name, Uri url)
+        public ChapterMangaFox(string name, Uri address)
         {
             Name = name;
-            Url = url;
+            Address = address;
         }
 
-        protected override List<Uri> ParseImageUrlFromHtml(string html)
+        protected override List<Uri> GetImageAddresses(string html)
         {
             var list = new List<Uri>();
             Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" onerror=",
@@ -23,23 +23,23 @@ namespace MangaRipper
             Match m = reg.Match(html);
             while (m.Success)
             {
-                var value = new Uri(Url, m.Groups["Value"].Value);
+                var value = new Uri(Address, m.Groups["Value"].Value);
                 list.Add(value);
                 m = m.NextMatch();
             }
             return list;
         }
 
-        protected override List<Uri> ParsePageUrlFromHtml(string html)
+        protected override List<Uri> GetPageAddresses(string html)
         {
             var list = new List<Uri>();
-            list.Add(Url);
+            list.Add(Address);
             Regex reg = new Regex(@"<a href=""(?<Value>\d+.html)"">(?<Text>\d+)</a>",
                 RegexOptions.IgnoreCase);
             Match m = reg.Match(html);
             while (m.Success)
             {
-                var value = new Uri(Url, m.Groups["Value"].Value);
+                var value = new Uri(Address, m.Groups["Value"].Value);
                 string name = m.Groups["Text"].Value;
                 list.Add(value);
                 m = m.NextMatch();

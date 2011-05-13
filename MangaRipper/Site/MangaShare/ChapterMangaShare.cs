@@ -9,16 +9,16 @@ namespace MangaRipper
     [Serializable]
     public class ChapterMangaShare : ChapterBase
     {
-        public ChapterMangaShare(string name, Uri url)
+        public ChapterMangaShare(string name, Uri address)
         {
             Name = name;
-            Url = url;
+            Address = address;
         }
 
-        protected override List<Uri> ParsePageUrlFromHtml(string html)
+        protected override List<Uri> GetPageAddresses(string html)
         {
             var list = new List<Uri>();
-            list.Add(Url);
+            list.Add(Address);
             Regex reg = new Regex(@"<select name=""pagejump"" class=""page"" onchange=""javascript:window.location='(?<Value>[^']+)'\+this\.value\+'\.html';"">",
                 RegexOptions.IgnoreCase);
 
@@ -34,7 +34,7 @@ namespace MangaRipper
                 while (m.Success)
                 {
                     string link = value + m.Groups["FileName"].Value + ".html";
-                    var url = new Uri(Url, link);
+                    var url = new Uri(Address, link);
                     list.Add(url);
                     m = m.NextMatch();
                 }
@@ -42,7 +42,7 @@ namespace MangaRipper
             return list;
         }
 
-        protected override List<Uri> ParseImageUrlFromHtml(string html)
+        protected override List<Uri> GetImageAddresses(string html)
         {
             var list = new List<Uri>();
             Regex reg = new Regex(@"<img src=""(?<Value>[^""]+)"" border=""0"" alt=""[^""]+"" />\n",
@@ -50,7 +50,7 @@ namespace MangaRipper
             Match m = reg.Match(html);
             while (m.Success)
             {
-                var value = new Uri(Url, m.Groups["Value"].Value);
+                var value = new Uri(Address, m.Groups["Value"].Value);
                 list.Add(value);
                 m = m.NextMatch();
             }

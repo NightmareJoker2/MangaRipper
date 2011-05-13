@@ -10,15 +10,15 @@ namespace MangaRipper
     {
         public TitleBleachExile(Uri url)
         {
-            Url = url;
+            Address = url;
         }
 
-        protected override List<Uri> ParseChapterUrlFromHtml(string html)
+        protected override List<Uri> GetChapterAddresses(string html)
         {
             return null;
         }
 
-        protected override List<IChapter> ParseChapterFromHtml(string html)
+        protected override List<IChapter> GetChapterObjects(string html)
         {
             var list = new List<IChapter>();
             Regex reg = new Regex(@"changeChapter\('(?<Serie>[^']+)', value\)",
@@ -52,11 +52,11 @@ namespace MangaRipper
                     string name = m.Groups["Text"].Value;
 
                     string link = String.Format("/{0}-chapter-{1}.html", serie, value);
-                    var url = new Uri(Url, link);
+                    var url = new Uri(Address, link);
                     IChapter chapter = new ChapterBleachExile(titlename + " " + name, url);
 
                     
-                    var same = list.Where(r => r.Name == chapter.Name && r.Url == chapter.Url).FirstOrDefault();
+                    var same = list.Where(r => r.Name == chapter.Name && r.Address == chapter.Address).FirstOrDefault();
 
                     if (same == null)
                     {

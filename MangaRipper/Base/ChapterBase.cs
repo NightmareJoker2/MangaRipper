@@ -20,9 +20,9 @@ namespace MangaRipper
         [NonSerialized]
         protected BackgroundWorker worker;
 
-        abstract protected List<Uri> ParsePageUrlFromHtml(string html);
+        abstract protected List<Uri> GetPageAddresses(string html);
 
-        abstract protected List<Uri> ParseImageUrlFromHtml(string html);
+        abstract protected List<Uri> GetImageAddresses(string html);
 
         public string Name
         {
@@ -30,13 +30,13 @@ namespace MangaRipper
             protected set;
         }
 
-        public Uri Url
+        public Uri Address
         {
             get;
             protected set;
         }
 
-        private List<Uri> ImageUrls
+        private List<Uri> ImageAddresses
         {
             get;
             set;
@@ -116,9 +116,9 @@ namespace MangaRipper
 
             var client = new WebClient();
             client.Proxy = null;
-            string html = client.DownloadString(Url);
+            string html = client.DownloadString(Address);
 
-            List<Uri> uris = ParsePageUrlFromHtml(html);
+            List<Uri> uris = GetPageAddresses(html);
             var sb = new StringBuilder();
 
             int countHtml = 0;
@@ -140,14 +140,14 @@ namespace MangaRipper
                 worker.ReportProgress(percent);
             }
 
-            ImageUrls = ParseImageUrlFromHtml(sb.ToString());
+            ImageAddresses = GetImageAddresses(sb.ToString());
 
             string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
                         
             Directory.CreateDirectory(saveToFolder);
 
             int countImage = 0;
-            foreach (Uri url in ImageUrls)
+            foreach (Uri url in ImageAddresses)
             {
                 if (worker.CancellationPending == true)
                 {
@@ -157,12 +157,27 @@ namespace MangaRipper
 
                 string filename = Path.GetFileName(url.LocalPath);
 
-                client.DownloadFile(url, saveToFolder + "\\" + filename);
+                string srcFileName = Path.GetTempFileName();
+                string desFileName = saveToFolder + "\\" + filename;
+
+                client.DownloadFile(url, srcFileName);
+
+                File.Move(srcFileName, desFileName);
 
                 countImage++;
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
                 worker.ReportProgress(percent);
             }
+        }
+
+        private string DownloadString(Uri address)
+        {
+            return "";
+        }
+
+        private void DownloadFile(Uri address, string fileName)
+        {
+
         }
     }
 }
