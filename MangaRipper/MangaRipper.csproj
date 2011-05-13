@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ExtensionMethod.cs" />
     <Compile Include="Site\MangaShare\ChapterMangaShare.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

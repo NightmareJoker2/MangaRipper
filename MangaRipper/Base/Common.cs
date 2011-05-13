@@ -43,20 +43,19 @@ namespace MangaRipper
                 if (fs.Length != 0)
                 {
                     IFormatter formatter = new BinaryFormatter();
-                    result = (List<IChapter>)formatter.Deserialize(fs); 
+                    result = (List<IChapter>)formatter.Deserialize(fs);
                 }
             }
             return result;
         }
 
 
-        public static string DownloadWebsite(string url, int retryMax, ref bool isCancel)
+        public static string DownloadWebsite(string url, ref bool isCancel)
         {
-            int retryCount = 0;
             StringBuilder result = new StringBuilder();
-            while (retryCount < retryMax && !isCancel)
+            try
             {
-                try
+                while (!isCancel)
                 {
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                     request.Proxy = null;
@@ -79,29 +78,20 @@ namespace MangaRipper
                     }
                     break;
                 }
-                catch (Exception)
-                {
-                    retryCount++;
-                    if (retryCount == retryMax)
-                    {
-                        throw;
-                    }
-                }
-            }
-            if (!isCancel)
-            {
                 return result.ToString();
             }
-            else
+
+            catch (Exception ex)
             {
-                return "";
+                string error = String.Format("Error while download {0}. {1}", url, ex.Message);
+                throw new Exception(error);
             }
+
         }
 
-        public static void DownloadImage(string imageURL, string saveToFolder, int retryMax, ref bool isCancel)
+        public static void DownloadImage(string imageURL, string saveToFolder, ref bool isCancel)
         {
-            int retryCount = 0;
-            while (retryCount < retryMax && !isCancel)
+            while (!isCancel)
             {
                 try
                 {
@@ -136,13 +126,10 @@ namespace MangaRipper
                     }
                     break;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    retryCount++;
-                    if (retryCount == retryMax)
-                    {
-                        throw;
-                    }
+                    string error = String.Format("Error while download {0}. {1}", imageURL, ex.Message);
+                    throw new Exception(error);
                 }
             }
         }

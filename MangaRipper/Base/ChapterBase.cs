@@ -139,10 +139,8 @@ namespace MangaRipper
 
             ImageUrls = ParseImageUrlFromHtml(sb.ToString());
 
-            string saveToFolder = SaveTo + "\\" + this.Name
-                        .Replace("\\", "").Replace("/", "").Replace(":", "")
-                        .Replace("*", "").Replace("?", "").Replace("\"", "")
-                        .Replace("<", "").Replace(">", "").Replace("|", "");
+            string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
+                        
             Directory.CreateDirectory(saveToFolder);
 
             int countImage = 0;
@@ -156,6 +154,7 @@ namespace MangaRipper
                 }
 
                 string filename = Path.GetFileName(url.LocalPath);
+
                 client.DownloadFile(url, saveToFolder + "\\" + filename);
 
                 countImage++;
