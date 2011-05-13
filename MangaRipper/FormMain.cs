@@ -235,7 +235,10 @@ namespace MangaRipper
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
             dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
 
-            txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (String.IsNullOrEmpty(txtSaveTo.Text))
+            {
+                txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); 
+            }
 
             if (File.Exists(fileIChapter))
             {
@@ -284,6 +287,7 @@ namespace MangaRipper
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Properties.Settings.Default.Save();
             Common.SaveIChapterCollection(queue, fileIChapter);
         }
 

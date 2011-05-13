@@ -41,7 +41,6 @@
             this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSaveTo = new System.Windows.Forms.TextBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnChangeSaveTo = new System.Windows.Forms.Button();
             this.btnOpenFolder = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtSaveTo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -77,11 +77,12 @@
             // 
             // txtTitleUrl
             // 
+            this.txtTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtTitleUrl.Location = new System.Drawing.Point(38, 10);
             this.txtTitleUrl.Name = "txtTitleUrl";
             this.txtTitleUrl.Size = new System.Drawing.Size(791, 22);
             this.txtTitleUrl.TabIndex = 1;
-            this.txtTitleUrl.Text = "http://www.mangafox.com/manga/mirai_nikki/";
+            this.txtTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
             // 
             // btnDownload
             // 
@@ -180,14 +181,6 @@
             this.ColChapterUrl.ReadOnly = true;
             this.ColChapterUrl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColChapterUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // txtSaveTo
-            // 
-            this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
-            this.txtSaveTo.Name = "txtSaveTo";
-            this.txtSaveTo.ReadOnly = true;
-            this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
-            this.txtSaveTo.TabIndex = 8;
             // 
             // btnStop
             // 
@@ -370,6 +363,16 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(22, 17);
             this.toolStripStatusLabel1.Text = "     ";
+            // 
+            // txtSaveTo
+            // 
+            this.txtSaveTo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "SaveTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
+            this.txtSaveTo.Name = "txtSaveTo";
+            this.txtSaveTo.ReadOnly = true;
+            this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
+            this.txtSaveTo.TabIndex = 8;
+            this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
             // 
             // FormMain
             // 
