@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Deployment.Application;
 
 namespace MangaRipper
 {
@@ -14,7 +15,7 @@ namespace MangaRipper
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion.Remove(AssemblyVersion.LastIndexOf(".")));
+            this.labelVersion.Text = String.Format("Version {0}", DeploymentVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
@@ -43,9 +44,37 @@ namespace MangaRipper
         {
             get
             {
-                return Application.ProductVersion;// Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return Application.ProductVersion;
             }
         }
+
+        public string DeploymentVersion
+        {
+            get
+            {
+                System.Reflection.Assembly _assemblyInfo =
+                   System.Reflection.Assembly.GetExecutingAssembly();
+
+                string ourVersion = string.Empty;
+
+                // if running the deployed application, you can get the version
+                // from the ApplicationDeployment information. If you try
+                // to access this when you are running in Visual Studio, it will not work.
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    ourVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                else
+                {
+                    if (_assemblyInfo != null)
+                    {
+                        ourVersion = _assemblyInfo.GetName().Version.ToString();
+                    }
+                }
+                return ourVersion;
+            }
+        }
+
 
         public string AssemblyDescription
         {

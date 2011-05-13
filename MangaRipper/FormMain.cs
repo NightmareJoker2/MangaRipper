@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Deployment.Application;
 
 namespace MangaRipper
 {
@@ -228,8 +229,7 @@ namespace MangaRipper
         {
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
-            this.Text = String.Format("{0} {1}", Application.ProductName, Application.ProductVersion.Remove(Application.ProductVersion.LastIndexOf(".")));
-
+            this.Text = String.Format("{0} {1}", Application.ProductName, DeploymentVersion);
             dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
 
@@ -240,6 +240,33 @@ namespace MangaRipper
         {
             var about = new AboutBox();
             about.ShowDialog(this);
+        }
+
+        public string DeploymentVersion
+        {
+            get
+            {
+                System.Reflection.Assembly _assemblyInfo =
+                   System.Reflection.Assembly.GetExecutingAssembly();
+
+                string ourVersion = string.Empty;
+
+                // if running the deployed application, you can get the version
+                // from the ApplicationDeployment information. If you try
+                // to access this when you are running in Visual Studio, it will not work.
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    ourVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                else
+                {
+                    if (_assemblyInfo != null)
+                    {
+                        ourVersion = _assemblyInfo.GetName().Version.ToString();
+                    }
+                }
+                return ourVersion;
+            }
         }
     }
 }
