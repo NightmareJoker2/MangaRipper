@@ -73,7 +73,9 @@ namespace MangaRipper
         {
             if (PopulateChapterCompleted != null)
             {
-                PopulateChapterCompleted(this, e);
+                bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
+                var arg = new RunWorkerCompletedEventArgs(null, e.Error, cancelled);
+                PopulateChapterCompleted(this, arg);
             }
         }
 
