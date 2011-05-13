@@ -109,7 +109,7 @@
     </Compile>
     <Compile Include="Base\ChapterBase.cs" />
     <Compile Include="Site\MangaFox\ChapterMangaFox.cs" />
-    <Compile Include="OldCode\Common.cs" />
+    <Compile Include="Base\Common.cs" />
     <Compile Include="Base\IChapter.cs" />
     <Compile Include="Base\ITitle.cs" />
     <Compile Include="Program.cs" />
@@ -150,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="japan.ico" />
-    <None Include="Resources\japan.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -173,6 +172,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OldCode\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
