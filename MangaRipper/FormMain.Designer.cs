@@ -51,7 +51,7 @@
             this.dgvSupportedSites = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnHowToUse = new System.Windows.Forms.Button();
             this.btnOptions = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.dgvChapter = new System.Windows.Forms.DataGridView();
@@ -296,15 +296,15 @@
             this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
-            // button1
+            // btnHowToUse
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(123, 551);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "How To Use && F.A.Q.";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnHowToUse.Location = new System.Drawing.Point(123, 551);
+            this.btnHowToUse.Name = "btnHowToUse";
+            this.btnHowToUse.Size = new System.Drawing.Size(203, 23);
+            this.btnHowToUse.TabIndex = 18;
+            this.btnHowToUse.Text = "How To Use && F.A.Q.";
+            this.btnHowToUse.UseVisualStyleBackColor = true;
+            this.btnHowToUse.Click += new System.EventHandler(this.btnHowToUse_Click);
             // 
             // btnOptions
             // 
@@ -380,7 +380,7 @@
             this.Controls.Add(this.dgvChapter);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnOptions);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnHowToUse);
             this.Controls.Add(this.dgvSupportedSites);
             this.Controls.Add(this.txtPercent);
             this.Controls.Add(this.label2);
@@ -431,7 +431,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.DataGridView dgvSupportedSites;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHowToUse;
         private System.Windows.Forms.Button btnOptions;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterName;

@@ -268,5 +268,10 @@ namespace MangaRipper
                 return ourVersion;
             }
         }
+
+        private void btnHowToUse_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://mangaripper.codeplex.com/documentation");
+        }
     }
 }
