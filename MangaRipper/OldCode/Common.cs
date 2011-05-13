@@ -6,11 +6,48 @@ using System.Reflection;
 using System.Net;
 using System.IO;
 using System.Net.Sockets;
+using System.Xml.Serialization;
 
 namespace MangaRipper
 {
     static class Common
     {
+        public static void Save(List<IChapter> List, string FileName)
+        {
+            string backupName = Path.ChangeExtension(FileName, ".old");
+            if (File.Exists(FileName))
+            {
+                if (File.Exists(backupName))
+                {
+                    File.Delete(backupName);
+                }
+                File.Move(FileName, backupName);
+            }
+
+            using (FileStream fs = new FileStream(FileName, FileMode.Create))
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(List<IChapter>));
+                ser.Serialize(fs, List);
+                fs.Flush();
+                fs.Close();
+            }
+        }
+        public static List<IChapter> Load(string FileName)
+        {
+            if (!File.Exists(FileName))
+                throw new FileNotFoundException("The file could not be found", FileName);
+
+            List<IChapter> result;
+
+            using (FileStream fs = new FileStream(FileName, FileMode.Open))
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(List<IChapter>));
+                result = (List<IChapter>)ser.Deserialize(fs);
+            }
+            return result;
+        }
+
+
         public static string DownloadWebsite(string url, int retryMax, ref bool isCancel)
         {
             int retryCount = 0;
