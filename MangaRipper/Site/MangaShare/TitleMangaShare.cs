@@ -8,6 +8,11 @@ namespace MangaRipper
 {
     public class TitleMangaShare : TitleBase
     {
+        public TitleMangaShare(Uri url)
+        {
+            Url = url;
+        }
+
         protected override List<Uri> ParseChapterUrlFromHtml(string html)
         {
             return null;
@@ -29,11 +34,6 @@ namespace MangaRipper
                 m = m.NextMatch();
             }
             return list;
-        }
-
-        public TitleMangaShare(Uri url)
-        {
-            Url = url;
         }
     }
 }

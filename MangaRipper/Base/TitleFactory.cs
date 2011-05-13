@@ -18,6 +18,9 @@ namespace MangaRipper
                 case "read.mangashare.com":
                     title = new TitleMangaShare(uri);
                     break;
+                case "manga.bleachexile.com":
+                    title = new TitleBleachExile(uri);
+                    break;
                 default:
                     string message = String.Format("MangaRipper does not support this site ({0}).", uri.Host);
                     throw new Exception(message);

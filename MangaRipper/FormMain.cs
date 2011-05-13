@@ -88,31 +88,8 @@ namespace MangaRipper
 
         private void ReBindQueueList()
         {
-            var dict = new Dictionary<IChapter, string>();
-
-            foreach (DataGridViewRow row in dgvQueueChapter.Rows)
-            {
-                if (row.Cells[1].Value != null && row.DataBoundItem != null)
-                {
-                    IChapter chapter = (IChapter)row.DataBoundItem;
-                    string status = row.Cells[1].Value.ToString();
-                    dict.Add(chapter, status);
-                }
-            }
-
             dgvQueueChapter.DataSource = null;
             dgvQueueChapter.DataSource = queue;
-
-            foreach (DataGridViewRow row in dgvQueueChapter.Rows)
-            {
-                IChapter chapter = (IChapter)row.DataBoundItem;
-                string status = "";
-                dict.TryGetValue(chapter, out status);
-                if (String.IsNullOrEmpty(status) == false)
-                {
-                    row.Cells[1].Value = status;
-                }
-            }
         }
 
         private void btnAddAll_Click(object sender, EventArgs e)
@@ -255,6 +232,7 @@ namespace MangaRipper
             this.Text = String.Format("{0} {1}", Application.ProductName, DeploymentVersion);
             dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
+            dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
 
             txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }

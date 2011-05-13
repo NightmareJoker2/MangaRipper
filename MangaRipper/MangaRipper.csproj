@@ -118,6 +118,8 @@
     <Compile Include="Base\TitleFactory.cs" />
     <Compile Include="Site\MangaFox\TitleMangaFox.cs" />
     <Compile Include="Site\MangaShare\TitleMangaShare.cs" />
+    <Compile Include="Site\BleachExile\ChapterBleachExile.cs" />
+    <Compile Include="Site\BleachExile\TitleBleachExile.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
