@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace MangaRipper
 {
-
+    [Serializable]
     public class ChapterBleachExile : ChapterBase
     {
         public ChapterBleachExile(string name, Uri url)

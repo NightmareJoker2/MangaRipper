@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace MangaRipper
 {
-
+    [Serializable]
     public class ChapterMangaShare : ChapterBase
     {
         public ChapterMangaShare(string name, Uri url)

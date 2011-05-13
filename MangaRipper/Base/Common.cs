@@ -6,43 +6,45 @@ using System.Reflection;
 using System.Net;
 using System.IO;
 using System.Net.Sockets;
-using System.Xml.Serialization;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MangaRipper
 {
     static class Common
     {
-        public static void Save(List<IChapter> List, string FileName)
+        public static void SaveIChapterCollection(List<IChapter> List, string fileName)
         {
-            string backupName = Path.ChangeExtension(FileName, ".old");
-            if (File.Exists(FileName))
+            string backupName = Path.ChangeExtension(fileName, ".old");
+            if (File.Exists(fileName))
             {
                 if (File.Exists(backupName))
                 {
                     File.Delete(backupName);
                 }
-                File.Move(FileName, backupName);
+                File.Move(fileName, backupName);
             }
 
-            using (FileStream fs = new FileStream(FileName, FileMode.Create))
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<IChapter>));
-                ser.Serialize(fs, List);
-                fs.Flush();
-                fs.Close();
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fs, List);
             }
         }
-        public static List<IChapter> Load(string FileName)
+        public static List<IChapter> LoadIChapterCollection(string ileName)
         {
-            if (!File.Exists(FileName))
-                throw new FileNotFoundException("The file could not be found", FileName);
+            if (!File.Exists(ileName))
+                throw new FileNotFoundException("The file could not be found", ileName);
 
-            List<IChapter> result;
+            List<IChapter> result = new List<IChapter>();
 
-            using (FileStream fs = new FileStream(FileName, FileMode.Open))
+            using (FileStream fs = new FileStream(ileName, FileMode.Open))
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<IChapter>));
-                result = (List<IChapter>)ser.Deserialize(fs);
+                if (fs.Length != 0)
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    result = (List<IChapter>)formatter.Deserialize(fs); 
+                }
             }
             return result;
         }

@@ -8,12 +8,16 @@ using System.IO;
 
 namespace MangaRipper
 {
+    [Serializable]
     public abstract class ChapterBase : IChapter
     {
+        [field: NonSerialized]
         public event RunWorkerCompletedEventHandler DownloadImageCompleted;
 
+        [field: NonSerialized]
         public event ProgressChangedEventHandler DownloadImageProgressChanged;
 
+        [NonSerialized]
         protected BackgroundWorker worker;
 
         abstract protected List<Uri> ParsePageUrlFromHtml(string html);

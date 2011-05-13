@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -235,6 +236,12 @@ namespace MangaRipper
             dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
 
             txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (File.Exists(fileIChapter))
+            {
+                queue = Common.LoadIChapterCollection(fileIChapter);
+                ReBindQueueList(); 
+            }
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
@@ -274,5 +281,12 @@ namespace MangaRipper
         {
             Process.Start("http://mangaripper.codeplex.com/documentation");
         }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Common.SaveIChapterCollection(queue, fileIChapter);
+        }
+
+        string fileIChapter = "IChapterQueue.sav";
     }
 }
