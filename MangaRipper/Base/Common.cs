@@ -61,10 +61,8 @@ namespace MangaRipper
                     request.Proxy = null;
                     request.Timeout = 30000;
                     request.Credentials = CredentialCache.DefaultCredentials;
-                    if (isCancel) { break; }
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
-                        if (isCancel) { break; }
                         using (Stream responseStream = response.GetResponseStream())
                         {
                             byte[] downBuffer = new byte[1024];
@@ -72,7 +70,7 @@ namespace MangaRipper
                             while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
                             {
                                 if (isCancel) { break; }
-                                result.Append(System.Text.Encoding.GetEncoding("UTF-8").GetString(downBuffer, 0, bytesSize));
+                                result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
                             }
                         }
                     }
@@ -91,46 +89,41 @@ namespace MangaRipper
 
         public static void DownloadImage(string imageURL, string saveToFolder, ref bool isCancel)
         {
-            while (!isCancel)
+
+            try
             {
-                try
+                string filename = imageURL.Remove(0, imageURL.LastIndexOf("/") + 1);
+                if (!File.Exists(saveToFolder + "\\" + filename))
                 {
-                    string filename = imageURL.Remove(0, imageURL.LastIndexOf("/") + 1);
-                    if (!File.Exists(saveToFolder + "\\" + filename))
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageURL);
+                    request.Proxy = null;
+                    request.Credentials = CredentialCache.DefaultCredentials;
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
-                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageURL);
-                        request.Proxy = null;
-                        request.Credentials = CredentialCache.DefaultCredentials;
-                        if (isCancel) { break; }
-                        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                        using (Stream responseStream = response.GetResponseStream())
                         {
-                            if (isCancel) { break; }
-                            using (Stream responseStream = response.GetResponseStream())
+                            using (Stream strLocal = new FileStream(saveToFolder + "\\" + filename + ".mr", FileMode.Create, FileAccess.Write, FileShare.None))
                             {
-                                using (Stream strLocal = new FileStream(saveToFolder + "\\" + filename + ".mr", FileMode.Create, FileAccess.Write, FileShare.None))
+                                byte[] downBuffer = new byte[1024];
+                                int bytesSize = 0;
+                                while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
                                 {
-                                    byte[] downBuffer = new byte[1024];
-                                    int bytesSize = 0;
-                                    while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
-                                    {
-                                        if (isCancel) { break; }
-                                        strLocal.Write(downBuffer, 0, bytesSize);
-                                    }
+                                    if (isCancel) { break; }
+                                    strLocal.Write(downBuffer, 0, bytesSize);
                                 }
-                                if (!isCancel)
-                                {
-                                    File.Move(saveToFolder + "\\" + filename + ".mr", saveToFolder + "\\" + filename);
-                                }
+                            }
+                            if (!isCancel)
+                            {
+                                File.Move(saveToFolder + "\\" + filename + ".mr", saveToFolder + "\\" + filename);
                             }
                         }
                     }
-                    break;
                 }
-                catch (Exception ex)
-                {
-                    string error = String.Format("Error while download {0}. {1}", imageURL, ex.Message);
-                    throw new Exception(error);
-                }
+            }
+            catch (Exception ex)
+            {
+                string error = String.Format("Error while download {0}. {1}", imageURL, ex.Message);
+                throw new Exception(error);
             }
         }
     }
