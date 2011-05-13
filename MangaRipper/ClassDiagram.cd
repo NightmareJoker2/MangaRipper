@@ -9,7 +9,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MangaRipper.TitleMangaFox">
-    <Position X="6.5" Y="5.25" Width="2" />
+    <Position X="6.5" Y="5.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
       <FileName>Site\MangaFox\TitleMangaFox.cs</FileName>
@@ -24,35 +24,35 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MangaRipper.ChapterMangaFox">
-    <Position X="0.5" Y="5.75" Width="2" />
+    <Position X="0.5" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Site\MangaFox\ChapterMangaFox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MangaRipper.TitleMangaShare">
-    <Position X="9.25" Y="5.25" Width="2" />
+    <Position X="9.25" Y="5.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
       <FileName>Site\MangaShare\TitleMangaShare.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MangaRipper.ChapterMangaShare">
-    <Position X="3.25" Y="5.75" Width="2" />
+    <Position X="3.25" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Site\MangaShare\ChapterMangaShare.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="MangaRipper.ITitle">
-    <Position X="14" Y="0.5" Width="3.25" />
+    <Position X="14" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>ACBAAAAAAAAAABAAAAAAAABAAABAAIACAAAAAAAAAAA=</HashCode>
       <FileName>Base\ITitle.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="MangaRipper.IChapter">
-    <Position X="11" Y="0.5" Width="2.75" />
+    <Position X="11" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAggAAAAAAAAIACAAARAAAAEAAACAAAAAAAAAAA=</HashCode>
       <FileName>Base\IChapter.cs</FileName>
