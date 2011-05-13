@@ -21,14 +21,21 @@ namespace MangaRipper
 
         private void btnGetChapter_Click(object sender, EventArgs e)
         {
-            var titleUrl = new Uri(txtTitleUrl.Text);
-            ITitle title = TitleFactory.CreateTitle(titleUrl);
-            title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
-            title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
+            try
+            {
+                var titleUrl = new Uri(txtTitleUrl.Text);
+                ITitle title = TitleFactory.CreateTitle(titleUrl);
+                title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
+                title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
 
-            btnGetChapter.Enabled = false;
-            title.PopulateChapterAsync();
-            txtPercent.Text = "0%";
+                btnGetChapter.Enabled = false;
+                title.PopulateChapterAsync();
+                txtPercent.Text = "0%";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         protected void ITitle_PopulateChapterProgressChanged(object sender, ProgressChangedEventArgs e)

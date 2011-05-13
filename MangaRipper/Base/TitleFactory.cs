@@ -19,7 +19,7 @@ namespace MangaRipper
                     title = new TitleMangaShare(uri);
                     break;
                 default:
-                    string message = String.Format("MangaRipper doesn't support this site ({0}).", uri.Host);
+                    string message = String.Format("MangaRipper does not support this site ({0}).", uri.Host);
                     throw new Exception(message);
             }
             return title;
