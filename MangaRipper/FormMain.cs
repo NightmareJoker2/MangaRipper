@@ -32,7 +32,6 @@ namespace MangaRipper
 
                 btnGetChapter.Enabled = false;
                 title.PopulateChapterAsync();
-                txtPercent.Text = "0%";
             }
             catch (Exception ex)
             {
@@ -146,7 +145,6 @@ namespace MangaRipper
                 chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
 
                 btnDownload.Enabled = false;
-                dgvQueueChapter.Rows[0].Cells["ColChapterStatus"].Value = "0%";
                 chapter.DownloadImageAsync(txtSaveTo.Text);
             }
             else

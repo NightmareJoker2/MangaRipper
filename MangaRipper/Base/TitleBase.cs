@@ -89,6 +89,8 @@ namespace MangaRipper
 
         private void DoWork(object sender, DoWorkEventArgs e)
         {
+            worker.ReportProgress(0);
+
             if (worker.CancellationPending == true)
             {
                 e.Cancel = true;

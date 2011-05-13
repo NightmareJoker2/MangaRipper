@@ -106,6 +106,8 @@ namespace MangaRipper
 
         private void DoWork(object sender, DoWorkEventArgs e)
         {
+            worker.ReportProgress(0);
+
             if (worker.CancellationPending == true)
             {
                 e.Cancel = true;
@@ -120,6 +122,7 @@ namespace MangaRipper
             var sb = new StringBuilder();
 
             int countHtml = 0;
+
             foreach (Uri item in uris)
             {
                 if (worker.CancellationPending == true)
@@ -144,7 +147,6 @@ namespace MangaRipper
             Directory.CreateDirectory(saveToFolder);
 
             int countImage = 0;
-
             foreach (Uri url in ImageUrls)
             {
                 if (worker.CancellationPending == true)

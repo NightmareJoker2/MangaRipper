@@ -22,7 +22,7 @@ namespace MangaRipper
                     title = new TitleBleachExile(uri);
                     break;
                 default:
-                    string message = String.Format("MangaRipper does not support this site ({0}).", uri.Host);
+                    string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);
             }
             return title;
