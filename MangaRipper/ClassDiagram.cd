@@ -54,7 +54,7 @@
   <Interface Name="MangaRipper.IChapter">
     <Position X="11" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAQAggAAAAAAAAIACAAARAAAAEAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAggAAAAAAAAIACAAARAAAAEAAAACAAAAAAAAAA=</HashCode>
       <FileName>Base\IChapter.cs</FileName>
     </TypeIdentifier>
   </Interface>

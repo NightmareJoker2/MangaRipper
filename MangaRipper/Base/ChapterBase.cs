@@ -32,10 +32,10 @@ namespace MangaRipper
             protected set;
         }
 
-        public List<Uri> ImageUrls
+        private List<Uri> ImageUrls
         {
             get;
-            protected set;
+            set;
         }
 
         public string SaveTo

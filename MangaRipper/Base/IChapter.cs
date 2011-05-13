@@ -22,11 +22,6 @@ namespace MangaRipper
             get;
         }
 
-        List<Uri> ImageUrls
-        {
-            get;
-        }
-
         string SaveTo
         {
             get;
