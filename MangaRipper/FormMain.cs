@@ -16,6 +16,8 @@ namespace MangaRipper
     {
         List<IChapter> queue = new List<IChapter>();
 
+        protected const string FILENAME_ICHAPTER_COLLECTION = "IChapterCollection.bin";
+
         public FormMain()
         {
             InitializeComponent();
@@ -238,9 +240,9 @@ namespace MangaRipper
                 txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); 
             }
 
-            if (File.Exists(fileIChapter))
+            if (File.Exists(FILENAME_ICHAPTER_COLLECTION))
             {
-                queue = Common.LoadIChapterCollection(fileIChapter);
+                queue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
                 ReBindQueueList(); 
             }
         }
@@ -286,9 +288,7 @@ namespace MangaRipper
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
-            Common.SaveIChapterCollection(queue, fileIChapter);
+            Common.SaveIChapterCollection(queue, FILENAME_ICHAPTER_COLLECTION);
         }
-
-        string fileIChapter = "IChapterQueue.sav";
     }
 }

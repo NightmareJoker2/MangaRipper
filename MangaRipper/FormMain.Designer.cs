@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btnGetChapter = new System.Windows.Forms.Button();
-            this.txtTitleUrl = new System.Windows.Forms.TextBox();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnAddAll = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtSaveTo = new System.Windows.Forms.TextBox();
+            this.txtTitleUrl = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -74,15 +74,6 @@
             this.btnGetChapter.Text = "Get Chapters";
             this.btnGetChapter.UseVisualStyleBackColor = true;
             this.btnGetChapter.Click += new System.EventHandler(this.btnGetChapter_Click);
-            // 
-            // txtTitleUrl
-            // 
-            this.txtTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtTitleUrl.Location = new System.Drawing.Point(38, 10);
-            this.txtTitleUrl.Name = "txtTitleUrl";
-            this.txtTitleUrl.Size = new System.Drawing.Size(791, 22);
-            this.txtTitleUrl.TabIndex = 1;
-            this.txtTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
             // 
             // btnDownload
             // 
@@ -373,6 +364,15 @@
             this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
             this.txtSaveTo.TabIndex = 8;
             this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
+            // 
+            // txtTitleUrl
+            // 
+            this.txtTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtTitleUrl.Location = new System.Drawing.Point(38, 10);
+            this.txtTitleUrl.Name = "txtTitleUrl";
+            this.txtTitleUrl.Size = new System.Drawing.Size(791, 22);
+            this.txtTitleUrl.TabIndex = 1;
+            this.txtTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
             // 
             // FormMain
             // 
