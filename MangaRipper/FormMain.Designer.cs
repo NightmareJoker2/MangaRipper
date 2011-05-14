@@ -367,7 +367,7 @@
             // ColChapterUrl
             // 
             this.ColChapterUrl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColChapterUrl.DataPropertyName = "Url";
+            this.ColChapterUrl.DataPropertyName = "Address";
             this.ColChapterUrl.HeaderText = "Address";
             this.ColChapterUrl.Name = "ColChapterUrl";
             this.ColChapterUrl.ReadOnly = true;
