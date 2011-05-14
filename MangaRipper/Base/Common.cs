@@ -13,32 +13,22 @@ namespace MangaRipper
 {
     static class Common
     {
-        public static void SaveIChapterCollection(List<IChapter> List, string fileName)
+        public static void SaveIChapterCollection(List<IChapter> chapters, string fileName)
         {
-            string backupName = Path.ChangeExtension(fileName, ".old");
-            if (File.Exists(fileName))
-            {
-                if (File.Exists(backupName))
-                {
-                    File.Delete(backupName);
-                }
-                File.Move(fileName, backupName);
-            }
-
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
                 IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, List);
+                formatter.Serialize(fs, chapters);
             }
         }
-        public static List<IChapter> LoadIChapterCollection(string ileName)
+        public static List<IChapter> LoadIChapterCollection(string fileName)
         {
-            if (!File.Exists(ileName))
-                throw new FileNotFoundException("The file could not be found", ileName);
+            if (!File.Exists(fileName))
+                throw new FileNotFoundException("The file could not be found", fileName);
 
             List<IChapter> result = new List<IChapter>();
 
-            using (FileStream fs = new FileStream(ileName, FileMode.Open))
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
                 if (fs.Length != 0)
                 {
