@@ -188,7 +188,7 @@ namespace MangaRipper
             {
                 if (chapter == item.DataBoundItem)
                 {
-                    item.Cells["ColChapterStatus"].Value = e.ProgressPercentage.ToString() + "%";
+                    item.Cells[ColChapterStatus.Name].Value = e.ProgressPercentage.ToString() + "%";
                     break;
                 }
             }
@@ -233,9 +233,9 @@ namespace MangaRipper
 
             this.Text = String.Format("{0} {1}", Application.ProductName, AppInfo.DeploymentVersion);
 
+            dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
             dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
-            dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
 
             if (String.IsNullOrEmpty(txtSaveTo.Text))
             {
