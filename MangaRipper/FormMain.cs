@@ -219,7 +219,6 @@ namespace MangaRipper
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
 
