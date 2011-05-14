@@ -44,8 +44,6 @@
             this.lblUrl = new System.Windows.Forms.Label();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.dgvSupportedSites = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnHowToUse = new System.Windows.Forms.Button();
             this.btnOptions = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
@@ -59,6 +57,8 @@
             this.ColChapterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColChapterStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColChapterUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -231,27 +231,6 @@
             this.dgvSupportedSites.TabIndex = 11;
             this.dgvSupportedSites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupportedSites_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.Blue;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
             // btnHowToUse
             // 
             this.btnHowToUse.Location = new System.Drawing.Point(123, 551);
@@ -374,6 +353,27 @@
             this.ColChapterUrl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColChapterUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.Blue;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,10 +443,10 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterUrl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
     }
 }
