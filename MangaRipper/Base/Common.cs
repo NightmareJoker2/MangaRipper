@@ -8,12 +8,13 @@ using System.IO;
 using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.ComponentModel;
 
 namespace MangaRipper
 {
     static class Common
     {
-        public static void SaveIChapterCollection(List<IChapter> chapters, string fileName)
+        public static void SaveIChapterCollection(BindingList<IChapter> chapters, string fileName)
         {
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
@@ -21,21 +22,23 @@ namespace MangaRipper
                 formatter.Serialize(fs, chapters);
             }
         }
-        public static List<IChapter> LoadIChapterCollection(string fileName)
+        public static BindingList<IChapter> LoadIChapterCollection(string fileName)
         {
-            if (!File.Exists(fileName))
-                throw new FileNotFoundException("The file could not be found", fileName);
+            var result = new BindingList<IChapter>();
 
-            List<IChapter> result = new List<IChapter>();
-
-            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            try
             {
-                if (fs.Length != 0)
+                using (FileStream fs = new FileStream(fileName, FileMode.Open))
                 {
-                    IFormatter formatter = new BinaryFormatter();
-                    result = (List<IChapter>)formatter.Deserialize(fs);
+                    if (fs.Length != 0)
+                    {
+                        IFormatter formatter = new BinaryFormatter();
+                        result = (BindingList<IChapter>)formatter.Deserialize(fs);
+                    }
                 }
             }
+            catch { }
+
             return result;
         }
 

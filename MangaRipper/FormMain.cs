@@ -14,7 +14,7 @@ namespace MangaRipper
 {
     public partial class FormMain : Form
     {
-        List<IChapter> queue = new List<IChapter>();
+        BindingList<IChapter> queue = new BindingList<IChapter>();
 
         protected const string FILENAME_ICHAPTER_COLLECTION = "IChapterCollection.bin";
 
@@ -84,14 +84,6 @@ namespace MangaRipper
                     queue.Add(item);
                 }
             }
-
-            ReBindQueueList();
-        }
-
-        private void ReBindQueueList()
-        {
-            dgvQueueChapter.DataSource = null;
-            dgvQueueChapter.DataSource = queue;
         }
 
         private void btnAddAll_Click(object sender, EventArgs e)
@@ -109,8 +101,6 @@ namespace MangaRipper
                     queue.Add(item);
                 }
             }
-
-            ReBindQueueList();
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -123,13 +113,16 @@ namespace MangaRipper
                     queue.Remove(chapter);
                 }
             }
-            ReBindQueueList();
         }
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
         {
-            queue.RemoveAll(r => r.IsBusy == false);
-            ReBindQueueList();
+            var removeItems = queue.Where(r => r.IsBusy == false).ToList();
+
+            foreach (var item in removeItems)
+            {
+                queue.Remove(item);
+            }
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
@@ -163,8 +156,6 @@ namespace MangaRipper
             {
                 queue.Remove(chapter);
             }
-
-            ReBindQueueList();
 
             if (e.Error != null)
             {
@@ -228,6 +219,7 @@ namespace MangaRipper
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
 
@@ -239,14 +231,11 @@ namespace MangaRipper
 
             if (String.IsNullOrEmpty(txtSaveTo.Text))
             {
-                txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); 
+                txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
 
-            if (File.Exists(FILENAME_ICHAPTER_COLLECTION))
-            {
-                queue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
-                ReBindQueueList(); 
-            }
+            queue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
+            dgvQueueChapter.DataSource = queue;
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
