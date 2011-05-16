@@ -22,6 +22,7 @@ namespace MangaRipper
                 formatter.Serialize(fs, chapters);
             }
         }
+
         public static BindingList<IChapter> LoadIChapterCollection(string fileName)
         {
             var result = new BindingList<IChapter>();
