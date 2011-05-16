@@ -15,7 +15,7 @@ namespace MangaRipper
             Address = address;
         }
 
-        protected override List<Uri> GetImageAddresses(string html)
+        protected override List<Uri> ParseImageAddresses(string html)
         {
             var list = new List<Uri>();
             Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" onerror=",
@@ -30,7 +30,7 @@ namespace MangaRipper
             return list;
         }
 
-        protected override List<Uri> GetPageAddresses(string html)
+        protected override List<Uri> ParsePageAddresses(string html)
         {
             var list = new List<Uri>();
             list.Add(Address);

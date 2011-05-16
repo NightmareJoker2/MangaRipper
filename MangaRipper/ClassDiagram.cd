@@ -3,7 +3,7 @@
   <Class Name="MangaRipper.TitleBase">
     <Position X="7.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ACBAAAAAAAUQABAAAAAAAABAAABAAIACAABIAQAAAAA=</HashCode>
+      <HashCode>ACBAAAAAAAUSABAAAAAAAABAgABAAIACAAAAAQAAAAA=</HashCode>
       <FileName>Base\TitleBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -11,14 +11,14 @@
   <Class Name="MangaRipper.TitleMangaFox">
     <Position X="6.5" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Site\MangaFox\TitleMangaFox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MangaRipper.ChapterBase">
     <Position X="1.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAghAAUQAAAAICCAAARAAAAEAAACEAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAggAAUQAAAAICCAAARAAAAEgAACEABAAQAAAAA=</HashCode>
       <FileName>Base\ChapterBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -26,21 +26,21 @@
   <Class Name="MangaRipper.ChapterMangaFox">
     <Position X="0.5" Y="6.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAABAAAAAAAA=</HashCode>
       <FileName>Site\MangaFox\ChapterMangaFox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MangaRipper.TitleMangaShare">
     <Position X="9" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Site\MangaShare\TitleMangaShare.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MangaRipper.ChapterMangaShare">
     <Position X="3" Y="6.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAABAAAAAAAA=</HashCode>
       <FileName>Site\MangaShare\ChapterMangaShare.cs</FileName>
     </TypeIdentifier>
   </Class>

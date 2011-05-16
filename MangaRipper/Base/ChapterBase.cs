@@ -20,9 +20,9 @@ namespace MangaRipper
         [NonSerialized]
         protected BackgroundWorker worker;
 
-        abstract protected List<Uri> GetPageAddresses(string html);
+        abstract protected List<Uri> ParsePageAddresses(string html);
 
-        abstract protected List<Uri> GetImageAddresses(string html);
+        abstract protected List<Uri> ParseImageAddresses(string html);
 
         public string Name
         {
@@ -112,7 +112,7 @@ namespace MangaRipper
             client.Proxy = null;
             string html = client.DownloadString(Address);
 
-            List<Uri> uris = GetPageAddresses(html);
+            List<Uri> uris = ParsePageAddresses(html);
 
             var sbHtml = new StringBuilder();
 
@@ -135,7 +135,7 @@ namespace MangaRipper
                 worker.ReportProgress(percent);
             }
 
-            ImageAddresses = GetImageAddresses(sbHtml.ToString());
+            ImageAddresses = ParseImageAddresses(sbHtml.ToString());
 
             string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
 

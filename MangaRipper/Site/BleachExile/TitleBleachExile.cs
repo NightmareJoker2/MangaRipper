@@ -13,12 +13,12 @@ namespace MangaRipper
             Address = url;
         }
 
-        protected override List<Uri> GetChapterAddresses(string html)
+        protected override List<Uri> ParseChapterAddresses(string html)
         {
             return null;
         }
 
-        protected override List<IChapter> GetChapterObjects(string html)
+        protected override List<IChapter> ParseChapterObjects(string html)
         {
             var list = new List<IChapter>();
             Regex reg = new Regex(@"changeChapter\('(?<Serie>[^']+)', value\)",

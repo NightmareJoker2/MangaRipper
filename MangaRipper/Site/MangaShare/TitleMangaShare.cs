@@ -13,12 +13,12 @@ namespace MangaRipper
             Address = address;
         }
 
-        protected override List<Uri> GetChapterAddresses(string html)
+        protected override List<Uri> ParseChapterAddresses(string html)
         {
             return null;
         }
 
-        protected override List<IChapter> GetChapterObjects(string html)
+        protected override List<IChapter> ParseChapterObjects(string html)
         {
             var list = new List<IChapter>();
             Regex reg = new Regex("<td class=\"datarow-0\"><a href=\"(?<Value>[^\"]+)\"><img src=\"http://read.mangashare.com/static/images/dlmanga.gif\" class=\"inlineimg\" border=\"0\" alt=\"(?<Text>[^\"]+)\" /></a></td>",
