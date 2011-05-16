@@ -143,7 +143,7 @@ namespace MangaRipper
             ImageAddresses = GetImageAddresses(sb.ToString());
 
             string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
-                        
+
             Directory.CreateDirectory(saveToFolder);
 
             int countImage = 0;
@@ -155,14 +155,9 @@ namespace MangaRipper
                     return;
                 }
 
-                string filename = Path.GetFileName(url.LocalPath);
+                string filename = saveToFolder + "\\" + Path.GetFileName(url.LocalPath);
 
-                string srcFileName = Path.GetTempFileName();
-                string desFileName = saveToFolder + "\\" + filename;
-
-                client.DownloadFile(url, srcFileName);
-
-                File.Move(srcFileName, desFileName);
+                DownloadFile(url, filename);
 
                 countImage++;
                 int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
@@ -170,14 +165,46 @@ namespace MangaRipper
             }
         }
 
-        private string DownloadString(Uri address)
-        {
-            return "";
-        }
-
         private void DownloadFile(Uri address, string fileName)
         {
+            try
+            {
+                if (File.Exists(fileName) == false)
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
+                    request.Proxy = null;
+                    request.Credentials = CredentialCache.DefaultCredentials;
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    {
+                        using (Stream responseStream = response.GetResponseStream())
+                        {
+                            string tmpFileName = Path.GetTempFileName();
 
+                            using (Stream strLocal = new FileStream(tmpFileName, FileMode.Create))
+                            {
+                                byte[] downBuffer = new byte[2048];
+                                int bytesSize = 0;
+                                while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                                {
+                                    if (worker.CancellationPending == true)
+                                    {
+                                        return;
+                                    }
+                                    strLocal.Write(downBuffer, 0, bytesSize);
+                                }
+
+                            }
+
+                            File.Move(tmpFileName, fileName);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = String.Format("{0} - Error while download chapter: {1}, url: {2}. {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
+                throw new Exception(error);
+            }
         }
     }
 }

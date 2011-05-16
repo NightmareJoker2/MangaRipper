@@ -83,41 +83,7 @@ namespace MangaRipper
         public static void DownloadImage(string imageURL, string saveToFolder, ref bool isCancel)
         {
 
-            try
-            {
-                string filename = imageURL.Remove(0, imageURL.LastIndexOf("/") + 1);
-                if (!File.Exists(saveToFolder + "\\" + filename))
-                {
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imageURL);
-                    request.Proxy = null;
-                    request.Credentials = CredentialCache.DefaultCredentials;
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                    {
-                        using (Stream responseStream = response.GetResponseStream())
-                        {
-                            using (Stream strLocal = new FileStream(saveToFolder + "\\" + filename + ".mr", FileMode.Create, FileAccess.Write, FileShare.None))
-                            {
-                                byte[] downBuffer = new byte[1024];
-                                int bytesSize = 0;
-                                while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
-                                {
-                                    if (isCancel) { break; }
-                                    strLocal.Write(downBuffer, 0, bytesSize);
-                                }
-                            }
-                            if (!isCancel)
-                            {
-                                File.Move(saveToFolder + "\\" + filename + ".mr", saveToFolder + "\\" + filename);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                string error = String.Format("Error while download {0}. {1}", imageURL, ex.Message);
-                throw new Exception(error);
-            }
+            
         }
     }
 }
