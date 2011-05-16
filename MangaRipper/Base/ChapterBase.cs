@@ -155,7 +155,7 @@ namespace MangaRipper
                 DownloadFile(url, filename);
 
                 countImage++;
-                int percent = (countHtml + countImage) * 100 / (uris.Count * 2);
+                int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
                 worker.ReportProgress(percent);
             }
         }
