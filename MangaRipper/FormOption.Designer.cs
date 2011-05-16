@@ -104,13 +104,14 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(141, 22);
             this.textBox4.TabIndex = 7;
+            this.textBox4.UseSystemPasswordChar = true;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(92, 19);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(91, 17);
+            this.checkBox1.Size = new System.Drawing.Size(88, 17);
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "Enable Proxy";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -133,7 +134,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Proxy";
             // 
-            // Options
+            // FormOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,7 +143,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "Options";
+            this.Name = "FormOption";
             this.Text = "Options";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
