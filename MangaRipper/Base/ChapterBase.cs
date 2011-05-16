@@ -108,18 +108,13 @@ namespace MangaRipper
         {
             worker.ReportProgress(0);
 
-            if (worker.CancellationPending == true)
-            {
-                e.Cancel = true;
-                return;
-            }
-
             var client = new WebClient();
             client.Proxy = null;
             string html = client.DownloadString(Address);
 
             List<Uri> uris = GetPageAddresses(html);
-            var sb = new StringBuilder();
+
+            var sbHtml = new StringBuilder();
 
             int countHtml = 0;
 
@@ -134,13 +129,13 @@ namespace MangaRipper
                 string content = client.DownloadString(item);
                 countHtml++;
 
-                sb.AppendLine(content);
+                sbHtml.AppendLine(content);
 
                 int percent = countHtml * 100 / (uris.Count * 2);
                 worker.ReportProgress(percent);
             }
 
-            ImageAddresses = GetImageAddresses(sb.ToString());
+            ImageAddresses = GetImageAddresses(sbHtml.ToString());
 
             string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
 
