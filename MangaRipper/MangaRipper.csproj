@@ -95,8 +95,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\AppInfo.cs" />
-    <Compile Include="Base\ExtensionMethod.cs" />
+    <Compile Include="Helper\AppInfo.cs" />
+    <Compile Include="Helper\Extension.cs" />
+    <Compile Include="Helper\Option.cs" />
     <Compile Include="Site\MangaShare\ChapterMangaShare.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -112,7 +113,7 @@
     </Compile>
     <Compile Include="Base\ChapterBase.cs" />
     <Compile Include="Site\MangaFox\ChapterMangaFox.cs" />
-    <Compile Include="Base\Common.cs" />
+    <Compile Include="Helper\Common.cs" />
     <Compile Include="Base\IChapter.cs" />
     <Compile Include="Base\ITitle.cs" />
     <Compile Include="Program.cs" />

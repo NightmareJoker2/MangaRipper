@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MangaRipper
 {
-    public static class ExtensionMethod
+    public static class Extension
     {
         public static string RemoveFileNameInvalidChar(this String input)
         {
