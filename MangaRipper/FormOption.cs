@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MangaRipper
 {
-    public partial class Options : Form
+    public partial class FormOption : Form
     {
-        public Options()
+        public FormOption()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace MangaRipper
 {
-    partial class Options
+    partial class FormOption
     {
         /// <summary>
         /// Required designer variable.
