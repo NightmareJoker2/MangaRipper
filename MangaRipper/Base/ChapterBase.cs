@@ -108,51 +108,45 @@ namespace MangaRipper
         {
             worker.ReportProgress(0);
 
-            var client = new WebClient();
-            client.Proxy = null;
-            string html = client.DownloadString(Address);
+            string html = DownloadString(Address);
 
-            List<Uri> uris = ParsePageAddresses(html);
+            List<Uri> pageAddresses = ParsePageAddresses(html);
 
             var sbHtml = new StringBuilder();
 
-            int countHtml = 0;
+            int countPage = 0;
 
-            foreach (Uri item in uris)
+            foreach (Uri pageAddress in pageAddresses)
             {
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
                     return;
                 }
-
-                string content = client.DownloadString(item);
-                countHtml++;
-
+                string content = DownloadString(pageAddress);
                 sbHtml.AppendLine(content);
 
-                int percent = countHtml * 100 / (uris.Count * 2);
+                countPage++;
+                int percent = countPage * 100 / (pageAddresses.Count * 2);
                 worker.ReportProgress(percent);
             }
 
             ImageAddresses = ParseImageAddresses(sbHtml.ToString());
 
             string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
-
             Directory.CreateDirectory(saveToFolder);
 
             int countImage = 0;
-            foreach (Uri url in ImageAddresses)
+
+            foreach (Uri imageAddress in ImageAddresses)
             {
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
                     return;
                 }
-
-                string filename = saveToFolder + "\\" + Path.GetFileName(url.LocalPath);
-
-                DownloadFile(url, filename);
+                string filename = saveToFolder + "\\" + Path.GetFileName(imageAddress.LocalPath);
+                DownloadFile(imageAddress, filename);
 
                 countImage++;
                 int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
@@ -197,9 +191,45 @@ namespace MangaRipper
             }
             catch (Exception ex)
             {
-                string error = String.Format("{0} - Error while download chapter: {1}, url: {2}. {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
+                string error = String.Format("{0} - Error while download chapter: {1}. Url: {2}. Detail: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
             }
+        }
+
+        private string DownloadString(Uri address)
+        {
+            StringBuilder result = new StringBuilder();
+            try
+            {
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
+                request.Proxy = null;
+                request.Credentials = CredentialCache.DefaultCredentials;
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        byte[] downBuffer = new byte[2048];
+                        int bytesSize = 0;
+                        while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                        {
+                            if (worker.CancellationPending == true)
+                            {
+                                return "";
+                            }
+                            result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
+                        }
+                    }
+                }
+                return result.ToString();
+            }
+
+            catch (Exception ex)
+            {
+                string error = String.Format("{0} - Error while download chapter: {1}. Url: {2}. Detail: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
+                throw new Exception(error);
+            }
+
         }
     }
 }

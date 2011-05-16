@@ -41,49 +41,5 @@ namespace MangaRipper
 
             return result;
         }
-
-
-        public static string DownloadWebsite(string url, ref bool isCancel)
-        {
-            StringBuilder result = new StringBuilder();
-            try
-            {
-                while (!isCancel)
-                {
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                    request.Proxy = null;
-                    request.Timeout = 30000;
-                    request.Credentials = CredentialCache.DefaultCredentials;
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                    {
-                        using (Stream responseStream = response.GetResponseStream())
-                        {
-                            byte[] downBuffer = new byte[1024];
-                            int bytesSize = 0;
-                            while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
-                            {
-                                if (isCancel) { break; }
-                                result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
-                            }
-                        }
-                    }
-                    break;
-                }
-                return result.ToString();
-            }
-
-            catch (Exception ex)
-            {
-                string error = String.Format("Error while download {0}. {1}", url, ex.Message);
-                throw new Exception(error);
-            }
-
-        }
-
-        public static void DownloadImage(string imageURL, string saveToFolder, ref bool isCancel)
-        {
-
-            
-        }
     }
 }
