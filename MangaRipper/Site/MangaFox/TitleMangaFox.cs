@@ -15,7 +15,7 @@ namespace MangaRipper
         protected override List<IChapter> GetChapterObjects(string html)
         {
             var list = new List<IChapter>();
-            Regex reg = new Regex("<a href=\"(?<Value>[^\"]+)\" class=\"ch\" title=\"[^\"]+\">(?<Text>.+?)</a>(?<Tag>[^<]+)</td>",
+            Regex reg = new Regex("<a href=\"(?<Value>[^\"]+)\" class=\"ch\" title=\"[^\"]+\">(?<Text>.+?)</a>",
                 RegexOptions.IgnoreCase);
             Match m = reg.Match(html);
             while (m.Success)
