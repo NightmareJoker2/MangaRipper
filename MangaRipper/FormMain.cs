@@ -135,9 +135,9 @@ namespace MangaRipper
 
         private void DownloadChapter()
         {
-            if (dgvQueueChapter.Rows.Count > 0 && AllowDownload == true)
+            if (DownloadQueue.Count > 0 && AllowDownload == true)
             {
-                IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
+                IChapter chapter = DownloadQueue.First();
 
                 chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
                 chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
