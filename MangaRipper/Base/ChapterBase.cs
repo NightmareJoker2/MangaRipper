@@ -161,7 +161,7 @@ namespace MangaRipper
                 if (File.Exists(fileName) == false)
                 {
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
-                    request.Proxy = null;
+                    request.Proxy = Option.GetProxy();
                     request.Credentials = CredentialCache.DefaultCredentials;
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
@@ -203,7 +203,7 @@ namespace MangaRipper
             {
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
-                request.Proxy = null;
+                request.Proxy = Option.GetProxy();
                 request.Credentials = CredentialCache.DefaultCredentials;
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {

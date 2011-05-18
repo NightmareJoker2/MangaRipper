@@ -253,5 +253,11 @@ namespace MangaRipper
             Properties.Settings.Default.Save();
             Common.SaveIChapterCollection(queue, FILENAME_ICHAPTER_COLLECTION);
         }
+
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            FormOption form = new FormOption();
+            form.ShowDialog(this);
+        }
     }
 }

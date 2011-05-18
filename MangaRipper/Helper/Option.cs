@@ -8,34 +8,32 @@ using System.Security;
 
 namespace MangaRipper
 {
-    class Option
+    static class Option
     {
-        private static Option instance = new Option();
 
-        public IWebProxy Proxy
+        public static IWebProxy GetProxy()
         {
-            get
+            IWebProxy wp = null;
+
+            if (Settings.Default.ProxyEnable == true)
             {
-                string host = Settings.Default.ProxyHost;
-                int port = Settings.Default.ProxyPort;
-                string userName = Settings.Default.ProxyUserName;
-                string password = Settings.Default.ProxyPassword;
+                try
+                {
+                    string host = Settings.Default.ProxyHost;
+                    int port = Convert.ToInt32(Settings.Default.ProxyPort);
+                    string userName = Settings.Default.ProxyUserName;
+                    string password = Settings.Default.ProxyPassword;
 
-                IWebProxy wp = new WebProxy(host, port);
-                wp.Credentials = new NetworkCredential(userName, password);
-
-                return wp;
+                    wp = new WebProxy(host, port);
+                    wp.Credentials = new NetworkCredential(userName, password);
+                }
+                catch
+                {
+                    wp = null;
+                }
             }
-        }
 
-        private Option()
-        {
-            
-        }
-
-        public static Option GetOption()
-        {
-            return instance;
+            return wp;
         }
     }
 }

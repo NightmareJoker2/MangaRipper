@@ -98,7 +98,7 @@ namespace MangaRipper
             }
 
             var client = new WebClient();
-            client.Proxy = null;
+            client.Proxy = Option.GetProxy();
             string html = client.DownloadString(Address);
 
             List<Uri> uris = ParseChapterAddresses(html);

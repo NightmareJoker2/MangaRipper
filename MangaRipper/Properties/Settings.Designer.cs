@@ -62,9 +62,9 @@ namespace MangaRipper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("80")]
-        public int ProxyPort {
+        public decimal ProxyPort {
             get {
-                return ((int)(this["ProxyPort"]));
+                return ((decimal)(this["ProxyPort"]));
             }
             set {
                 this["ProxyPort"] = value;
