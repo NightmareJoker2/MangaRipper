@@ -14,11 +14,11 @@ namespace MangaRipper
 {
     public partial class FormMain : Form
     {
-        BindingList<IChapter> queue;
+        BindingList<IChapter> DownloadQueue;
 
         protected const string FILENAME_ICHAPTER_COLLECTION = "IChapterCollection.bin";
 
-        private bool STOPPED = false;
+        private bool AllowDownload = true;
 
         public FormMain()
         {
@@ -81,9 +81,9 @@ namespace MangaRipper
             items.Reverse();
             foreach (IChapter item in items)
             {
-                if (queue.IndexOf(item) < 0)
+                if (DownloadQueue.IndexOf(item) < 0)
                 {
-                    queue.Add(item);
+                    DownloadQueue.Add(item);
                 }
             }
         }
@@ -98,9 +98,9 @@ namespace MangaRipper
             items.Reverse();
             foreach (IChapter item in items)
             {
-                if (queue.IndexOf(item) < 0)
+                if (DownloadQueue.IndexOf(item) < 0)
                 {
-                    queue.Add(item);
+                    DownloadQueue.Add(item);
                 }
             }
         }
@@ -112,30 +112,30 @@ namespace MangaRipper
                 IChapter chapter = (IChapter)item.DataBoundItem;
                 if (chapter.IsBusy == false)
                 {
-                    queue.Remove(chapter);
+                    DownloadQueue.Remove(chapter);
                 }
             }
         }
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
         {
-            var removeItems = queue.Where(r => r.IsBusy == false).ToList();
+            var removeItems = DownloadQueue.Where(r => r.IsBusy == false).ToList();
 
             foreach (var item in removeItems)
             {
-                queue.Remove(item);
+                DownloadQueue.Remove(item);
             }
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            STOPPED = false;
+            AllowDownload = true;
             DownloadChapter();
         }
 
         private void DownloadChapter()
         {
-            if (dgvQueueChapter.Rows.Count > 0 && STOPPED == false)
+            if (dgvQueueChapter.Rows.Count > 0 && AllowDownload == true)
             {
                 IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
 
@@ -157,7 +157,7 @@ namespace MangaRipper
 
             if (e.Cancelled == false && e.Error == null)
             {
-                queue.Remove(chapter);
+                DownloadQueue.Remove(chapter);
             }
 
             if (e.Error != null)
@@ -191,8 +191,8 @@ namespace MangaRipper
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            STOPPED = true;
-            foreach (var item in queue)
+            AllowDownload = false;
+            foreach (var item in DownloadQueue)
             {
                 item.CancelDownloadImage();
             }
@@ -237,8 +237,8 @@ namespace MangaRipper
                 txtSaveTo.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
 
-            queue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
-            dgvQueueChapter.DataSource = queue;
+            DownloadQueue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
+            dgvQueueChapter.DataSource = DownloadQueue;
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
@@ -255,7 +255,7 @@ namespace MangaRipper
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
-            Common.SaveIChapterCollection(queue, FILENAME_ICHAPTER_COLLECTION);
+            Common.SaveIChapterCollection(DownloadQueue, FILENAME_ICHAPTER_COLLECTION);
         }
 
         private void btnOptions_Click(object sender, EventArgs e)
