@@ -18,6 +18,8 @@ namespace MangaRipper
 
         protected const string FILENAME_ICHAPTER_COLLECTION = "IChapterCollection.bin";
 
+        private bool STOPPED = false;
+
         public FormMain()
         {
             InitializeComponent();
@@ -127,12 +129,13 @@ namespace MangaRipper
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
+            STOPPED = false;
             DownloadChapter();
         }
 
         private void DownloadChapter()
         {
-            if (dgvQueueChapter.Rows.Count > 0)
+            if (dgvQueueChapter.Rows.Count > 0 && STOPPED == false)
             {
                 IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
 
@@ -188,10 +191,10 @@ namespace MangaRipper
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (dgvQueueChapter.Rows.Count > 0)
+            STOPPED = true;
+            foreach (var item in queue)
             {
-                IChapter chapter = (IChapter)dgvQueueChapter.Rows[0].DataBoundItem;
-                chapter.CancelDownloadImage();
+                item.CancelDownloadImage();
             }
         }
 
