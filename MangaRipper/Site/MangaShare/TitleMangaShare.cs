@@ -23,16 +23,16 @@ namespace MangaRipper
             var list = new List<IChapter>();
             Regex reg = new Regex("<td class=\"datarow-0\"><a href=\"(?<Value>[^\"]+)\"><img src=\"http://read.mangashare.com/static/images/dlmanga.gif\" class=\"inlineimg\" border=\"0\" alt=\"(?<Text>[^\"]+)\" /></a></td>",
                 RegexOptions.IgnoreCase);
-            Match m = reg.Match(html);
-            while (m.Success)
+            MatchCollection m = reg.Matches(html);
+
+            foreach (Match item in m)
             {
-                var value = new Uri(Address, m.Groups["Value"].Value);
-                string name = m.Groups["Text"].Value;
+                var value = new Uri(Address, item.Groups["Value"].Value);
+                string name = item.Groups["Text"].Value;
                 IChapter chapter = new ChapterMangaShare(name, value);
                 list.Add(chapter);
-
-                m = m.NextMatch();
             }
+            
             return list;
         }
     }

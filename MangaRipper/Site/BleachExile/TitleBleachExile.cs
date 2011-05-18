@@ -44,25 +44,23 @@ namespace MangaRipper
                 reg = new Regex("<option value=\"(?<Value>[^\"]+)\"(| selected=\"selected\")>Chapter (?<Text>[^\"<]+)</option>",
                 RegexOptions.IgnoreCase);
 
-                m = reg.Match(html);
+                MatchCollection mc = reg.Matches(html);
 
-                while (m.Success)
+                foreach (Match item in mc)
                 {
-                    string value = m.Groups["Value"].Value;
-                    string name = m.Groups["Text"].Value;
+                    string value = item.Groups["Value"].Value;
+                    string name = item.Groups["Text"].Value;
 
                     string link = String.Format("/{0}-chapter-{1}.html", serie, value);
                     var url = new Uri(Address, link);
                     IChapter chapter = new ChapterBleachExile(titlename + " " + name, url);
 
-                    
                     var same = list.Where(r => r.Name == chapter.Name && r.Address == chapter.Address).FirstOrDefault();
 
                     if (same == null)
                     {
                         list.Add(chapter);
                     }
-                    m = m.NextMatch();
                 }
             }
 

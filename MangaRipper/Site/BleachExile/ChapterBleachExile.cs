@@ -31,11 +31,11 @@ namespace MangaRipper
                 reg = new Regex("<option value=\"(?<Value>[^\"]+)\">Page (?<Text>[^\"<]+)</option>",
                 RegexOptions.IgnoreCase);
 
-                m = reg.Match(html);
+                MatchCollection mc = reg.Matches(html);
 
-                while (m.Success)
+                foreach (Match item in mc)
                 {
-                    string value = m.Groups["Value"].Value;
+                    string value = item.Groups["Value"].Value;
                     string link = String.Format("/{0}-chapter-{1}-page-{2}.html", serie, chapter, value);
                     var url = new Uri(Address, link);
 
@@ -45,7 +45,6 @@ namespace MangaRipper
                     {
                         list.Add(url);
                     }
-                    m = m.NextMatch();
                 }
             }
 
@@ -57,13 +56,14 @@ namespace MangaRipper
             var list = new List<Uri>();
             Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" border=\"0\"",
                 RegexOptions.IgnoreCase);
-            Match m = reg.Match(html);
-            while (m.Success)
+            MatchCollection m = reg.Matches(html);
+
+            foreach (Match item in m)
             {
-                var value = new Uri(Address, m.Groups["Value"].Value);
+                var value = new Uri(Address, item.Groups["Value"].Value);
                 list.Add(value);
-                m = m.NextMatch();
             }
+        
             return list;
         }
     }
