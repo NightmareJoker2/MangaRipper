@@ -12,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ProxyPort" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">80</Value>
+      <Value Profile="(Default)">8080</Value>
     </Setting>
     <Setting Name="ProxyUserName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

@@ -33,11 +33,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -96,27 +96,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Proxy";
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::MangaRipper.Properties.Settings.Default, "ProxyPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::MangaRipper.Properties.Settings.Default, "ProxyEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown1.Enabled = global::MangaRipper.Properties.Settings.Default.ProxyEnable;
-            this.numericUpDown1.Location = new System.Drawing.Point(92, 70);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(141, 22);
-            this.numericUpDown1.TabIndex = 4;
-            this.numericUpDown1.Value = global::MangaRipper.Properties.Settings.Default.ProxyPort;
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -124,7 +103,7 @@
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MangaRipper.Properties.Settings.Default, "ProxyEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox1.Location = new System.Drawing.Point(92, 19);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(88, 17);
+            this.checkBox1.Size = new System.Drawing.Size(91, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Enable Proxy";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -162,6 +141,27 @@
             this.textBox1.Size = new System.Drawing.Size(141, 22);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = global::MangaRipper.Properties.Settings.Default.ProxyHost;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::MangaRipper.Properties.Settings.Default, "ProxyPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::MangaRipper.Properties.Settings.Default, "ProxyEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown1.Enabled = global::MangaRipper.Properties.Settings.Default.ProxyEnable;
+            this.numericUpDown1.Location = new System.Drawing.Point(92, 70);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(141, 22);
+            this.numericUpDown1.TabIndex = 4;
+            this.numericUpDown1.Value = global::MangaRipper.Properties.Settings.Default.ProxyPort;
             // 
             // FormOption
             // 

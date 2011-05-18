@@ -159,6 +159,7 @@ namespace MangaRipper
 
             if (e.Error != null)
             {
+                
                 toolStripStatusLabel1.Text = e.Error.Message;
             }
 

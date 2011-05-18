@@ -61,7 +61,7 @@ namespace MangaRipper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8080")]
         public decimal ProxyPort {
             get {
                 return ((decimal)(this["ProxyPort"]));
