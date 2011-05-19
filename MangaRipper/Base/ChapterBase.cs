@@ -65,7 +65,7 @@ namespace MangaRipper
         public void DownloadImageAsync(string fileName)
         {
             SaveTo = fileName;
-            if (worker == null || worker.IsBusy == false)
+            if (IsBusy == false)
             {
                 worker = new BackgroundWorker();
                 worker.WorkerReportsProgress = true;
@@ -81,7 +81,7 @@ namespace MangaRipper
 
         public void CancelDownloadImage()
         {
-            if (worker != null && worker.IsBusy == true)
+            if (IsBusy == true)
             {
                 worker.CancelAsync();
             }

@@ -47,7 +47,7 @@ namespace MangaRipper
 
         public void CancelPopulateChapter()
         {
-            if (worker != null && worker.IsBusy == true)
+            if (IsBusy == true)
             {
                 worker.CancelAsync();
             }
@@ -55,7 +55,7 @@ namespace MangaRipper
 
         public void PopulateChapterAsync()
         {
-            if (worker == null || worker.IsBusy == false)
+            if (IsBusy == false)
             {
                 worker = new BackgroundWorker();
                 worker.WorkerReportsProgress = true;
