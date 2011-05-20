@@ -228,7 +228,7 @@ namespace MangaRipper
 
             this.Text = String.Format("{0} {1}", Application.ProductName, AppInfo.DeploymentVersion);
 
-            PopulateSiteGrid();
+            Common.PopulateSiteGrid(dgvSupportedSites);
 
             if (String.IsNullOrEmpty(txtSaveTo.Text))
             {
@@ -237,14 +237,6 @@ namespace MangaRipper
 
             DownloadQueue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
             dgvQueueChapter.DataSource = DownloadQueue;
-        }
-
-        private void PopulateSiteGrid()
-        {
-            dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
-            dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
-            dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
-            dgvSupportedSites.Rows.Add("MangaToshokan", "http://www.mangatoshokan.com/");
         }
 
         private void btnAbout_Click(object sender, EventArgs e)

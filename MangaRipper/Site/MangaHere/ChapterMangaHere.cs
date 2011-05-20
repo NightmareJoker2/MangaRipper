@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 namespace MangaRipper
 {
     [Serializable]
-    public class ChapterMangaFox : ChapterBase
+    public class ChapterMangaHere : ChapterBase
     {
-        public ChapterMangaFox(string name, Uri address)
+        public ChapterMangaHere(string name, Uri address)
         {
             Name = name;
             Address = address;
@@ -18,7 +18,7 @@ namespace MangaRipper
         protected override List<Uri> ParseImageAddresses(string html)
         {
             var list = new List<Uri>();
-            Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" onerror=",
+            Regex reg = new Regex("img src=\"(?<Value>[^\"]+)\" width=\"[^\"]+\" id=\"image\"",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
@@ -35,14 +35,17 @@ namespace MangaRipper
         {
             var list = new List<Uri>();
             list.Add(Address);
-            Regex reg = new Regex(@"<a href=""(?<Value>\d+.html)"">(?<Text>\d+)</a>",
+            Regex reg = new Regex(@"<option value=""(?<Value>http://www\.mangahere\.com/manga/[^""]+)""",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
             foreach (Match match in matches)
             {
                 var value = new Uri(Address, match.Groups["Value"].Value);
-                list.Add(value);
+                if (list.Contains(value) == false)
+                {
+                    list.Add(value);
+                }
             }
            
             return list;

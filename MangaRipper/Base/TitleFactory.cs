@@ -24,6 +24,9 @@ namespace MangaRipper
                 case "www.mangatoshokan.com":
                     title = new TitleMangaToshokan(uri);
                     break;
+                case "www.mangahere.com":
+                    title = new TitleMangaHere(uri);
+                    break;
                 default:
                     string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);

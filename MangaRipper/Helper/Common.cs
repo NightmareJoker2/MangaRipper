@@ -14,6 +14,16 @@ namespace MangaRipper
 {
     static class Common
     {
+        public static void PopulateSiteGrid(DataGridView grid)
+        {
+            grid.Rows.Clear();
+            grid.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
+            grid.Rows.Add("MangaFox", "http://www.mangafox.com/");
+            grid.Rows.Add("MangaHere", "http://www.mangahere.com/");
+            grid.Rows.Add("MangaShare", "http://read.mangashare.com/");
+            grid.Rows.Add("MangaToshokan", "http://www.mangatoshokan.com/");
+        }
+
         public static void SaveIChapterCollection(BindingList<IChapter> chapters, string fileName)
         {
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
