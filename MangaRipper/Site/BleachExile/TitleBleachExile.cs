@@ -44,12 +44,12 @@ namespace MangaRipper
                 reg = new Regex("<option value=\"(?<Value>[^\"]+)\"(| selected=\"selected\")>Chapter (?<Text>[^\"<]+)</option>",
                 RegexOptions.IgnoreCase);
 
-                MatchCollection mc = reg.Matches(html);
+                MatchCollection matches = reg.Matches(html);
 
-                foreach (Match item in mc)
+                foreach (Match match in matches)
                 {
-                    string value = item.Groups["Value"].Value;
-                    string name = item.Groups["Text"].Value;
+                    string value = match.Groups["Value"].Value;
+                    string name = match.Groups["Text"].Value;
 
                     string link = String.Format("/{0}-chapter-{1}.html", serie, value);
                     var url = new Uri(Address, link);

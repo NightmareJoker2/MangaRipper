@@ -47,11 +47,11 @@ namespace MangaRipper
             var list = new List<Uri>();
             Regex reg = new Regex(@"<img src=""(?<Value>[^""]+)"" border=""0"" alt=""[^""]+"" />\n",
                 RegexOptions.IgnoreCase);
-            MatchCollection m = reg.Matches(html);
+            MatchCollection matches = reg.Matches(html);
 
-            foreach (Match item in m)
+            foreach (Match match in matches)
             {
-                var value = new Uri(Address, item.Groups["Value"].Value);
+                var value = new Uri(Address, match.Groups["Value"].Value);
                 list.Add(value);
             }
 

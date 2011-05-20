@@ -20,11 +20,11 @@ namespace MangaRipper
             var list = new List<Uri>();
             Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" alt=\"[^\"]+\" id=\"readerPage\"",
                 RegexOptions.IgnoreCase);
-            MatchCollection m = reg.Matches(html);
+            MatchCollection matches = reg.Matches(html);
 
-            foreach (Match item in m)
+            foreach (Match match in matches)
             {
-                var value = new Uri(Address, item.Groups["Value"].Value);
+                var value = new Uri(Address, match.Groups["Value"].Value);
                 list.Add(value);
             }
            
@@ -37,11 +37,11 @@ namespace MangaRipper
             list.Add(Address);
             Regex reg = new Regex(@"<option value=""(?<Value>/read/[^/]+/[^/]+/[^/]+/[^""]+)""(?:| selected=""selected"")>",
                 RegexOptions.IgnoreCase);
-            MatchCollection m = reg.Matches(html);
+            MatchCollection matches = reg.Matches(html);
 
-            foreach (Match item in m)
+            foreach (Match match in matches)
             {
-                var value = new Uri(Address, item.Groups["Value"].Value);
+                var value = new Uri(Address, match.Groups["Value"].Value);
                 list.Add(value);
             }
            

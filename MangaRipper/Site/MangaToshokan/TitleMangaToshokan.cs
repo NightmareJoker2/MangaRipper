@@ -17,13 +17,12 @@ namespace MangaRipper
             var list = new List<IChapter>();
             Regex reg = new Regex("<td width='40%' align='left' class='ccell'><a href='(?<Value>[^']+)' title=\"[^\"]+\">(?<Text>[^<]+)</a><span>",
                 RegexOptions.IgnoreCase);
-            MatchCollection m = reg.Matches(html);
+            MatchCollection matches = reg.Matches(html);
 
-            foreach (Match item in m)
+            foreach (Match match in matches)
             {
-                var value = new Uri(Address, item.Groups["Value"].Value);
-                string name = item.Groups["Text"].Value;
-
+                var value = new Uri(Address, match.Groups["Value"].Value);
+                string name = match.Groups["Text"].Value;
                 IChapter chapter = new ChapterMangaToshokan(name, value);
                 list.Add(chapter);
             }
@@ -36,13 +35,13 @@ namespace MangaRipper
             var list = new List<Uri>();
             Regex reg = new Regex(@"<a href='(?<Value>http://www.mangatoshokan.com/series/[^/]+/\d+)'>\d+</a>",
                 RegexOptions.IgnoreCase);
-            MatchCollection m = reg.Matches(html);
+            MatchCollection matches = reg.Matches(html);
 
-            foreach (Match item in m)
+            foreach (Match match in matches)
             {
-                if (list.Where(r=>r.AbsoluteUri == item.Groups["Value"].Value).Count() == 0)
+                if (list.Where(r=>r.AbsoluteUri == match.Groups["Value"].Value).Count() == 0)
                 {
-                    var value = new Uri(Address, item.Groups["Value"].Value);
+                    var value = new Uri(Address, match.Groups["Value"].Value);
                     list.Add(value);
                 }
             }

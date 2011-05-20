@@ -17,13 +17,12 @@ namespace MangaRipper
             var list = new List<IChapter>();
             Regex reg = new Regex("<a href=\"(?<Value>[^\"]+)\" class=\"ch\" title=\"[^\"]+\">(?<Text>.+?)</a>",
                 RegexOptions.IgnoreCase);
-            MatchCollection m = reg.Matches(html);
+            MatchCollection matches = reg.Matches(html);
 
-            foreach (Match item in m)
+            foreach (Match match in matches)
             {
-                var value = new Uri(Address, item.Groups["Value"].Value);
-                string name = item.Groups["Text"].Value;
-
+                var value = new Uri(Address, match.Groups["Value"].Value);
+                string name = match.Groups["Text"].Value;
                 IChapter chapter = new ChapterMangaFox(name, value);
                 list.Add(chapter);
             }
