@@ -106,6 +106,8 @@
       <DependentUpon>FormOption.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Site\MangaToshokan\ChapterMangaToshokan.cs" />
+    <Compile Include="Site\MangaToshokan\TitleMangaToshokan.cs" />
     <Compile Include="Site\MangaShare\ChapterMangaShare.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

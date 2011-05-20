@@ -21,6 +21,9 @@ namespace MangaRipper
                 case "manga.bleachexile.com":
                     title = new TitleBleachExile(uri);
                     break;
+                case "www.mangatoshokan.com":
+                    title = new TitleMangaToshokan(uri);
+                    break;
                 default:
                     string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);

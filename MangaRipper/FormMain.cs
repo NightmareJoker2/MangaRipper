@@ -231,6 +231,7 @@ namespace MangaRipper
             dgvSupportedSites.Rows.Add("BleachExile", "http://manga.bleachexile.com/");
             dgvSupportedSites.Rows.Add("MangaFox", "http://www.mangafox.com/");
             dgvSupportedSites.Rows.Add("MangaShare", "http://read.mangashare.com/");
+            dgvSupportedSites.Rows.Add("MangaToshokan", "http://www.mangatoshokan.com/");
 
             if (String.IsNullOrEmpty(txtSaveTo.Text))
             {

@@ -101,8 +101,10 @@ namespace MangaRipper
             client.Proxy = Option.GetProxy();
             string html = client.DownloadString(Address);
 
-            List<Uri> uris = ParseChapterAddresses(html);
             var sb = new StringBuilder();
+            sb.AppendLine(html);
+
+            List<Uri> uris = ParseChapterAddresses(html);
 
             if (uris != null)
             {
@@ -117,11 +119,6 @@ namespace MangaRipper
             }
 
             worker.ReportProgress(100);
-
-            if (sb.Length == 0)
-            {
-                sb.AppendLine(html);
-            }
 
             Chapters = ParseChapterObjects(sb.ToString());
         }
