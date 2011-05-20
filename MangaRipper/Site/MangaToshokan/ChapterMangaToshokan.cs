@@ -17,9 +17,8 @@ namespace MangaRipper
 
         protected override List<Uri> ParseImageAddresses(string html)
         {
-            throw new NotImplementedException();
             var list = new List<Uri>();
-            Regex reg = new Regex("",
+            Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" alt=\"[^\"]+\" id=\"readerPage\"",
                 RegexOptions.IgnoreCase);
             MatchCollection m = reg.Matches(html);
 
