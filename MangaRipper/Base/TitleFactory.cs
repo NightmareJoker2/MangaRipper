@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace MangaRipper
 {
@@ -32,6 +33,16 @@ namespace MangaRipper
                     throw new Exception(message);
             }
             return title;
+        }
+
+        public static void PopulateSiteGrid(DataGridView grid)
+        {
+            grid.Rows.Clear();
+            grid.Rows.Add("BleachExile", "http://manga.bleachexile.com/", "English");
+            grid.Rows.Add("MangaFox", "http://www.mangafox.com/", "English");
+            grid.Rows.Add("MangaHere", "http://www.mangahere.com/", "English");
+            grid.Rows.Add("MangaShare", "http://read.mangashare.com/", "English");
+            grid.Rows.Add("MangaToshokan", "http://www.mangatoshokan.com/", "English");
         }
     }
 }

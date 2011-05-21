@@ -228,7 +228,7 @@ namespace MangaRipper
 
             this.Text = String.Format("{0} {1}", Application.ProductName, AppInfo.DeploymentVersion);
 
-            Common.PopulateSiteGrid(dgvSupportedSites);
+            TitleFactory.PopulateSiteGrid(dgvSupportedSites);
 
             if (String.IsNullOrEmpty(txtSaveTo.Text))
             {
