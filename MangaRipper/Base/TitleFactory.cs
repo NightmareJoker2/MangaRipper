@@ -8,6 +8,11 @@ namespace MangaRipper
 {
     public static class TitleFactory
     {
+        /// <summary>
+        /// Create Title object base on uri
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         public static ITitle CreateTitle(Uri uri)
         {
             ITitle title = null;
@@ -35,6 +40,10 @@ namespace MangaRipper
             return title;
         }
 
+        /// <summary>
+        /// Populate supported sites into DataGridView
+        /// </summary>
+        /// <param name="grid"></param>
         public static void PopulateSiteGrid(DataGridView grid)
         {
             grid.Rows.Clear();
