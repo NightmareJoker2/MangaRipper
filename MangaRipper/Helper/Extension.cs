@@ -7,6 +7,11 @@ namespace MangaRipper
 {
     public static class Extension
     {
+        /// <summary>
+        /// Remove characters that cannot using to name folder, file.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string RemoveFileNameInvalidChar(this String input)
         {
             return input.Replace("\\", "").Replace("/", "").Replace(":", "")

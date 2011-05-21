@@ -10,7 +10,10 @@ namespace MangaRipper
 {
     static class Option
     {
-
+        /// <summary>
+        /// Get proxy setting
+        /// </summary>
+        /// <returns></returns>
         public static IWebProxy GetProxy()
         {
             IWebProxy wp = null;

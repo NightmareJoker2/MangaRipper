@@ -14,6 +14,11 @@ namespace MangaRipper
 {
     static class Common
     {
+        /// <summary>
+        /// Save BindingList of IChapter
+        /// </summary>
+        /// <param name="chapters"></param>
+        /// <param name="fileName"></param>
         public static void SaveIChapterCollection(BindingList<IChapter> chapters, string fileName)
         {
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
@@ -23,6 +28,11 @@ namespace MangaRipper
             }
         }
 
+        /// <summary>
+        /// Load BindingList of IChapter
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static BindingList<IChapter> LoadIChapterCollection(string fileName)
         {
             var result = new BindingList<IChapter>();

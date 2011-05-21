@@ -8,10 +8,16 @@ using System.Windows.Forms;
 
 namespace MangaRipper
 {
-    class AppInfo
+    /// <summary>
+    /// Give information about application
+    /// </summary>
+    public class AppInfo
     {
         #region Assembly Attribute Accessors
 
+        /// <summary>
+        /// Get title of assembly
+        /// </summary>
         public static string AssemblyTitle
         {
             get
@@ -29,6 +35,9 @@ namespace MangaRipper
             }
         }
 
+        /// <summary>
+        /// Get deployment version of assembly. This version is ClickOnce publish version. Return assembly version if cannot get deployment version.
+        /// </summary>
         public static string DeploymentVersion
         {
             get
@@ -53,7 +62,9 @@ namespace MangaRipper
             }
         }
 
-
+        /// <summary>
+        /// Get assembly description
+        /// </summary>
         public static string AssemblyDescription
         {
             get
@@ -67,6 +78,9 @@ namespace MangaRipper
             }
         }
 
+        /// <summary>
+        /// Get assembly product name
+        /// </summary>
         public static string AssemblyProduct
         {
             get
@@ -80,6 +94,9 @@ namespace MangaRipper
             }
         }
 
+        /// <summary>
+        /// Get assembly copyright
+        /// </summary>
         public static string AssemblyCopyright
         {
             get
@@ -93,6 +110,9 @@ namespace MangaRipper
             }
         }
 
+        /// <summary>
+        /// Get assembly company name
+        /// </summary>
         public static string AssemblyCompany
         {
             get
