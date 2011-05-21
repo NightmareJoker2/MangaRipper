@@ -9,19 +9,21 @@ using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.ComponentModel;
+using System.IO.IsolatedStorage;
 
 namespace MangaRipper
 {
     static class Common
     {
         /// <summary>
-        /// Save BindingList of IChapter
+        /// Save BindingList of IChapter to IsolateStorage
         /// </summary>
         /// <param name="chapters"></param>
         /// <param name="fileName"></param>
         public static void SaveIChapterCollection(BindingList<IChapter> chapters, string fileName)
         {
-            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            IsolatedStorageFile scope = IsolatedStorageFile.GetUserStoreForApplication();
+            using (var fs = new IsolatedStorageFileStream(fileName, FileMode.Create, scope))
             {
                 IFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(fs, chapters);
@@ -29,17 +31,17 @@ namespace MangaRipper
         }
 
         /// <summary>
-        /// Load BindingList of IChapter
+        /// Load BindingList of IChapter from IsolateStorage
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
         public static BindingList<IChapter> LoadIChapterCollection(string fileName)
         {
-            var result = new BindingList<IChapter>();
-
+            IsolatedStorageFile scope = IsolatedStorageFile.GetUserStoreForApplication();
+            BindingList<IChapter> result = null;
             try
             {
-                using (FileStream fs = new FileStream(fileName, FileMode.Open))
+                using (var fs = new IsolatedStorageFileStream(fileName, FileMode.Open, scope))
                 {
                     if (fs.Length != 0)
                     {
@@ -48,7 +50,13 @@ namespace MangaRipper
                     }
                 }
             }
-            catch { }
+            finally
+            {
+                if (result == null)
+                {
+                    result = new BindingList<IChapter>(); 
+                }
+            }
 
             return result;
         }
