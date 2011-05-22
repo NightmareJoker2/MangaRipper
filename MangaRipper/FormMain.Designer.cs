@@ -78,7 +78,7 @@
             this.btnGetChapter.Size = new System.Drawing.Size(116, 23);
             this.btnGetChapter.TabIndex = 3;
             this.btnGetChapter.Text = "Get Chapters";
-            this.toolTip1.SetToolTip(this.btnGetChapter, "Get Chapters from inputed Url");
+            this.toolTip1.SetToolTip(this.btnGetChapter, "Get Chapters from Inputed Url");
             this.btnGetChapter.UseVisualStyleBackColor = true;
             this.btnGetChapter.Click += new System.EventHandler(this.btnGetChapter_Click);
             // 
@@ -197,6 +197,7 @@
             this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
             this.btnChangeSaveTo.TabIndex = 9;
             this.btnChangeSaveTo.Text = "...";
+            this.toolTip1.SetToolTip(this.btnChangeSaveTo, "Change Folder");
             this.btnChangeSaveTo.UseVisualStyleBackColor = true;
             this.btnChangeSaveTo.Click += new System.EventHandler(this.btnChangeSaveTo_Click);
             // 
@@ -408,6 +409,7 @@
             this.btnAddPrefixCounter.Size = new System.Drawing.Size(134, 23);
             this.btnAddPrefixCounter.TabIndex = 24;
             this.btnAddPrefixCounter.Text = "Add Prefix Counter";
+            this.toolTip1.SetToolTip(this.btnAddPrefixCounter, "Add Prefix Counter to Chapter Name");
             this.btnAddPrefixCounter.UseVisualStyleBackColor = true;
             this.btnAddPrefixCounter.Click += new System.EventHandler(this.btnAddPrefixCounter_Click);
             // 
