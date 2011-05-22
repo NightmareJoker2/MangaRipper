@@ -194,7 +194,7 @@ namespace MangaRipper
             {
                 // If the server responce very fast and there is exception. The async thread will completed almost immediately.
                 // Then the UI thread will re-download this chapter and exception is fired again and again.
-                // It an endless loop like while(true) that make UI thread will be stopped response.
+                // It an endless loop like while(true) that make UI thread stop to response.
                 // Sleep make the async thread run at least 1s before completed.
                 // Fox example: Set proxy to microsoft.com, port 80.
                 if (!(ex is OperationCanceledException))
@@ -238,7 +238,7 @@ namespace MangaRipper
             {
                 // If the server responce very fast and there is exception. The async thread will completed almost immediately.
                 // Then the UI thread will re-download this chapter and exception is fired again and again.
-                // It an endless loop like while(true) that make UI thread will be stopped response.
+                // It an endless loop like while(true) that make UI thread stop to response.
                 // Sleep make the async thread run at least 1s before completed.
                 // Fox example: Set proxy to microsoft.com, port 80.
                 if (!(ex is OperationCanceledException))
