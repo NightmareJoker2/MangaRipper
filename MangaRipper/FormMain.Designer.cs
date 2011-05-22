@@ -373,6 +373,8 @@
             // 
             // cbTitleUrl
             // 
+            this.cbTitleUrl.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbTitleUrl.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbTitleUrl.Location = new System.Drawing.Point(40, 11);
             this.cbTitleUrl.Name = "cbTitleUrl";
