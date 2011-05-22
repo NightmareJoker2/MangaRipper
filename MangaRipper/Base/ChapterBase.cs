@@ -192,7 +192,7 @@ namespace MangaRipper
             }
             catch (Exception ex)
             {
-                string error = String.Format("{0} - Error while download: {2}. Reason: {3}.", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
+                string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
             }
         }
