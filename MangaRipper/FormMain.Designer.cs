@@ -76,7 +76,7 @@
             this.btnGetChapter.Location = new System.Drawing.Point(876, 10);
             this.btnGetChapter.Name = "btnGetChapter";
             this.btnGetChapter.Size = new System.Drawing.Size(116, 23);
-            this.btnGetChapter.TabIndex = 3;
+            this.btnGetChapter.TabIndex = 5;
             this.btnGetChapter.Text = "Get Chapters";
             this.toolTip1.SetToolTip(this.btnGetChapter, "Get Chapters from Inputed Url");
             this.btnGetChapter.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             this.btnDownload.Location = new System.Drawing.Point(665, 551);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(216, 23);
-            this.btnDownload.TabIndex = 15;
+            this.btnDownload.TabIndex = 18;
             this.btnDownload.Text = "Start Download";
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
@@ -97,7 +97,7 @@
             this.btnAdd.Location = new System.Drawing.Point(153, 287);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 23);
-            this.btnAdd.TabIndex = 5;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Add Selected To Queue";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -107,7 +107,7 @@
             this.btnAddAll.Location = new System.Drawing.Point(302, 287);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(135, 23);
-            this.btnAddAll.TabIndex = 6;
+            this.btnAddAll.TabIndex = 9;
             this.btnAddAll.Text = "Add All To Queue";
             this.btnAddAll.UseVisualStyleBackColor = true;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
@@ -117,7 +117,7 @@
             this.btnRemove.Location = new System.Drawing.Point(443, 551);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(105, 23);
-            this.btnRemove.TabIndex = 13;
+            this.btnRemove.TabIndex = 16;
             this.btnRemove.Text = "Remove Selected";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -127,7 +127,7 @@
             this.btnRemoveAll.Location = new System.Drawing.Point(554, 551);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(105, 23);
-            this.btnRemoveAll.TabIndex = 14;
+            this.btnRemoveAll.TabIndex = 17;
             this.btnRemoveAll.Text = "Remove All";
             this.btnRemoveAll.UseVisualStyleBackColor = true;
             this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
@@ -150,7 +150,7 @@
             this.dgvQueueChapter.RowHeadersVisible = false;
             this.dgvQueueChapter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvQueueChapter.Size = new System.Drawing.Size(549, 507);
-            this.dgvQueueChapter.TabIndex = 12;
+            this.dgvQueueChapter.TabIndex = 10;
             // 
             // ColChapterName
             // 
@@ -185,7 +185,7 @@
             this.btnStop.Location = new System.Drawing.Point(887, 551);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(105, 23);
-            this.btnStop.TabIndex = 16;
+            this.btnStop.TabIndex = 19;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -195,7 +195,7 @@
             this.btnChangeSaveTo.Location = new System.Drawing.Point(312, 316);
             this.btnChangeSaveTo.Name = "btnChangeSaveTo";
             this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
-            this.btnChangeSaveTo.TabIndex = 9;
+            this.btnChangeSaveTo.TabIndex = 13;
             this.btnChangeSaveTo.Text = "...";
             this.toolTip1.SetToolTip(this.btnChangeSaveTo, "Change Folder");
             this.btnChangeSaveTo.UseVisualStyleBackColor = true;
@@ -206,7 +206,7 @@
             this.btnOpenFolder.Location = new System.Drawing.Point(348, 316);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(89, 23);
-            this.btnOpenFolder.TabIndex = 10;
+            this.btnOpenFolder.TabIndex = 14;
             this.btnOpenFolder.Text = "Open Folder";
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
@@ -217,7 +217,7 @@
             this.lbSaveTo.Location = new System.Drawing.Point(12, 320);
             this.lbSaveTo.Name = "lbSaveTo";
             this.lbSaveTo.Size = new System.Drawing.Size(45, 13);
-            this.lbSaveTo.TabIndex = 7;
+            this.lbSaveTo.TabIndex = 11;
             this.lbSaveTo.Text = "Save To";
             // 
             // lblUrl
@@ -236,7 +236,7 @@
             this.txtPercent.Name = "txtPercent";
             this.txtPercent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPercent.Size = new System.Drawing.Size(35, 22);
-            this.txtPercent.TabIndex = 2;
+            this.txtPercent.TabIndex = 4;
             // 
             // dgvSupportedSites
             // 
@@ -265,7 +265,7 @@
             this.dgvSupportedSites.RowHeadersVisible = false;
             this.dgvSupportedSites.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSupportedSites.Size = new System.Drawing.Size(425, 200);
-            this.dgvSupportedSites.TabIndex = 11;
+            this.dgvSupportedSites.TabIndex = 15;
             this.dgvSupportedSites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupportedSites_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
@@ -301,7 +301,7 @@
             this.btnHowToUse.Location = new System.Drawing.Point(123, 551);
             this.btnHowToUse.Name = "btnHowToUse";
             this.btnHowToUse.Size = new System.Drawing.Size(203, 23);
-            this.btnHowToUse.TabIndex = 18;
+            this.btnHowToUse.TabIndex = 21;
             this.btnHowToUse.Text = "How To Use && F.A.Q.";
             this.btnHowToUse.UseVisualStyleBackColor = true;
             this.btnHowToUse.Click += new System.EventHandler(this.btnHowToUse_Click);
@@ -311,7 +311,7 @@
             this.btnOptions.Location = new System.Drawing.Point(12, 551);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(105, 23);
-            this.btnOptions.TabIndex = 17;
+            this.btnOptions.TabIndex = 20;
             this.btnOptions.Text = "Options";
             this.btnOptions.UseVisualStyleBackColor = true;
             this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
@@ -321,7 +321,7 @@
             this.btnAbout.Location = new System.Drawing.Point(332, 551);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(105, 23);
-            this.btnAbout.TabIndex = 19;
+            this.btnAbout.TabIndex = 22;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -342,7 +342,7 @@
             this.dgvChapter.RowHeadersVisible = false;
             this.dgvChapter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvChapter.Size = new System.Drawing.Size(425, 243);
-            this.dgvChapter.TabIndex = 4;
+            this.dgvChapter.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -362,7 +362,7 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1004, 22);
             this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 20;
+            this.statusStrip1.TabIndex = 23;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
@@ -379,7 +379,7 @@
             this.cbTitleUrl.Location = new System.Drawing.Point(40, 11);
             this.cbTitleUrl.Name = "cbTitleUrl";
             this.cbTitleUrl.Size = new System.Drawing.Size(729, 21);
-            this.cbTitleUrl.TabIndex = 21;
+            this.cbTitleUrl.TabIndex = 1;
             this.cbTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
             // 
             // btnAddBookmark
@@ -387,7 +387,7 @@
             this.btnAddBookmark.Location = new System.Drawing.Point(775, 10);
             this.btnAddBookmark.Name = "btnAddBookmark";
             this.btnAddBookmark.Size = new System.Drawing.Size(24, 23);
-            this.btnAddBookmark.TabIndex = 22;
+            this.btnAddBookmark.TabIndex = 2;
             this.btnAddBookmark.Text = "B";
             this.toolTip1.SetToolTip(this.btnAddBookmark, "Bookmark This Url");
             this.btnAddBookmark.UseVisualStyleBackColor = true;
@@ -398,7 +398,7 @@
             this.btnRemoveBookmark.Location = new System.Drawing.Point(805, 10);
             this.btnRemoveBookmark.Name = "btnRemoveBookmark";
             this.btnRemoveBookmark.Size = new System.Drawing.Size(24, 23);
-            this.btnRemoveBookmark.TabIndex = 23;
+            this.btnRemoveBookmark.TabIndex = 3;
             this.btnRemoveBookmark.Text = "R";
             this.toolTip1.SetToolTip(this.btnRemoveBookmark, "Remove This Url From Bookmark");
             this.btnRemoveBookmark.UseVisualStyleBackColor = true;
@@ -409,7 +409,7 @@
             this.btnAddPrefixCounter.Location = new System.Drawing.Point(12, 287);
             this.btnAddPrefixCounter.Name = "btnAddPrefixCounter";
             this.btnAddPrefixCounter.Size = new System.Drawing.Size(135, 23);
-            this.btnAddPrefixCounter.TabIndex = 24;
+            this.btnAddPrefixCounter.TabIndex = 7;
             this.btnAddPrefixCounter.Text = "Add Prefix Counter";
             this.toolTip1.SetToolTip(this.btnAddPrefixCounter, "Add Prefix Counter to Chapter Name");
             this.btnAddPrefixCounter.UseVisualStyleBackColor = true;
@@ -422,7 +422,7 @@
             this.txtSaveTo.Name = "txtSaveTo";
             this.txtSaveTo.ReadOnly = true;
             this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
-            this.txtSaveTo.TabIndex = 8;
+            this.txtSaveTo.TabIndex = 12;
             this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
             // 
             // FormMain
