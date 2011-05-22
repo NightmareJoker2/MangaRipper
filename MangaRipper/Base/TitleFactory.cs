@@ -33,6 +33,9 @@ namespace MangaRipper
                 case "www.mangahere.com":
                     title = new TitleMangaHere(uri);
                     break;
+                case "www.otakuworks.com":
+                    title = new TitleOtakuworks(uri);
+                    break;
                 default:
                     string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);
@@ -52,6 +55,7 @@ namespace MangaRipper
             grid.Rows.Add("MangaHere", "http://www.mangahere.com/", "English");
             grid.Rows.Add("MangaShare", "http://read.mangashare.com/", "English");
             grid.Rows.Add("MangaToshokan", "http://www.mangatoshokan.com/", "English");
+            grid.Rows.Add("Otakuworks", "http://www.otakuworks.com/", "English");
         }
     }
 }
