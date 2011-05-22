@@ -29,7 +29,7 @@ namespace MangaRipper
         {
             try
             {
-                var titleUrl = new Uri(txtTitleUrl.Text);
+                var titleUrl = new Uri(cbUrl.Text);
                 ITitle title = TitleFactory.CreateTitle(titleUrl);
                 title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
                 title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);

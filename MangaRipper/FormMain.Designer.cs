@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btnGetChapter = new System.Windows.Forms.Button();
@@ -47,6 +48,9 @@
             this.lblUrl = new System.Windows.Forms.Label();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.dgvSupportedSites = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnHowToUse = new System.Windows.Forms.Button();
             this.btnOptions = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
@@ -56,10 +60,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtSaveTo = new System.Windows.Forms.TextBox();
-            this.txtTitleUrl = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbUrl = new System.Windows.Forms.ComboBox();
+            this.btnAddBookmark = new System.Windows.Forms.Button();
+            this.btnRemoveBookmark = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -68,11 +72,12 @@
             // 
             // btnGetChapter
             // 
-            this.btnGetChapter.Location = new System.Drawing.Point(876, 9);
+            this.btnGetChapter.Location = new System.Drawing.Point(876, 10);
             this.btnGetChapter.Name = "btnGetChapter";
-            this.btnGetChapter.Size = new System.Drawing.Size(116, 24);
+            this.btnGetChapter.Size = new System.Drawing.Size(116, 23);
             this.btnGetChapter.TabIndex = 3;
             this.btnGetChapter.Text = "Get Chapters";
+            this.toolTip1.SetToolTip(this.btnGetChapter, "Get Chapters from inputed Url");
             this.btnGetChapter.UseVisualStyleBackColor = true;
             this.btnGetChapter.Click += new System.EventHandler(this.btnGetChapter_Click);
             // 
@@ -216,7 +221,7 @@
             // lblUrl
             // 
             this.lblUrl.AutoSize = true;
-            this.lblUrl.Location = new System.Drawing.Point(12, 13);
+            this.lblUrl.Location = new System.Drawing.Point(12, 14);
             this.lblUrl.Name = "lblUrl";
             this.lblUrl.Size = new System.Drawing.Size(22, 13);
             this.lblUrl.TabIndex = 0;
@@ -224,9 +229,9 @@
             // 
             // txtPercent
             // 
-            this.txtPercent.Location = new System.Drawing.Point(835, 10);
+            this.txtPercent.Enabled = false;
+            this.txtPercent.Location = new System.Drawing.Point(835, 11);
             this.txtPercent.Name = "txtPercent";
-            this.txtPercent.ReadOnly = true;
             this.txtPercent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPercent.Size = new System.Drawing.Size(35, 22);
             this.txtPercent.TabIndex = 2;
@@ -260,6 +265,34 @@
             this.dgvSupportedSites.Size = new System.Drawing.Size(425, 200);
             this.dgvSupportedSites.TabIndex = 11;
             this.dgvSupportedSites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupportedSites_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.Blue;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Language";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 90;
             // 
             // btnHowToUse
             // 
@@ -346,48 +379,41 @@
             this.txtSaveTo.TabIndex = 8;
             this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
             // 
-            // txtTitleUrl
+            // cbUrl
             // 
-            this.txtTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtTitleUrl.Location = new System.Drawing.Point(38, 10);
-            this.txtTitleUrl.Name = "txtTitleUrl";
-            this.txtTitleUrl.Size = new System.Drawing.Size(791, 22);
-            this.txtTitleUrl.TabIndex = 1;
-            this.txtTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
+            this.cbUrl.Location = new System.Drawing.Point(40, 11);
+            this.cbUrl.Name = "cbUrl";
+            this.cbUrl.Size = new System.Drawing.Size(729, 21);
+            this.cbUrl.TabIndex = 21;
             // 
-            // dataGridViewTextBoxColumn1
+            // btnAddBookmark
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.Width = 120;
+            this.btnAddBookmark.Location = new System.Drawing.Point(775, 10);
+            this.btnAddBookmark.Name = "btnAddBookmark";
+            this.btnAddBookmark.Size = new System.Drawing.Size(24, 23);
+            this.btnAddBookmark.TabIndex = 22;
+            this.btnAddBookmark.Text = "B";
+            this.toolTip1.SetToolTip(this.btnAddBookmark, "Bookmark This Url");
+            this.btnAddBookmark.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // btnRemoveBookmark
             // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Url";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.dataGridViewTextBoxColumn3.LinkColor = System.Drawing.Color.Blue;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn3.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Language";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 90;
+            this.btnRemoveBookmark.Location = new System.Drawing.Point(805, 10);
+            this.btnRemoveBookmark.Name = "btnRemoveBookmark";
+            this.btnRemoveBookmark.Size = new System.Drawing.Size(24, 23);
+            this.btnRemoveBookmark.TabIndex = 23;
+            this.btnRemoveBookmark.Text = "R";
+            this.toolTip1.SetToolTip(this.btnRemoveBookmark, "Remove This Url From Bookmark");
+            this.btnRemoveBookmark.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 606);
+            this.Controls.Add(this.btnRemoveBookmark);
+            this.Controls.Add(this.btnAddBookmark);
+            this.Controls.Add(this.cbUrl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvChapter);
             this.Controls.Add(this.btnAbout);
@@ -407,7 +433,6 @@
             this.Controls.Add(this.btnAddAll);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDownload);
-            this.Controls.Add(this.txtTitleUrl);
             this.Controls.Add(this.btnGetChapter);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -429,7 +454,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnGetChapter;
-        private System.Windows.Forms.TextBox txtTitleUrl;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnAddAll;
@@ -458,5 +482,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.ComboBox cbUrl;
+        private System.Windows.Forms.Button btnAddBookmark;
+        private System.Windows.Forms.Button btnRemoveBookmark;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
