@@ -192,6 +192,7 @@ namespace MangaRipper
             }
             catch (Exception ex)
             {
+                Thread.Sleep(1000);
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
             }
