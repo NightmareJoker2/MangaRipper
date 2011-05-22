@@ -64,7 +64,7 @@ namespace MangaRipper
 
             if (e.Error != null)
             {
-                toolStripStatusLabel1.Text = e.Error.Message;
+                txtMessage.Text = e.Error.Message;
             }
         }
 
@@ -163,8 +163,7 @@ namespace MangaRipper
 
             if (e.Error != null)
             {
-
-                toolStripStatusLabel1.Text = e.Error.Message;
+                txtMessage.Text = e.Error.Message;
             }
 
             if (e.Cancelled == false)
@@ -285,10 +284,12 @@ namespace MangaRipper
             {
                 sc = new StringCollection();
             }
-            sc.Add(cbTitleUrl.Text);
-            MangaRipper.Properties.Settings.Default.Bookmark = sc;
-
-            LoadBookmark();
+            if (sc.Contains(cbTitleUrl.Text) == false)
+            {
+                sc.Add(cbTitleUrl.Text);
+                MangaRipper.Properties.Settings.Default.Bookmark = sc;
+                LoadBookmark();
+            }
         }
 
         private void btnRemoveBookmark_Click(object sender, EventArgs e)

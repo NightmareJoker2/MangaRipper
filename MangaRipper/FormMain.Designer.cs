@@ -57,18 +57,16 @@
             this.dgvChapter = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.cbTitleUrl = new System.Windows.Forms.ComboBox();
             this.btnAddBookmark = new System.Windows.Forms.Button();
             this.btnRemoveBookmark = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnAddPrefixCounter = new System.Windows.Forms.Button();
             this.txtSaveTo = new System.Windows.Forms.TextBox();
+            this.txtMessage = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGetChapter
@@ -375,23 +373,6 @@
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 584);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1004, 22);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 23;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(22, 17);
-            this.toolStripStatusLabel1.Text = "     ";
-            // 
             // cbTitleUrl
             // 
             this.cbTitleUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -452,16 +433,25 @@
             this.txtSaveTo.TabIndex = 12;
             this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
             // 
+            // txtMessage
+            // 
+            this.txtMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtMessage.Location = new System.Drawing.Point(0, 584);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ReadOnly = true;
+            this.txtMessage.Size = new System.Drawing.Size(1004, 22);
+            this.txtMessage.TabIndex = 23;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 606);
+            this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.btnAddPrefixCounter);
             this.Controls.Add(this.btnRemoveBookmark);
             this.Controls.Add(this.btnAddBookmark);
             this.Controls.Add(this.cbTitleUrl);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvChapter);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnOptions);
@@ -490,8 +480,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,8 +508,6 @@
         private System.Windows.Forms.DataGridView dgvChapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColChapterUrl;
@@ -533,5 +519,6 @@
         private System.Windows.Forms.Button btnRemoveBookmark;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnAddPrefixCounter;
+        private System.Windows.Forms.TextBox txtMessage;
     }
 }

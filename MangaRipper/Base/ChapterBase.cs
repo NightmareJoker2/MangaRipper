@@ -192,7 +192,15 @@ namespace MangaRipper
             }
             catch (Exception ex)
             {
-                Thread.Sleep(1000);
+                // If the server responce very fast and there is exception. The async thread will completed almost immediately.
+                // Then the UI thread will re-download this chapter and exception is fired again and again.
+                // It an endless loop like while(true) that make UI thread will be stopped response.
+                // Sleep make the async thread run at least 1s before completed.
+                // Fox example: Set proxy to microsoft.com, port 80.
+                if (!(ex is OperationCanceledException))
+                {
+                    Thread.Sleep(1000);
+                }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
             }
@@ -228,7 +236,15 @@ namespace MangaRipper
 
             catch (Exception ex)
             {
-                Thread.Sleep(1000);
+                // If the server responce very fast and there is exception. The async thread will completed almost immediately.
+                // Then the UI thread will re-download this chapter and exception is fired again and again.
+                // It an endless loop like while(true) that make UI thread will be stopped response.
+                // Sleep make the async thread run at least 1s before completed.
+                // Fox example: Set proxy to microsoft.com, port 80.
+                if (!(ex is OperationCanceledException))
+                {
+                    Thread.Sleep(1000); 
+                }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
             }
