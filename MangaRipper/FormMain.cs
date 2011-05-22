@@ -26,8 +26,6 @@ namespace MangaRipper
             InitializeComponent();
         }
 
-
-
         private void btnGetChapter_Click(object sender, EventArgs e)
         {
             try
