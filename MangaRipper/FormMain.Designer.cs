@@ -73,6 +73,7 @@
             // 
             // btnGetChapter
             // 
+            this.btnGetChapter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetChapter.Location = new System.Drawing.Point(876, 10);
             this.btnGetChapter.Name = "btnGetChapter";
             this.btnGetChapter.Size = new System.Drawing.Size(116, 23);
@@ -84,6 +85,8 @@
             // 
             // btnDownload
             // 
+            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownload.Location = new System.Drawing.Point(665, 551);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(216, 23);
@@ -94,6 +97,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Location = new System.Drawing.Point(153, 287);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 23);
@@ -104,6 +108,7 @@
             // 
             // btnAddAll
             // 
+            this.btnAddAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddAll.Location = new System.Drawing.Point(302, 287);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(135, 23);
@@ -114,6 +119,7 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemove.Location = new System.Drawing.Point(443, 551);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(105, 23);
@@ -124,6 +130,7 @@
             // 
             // btnRemoveAll
             // 
+            this.btnRemoveAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveAll.Location = new System.Drawing.Point(554, 551);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(105, 23);
@@ -137,6 +144,9 @@
             this.dgvQueueChapter.AllowUserToAddRows = false;
             this.dgvQueueChapter.AllowUserToDeleteRows = false;
             this.dgvQueueChapter.AllowUserToResizeRows = false;
+            this.dgvQueueChapter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvQueueChapter.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvQueueChapter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvQueueChapter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -182,6 +192,7 @@
             // 
             // btnStop
             // 
+            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStop.Location = new System.Drawing.Point(887, 551);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(105, 23);
@@ -192,6 +203,7 @@
             // 
             // btnChangeSaveTo
             // 
+            this.btnChangeSaveTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChangeSaveTo.Location = new System.Drawing.Point(312, 316);
             this.btnChangeSaveTo.Name = "btnChangeSaveTo";
             this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
@@ -203,6 +215,7 @@
             // 
             // btnOpenFolder
             // 
+            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOpenFolder.Location = new System.Drawing.Point(348, 316);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(89, 23);
@@ -213,6 +226,7 @@
             // 
             // lbSaveTo
             // 
+            this.lbSaveTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbSaveTo.AutoSize = true;
             this.lbSaveTo.Location = new System.Drawing.Point(12, 320);
             this.lbSaveTo.Name = "lbSaveTo";
@@ -231,6 +245,7 @@
             // 
             // txtPercent
             // 
+            this.txtPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPercent.Enabled = false;
             this.txtPercent.Location = new System.Drawing.Point(835, 11);
             this.txtPercent.Name = "txtPercent";
@@ -243,6 +258,7 @@
             this.dgvSupportedSites.AllowUserToAddRows = false;
             this.dgvSupportedSites.AllowUserToDeleteRows = false;
             this.dgvSupportedSites.AllowUserToResizeRows = false;
+            this.dgvSupportedSites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvSupportedSites.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvSupportedSites.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvSupportedSites.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -298,6 +314,7 @@
             // 
             // btnHowToUse
             // 
+            this.btnHowToUse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHowToUse.Location = new System.Drawing.Point(123, 551);
             this.btnHowToUse.Name = "btnHowToUse";
             this.btnHowToUse.Size = new System.Drawing.Size(203, 23);
@@ -308,6 +325,7 @@
             // 
             // btnOptions
             // 
+            this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOptions.Location = new System.Drawing.Point(12, 551);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(105, 23);
@@ -318,6 +336,7 @@
             // 
             // btnAbout
             // 
+            this.btnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAbout.Location = new System.Drawing.Point(332, 551);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(105, 23);
@@ -331,6 +350,8 @@
             this.dgvChapter.AllowUserToAddRows = false;
             this.dgvChapter.AllowUserToDeleteRows = false;
             this.dgvChapter.AllowUserToResizeRows = false;
+            this.dgvChapter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvChapter.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvChapter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvChapter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -373,6 +394,8 @@
             // 
             // cbTitleUrl
             // 
+            this.cbTitleUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbTitleUrl.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cbTitleUrl.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -384,6 +407,7 @@
             // 
             // btnAddBookmark
             // 
+            this.btnAddBookmark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddBookmark.Location = new System.Drawing.Point(775, 10);
             this.btnAddBookmark.Name = "btnAddBookmark";
             this.btnAddBookmark.Size = new System.Drawing.Size(24, 23);
@@ -395,6 +419,7 @@
             // 
             // btnRemoveBookmark
             // 
+            this.btnRemoveBookmark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveBookmark.Location = new System.Drawing.Point(805, 10);
             this.btnRemoveBookmark.Name = "btnRemoveBookmark";
             this.btnRemoveBookmark.Size = new System.Drawing.Size(24, 23);
@@ -406,6 +431,7 @@
             // 
             // btnAddPrefixCounter
             // 
+            this.btnAddPrefixCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddPrefixCounter.Location = new System.Drawing.Point(12, 287);
             this.btnAddPrefixCounter.Name = "btnAddPrefixCounter";
             this.btnAddPrefixCounter.Size = new System.Drawing.Size(135, 23);
@@ -417,6 +443,7 @@
             // 
             // txtSaveTo
             // 
+            this.txtSaveTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSaveTo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "SaveTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
             this.txtSaveTo.Name = "txtSaveTo";
@@ -455,9 +482,8 @@
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.btnGetChapter);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1020, 644);
             this.Name = "FormMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
