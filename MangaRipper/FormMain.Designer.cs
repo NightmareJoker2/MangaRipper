@@ -59,11 +59,12 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtSaveTo = new System.Windows.Forms.TextBox();
-            this.cbUrl = new System.Windows.Forms.ComboBox();
+            this.cbTitleUrl = new System.Windows.Forms.ComboBox();
             this.btnAddBookmark = new System.Windows.Forms.Button();
             this.btnRemoveBookmark = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnAddPrefixCounter = new System.Windows.Forms.Button();
+            this.txtSaveTo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
@@ -93,9 +94,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 287);
+            this.btnAdd.Location = new System.Drawing.Point(152, 287);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(210, 23);
+            this.btnAdd.Size = new System.Drawing.Size(142, 23);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add Selected To Queue";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -103,9 +104,9 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.Location = new System.Drawing.Point(227, 287);
+            this.btnAddAll.Location = new System.Drawing.Point(300, 287);
             this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(210, 23);
+            this.btnAddAll.Size = new System.Drawing.Size(137, 23);
             this.btnAddAll.TabIndex = 6;
             this.btnAddAll.Text = "Add All To Queue";
             this.btnAddAll.UseVisualStyleBackColor = true;
@@ -369,22 +370,14 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(22, 17);
             this.toolStripStatusLabel1.Text = "     ";
             // 
-            // txtSaveTo
+            // cbTitleUrl
             // 
-            this.txtSaveTo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "SaveTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
-            this.txtSaveTo.Name = "txtSaveTo";
-            this.txtSaveTo.ReadOnly = true;
-            this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
-            this.txtSaveTo.TabIndex = 8;
-            this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
-            // 
-            // cbUrl
-            // 
-            this.cbUrl.Location = new System.Drawing.Point(40, 11);
-            this.cbUrl.Name = "cbUrl";
-            this.cbUrl.Size = new System.Drawing.Size(729, 21);
-            this.cbUrl.TabIndex = 21;
+            this.cbTitleUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbTitleUrl.Location = new System.Drawing.Point(40, 11);
+            this.cbTitleUrl.Name = "cbTitleUrl";
+            this.cbTitleUrl.Size = new System.Drawing.Size(729, 21);
+            this.cbTitleUrl.TabIndex = 21;
+            this.cbTitleUrl.Text = global::MangaRipper.Properties.Settings.Default.Url;
             // 
             // btnAddBookmark
             // 
@@ -395,6 +388,7 @@
             this.btnAddBookmark.Text = "B";
             this.toolTip1.SetToolTip(this.btnAddBookmark, "Bookmark This Url");
             this.btnAddBookmark.UseVisualStyleBackColor = true;
+            this.btnAddBookmark.Click += new System.EventHandler(this.btnAddBookmark_Click);
             // 
             // btnRemoveBookmark
             // 
@@ -405,15 +399,37 @@
             this.btnRemoveBookmark.Text = "R";
             this.toolTip1.SetToolTip(this.btnRemoveBookmark, "Remove This Url From Bookmark");
             this.btnRemoveBookmark.UseVisualStyleBackColor = true;
+            this.btnRemoveBookmark.Click += new System.EventHandler(this.btnRemoveBookmark_Click);
+            // 
+            // btnAddPrefixCounter
+            // 
+            this.btnAddPrefixCounter.Location = new System.Drawing.Point(12, 287);
+            this.btnAddPrefixCounter.Name = "btnAddPrefixCounter";
+            this.btnAddPrefixCounter.Size = new System.Drawing.Size(134, 23);
+            this.btnAddPrefixCounter.TabIndex = 24;
+            this.btnAddPrefixCounter.Text = "Add Prefix Counter";
+            this.btnAddPrefixCounter.UseVisualStyleBackColor = true;
+            this.btnAddPrefixCounter.Click += new System.EventHandler(this.btnAddPrefixCounter_Click);
+            // 
+            // txtSaveTo
+            // 
+            this.txtSaveTo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "SaveTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
+            this.txtSaveTo.Name = "txtSaveTo";
+            this.txtSaveTo.ReadOnly = true;
+            this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
+            this.txtSaveTo.TabIndex = 8;
+            this.txtSaveTo.Text = global::MangaRipper.Properties.Settings.Default.SaveTo;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 606);
+            this.Controls.Add(this.btnAddPrefixCounter);
             this.Controls.Add(this.btnRemoveBookmark);
             this.Controls.Add(this.btnAddBookmark);
-            this.Controls.Add(this.cbUrl);
+            this.Controls.Add(this.cbTitleUrl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvChapter);
             this.Controls.Add(this.btnAbout);
@@ -482,9 +498,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.ComboBox cbUrl;
+        private System.Windows.Forms.ComboBox cbTitleUrl;
         private System.Windows.Forms.Button btnAddBookmark;
         private System.Windows.Forms.Button btnRemoveBookmark;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnAddPrefixCounter;
     }
 }

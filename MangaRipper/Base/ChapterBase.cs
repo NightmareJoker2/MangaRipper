@@ -28,7 +28,7 @@ namespace MangaRipper
         public string Name
         {
             get;
-            protected set;
+            set;
         }
 
         public Uri Address
@@ -122,7 +122,7 @@ namespace MangaRipper
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
-                    return;
+                    throw new OperationCanceledException();
                 }
                 string content = DownloadString(pageAddress);
                 sbHtml.AppendLine(content);
@@ -144,7 +144,7 @@ namespace MangaRipper
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
-                    return;
+                    throw new OperationCanceledException();
                 }
                 string filename = saveToFolder + "\\" + Path.GetFileName(imageAddress.LocalPath);
                 DownloadFile(imageAddress, filename);
@@ -178,7 +178,7 @@ namespace MangaRipper
                                 {
                                     if (worker.CancellationPending == true)
                                     {
-                                        return;
+                                        throw new OperationCanceledException();
                                     }
                                     strLocal.Write(downBuffer, 0, bytesSize);
                                 }
@@ -216,7 +216,7 @@ namespace MangaRipper
                         {
                             if (worker.CancellationPending == true)
                             {
-                                return "";
+                                throw new OperationCanceledException();
                             }
                             result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
                         }
@@ -228,7 +228,7 @@ namespace MangaRipper
             catch (Exception ex)
             {
                 Thread.Sleep(1000);
-                string error = String.Format("{0} - Error while download: {2}. Reason: {3}.", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
+                string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
             }
         }

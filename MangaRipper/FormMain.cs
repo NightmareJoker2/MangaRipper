@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Deployment.Application;
+using System.Collections.Specialized;
 
 namespace MangaRipper
 {
@@ -25,11 +26,13 @@ namespace MangaRipper
             InitializeComponent();
         }
 
+
+
         private void btnGetChapter_Click(object sender, EventArgs e)
         {
             try
             {
-                var titleUrl = new Uri(cbUrl.Text);
+                var titleUrl = new Uri(cbTitleUrl.Text);
                 ITitle title = TitleFactory.CreateTitle(titleUrl);
                 title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
                 title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
@@ -237,6 +240,8 @@ namespace MangaRipper
 
             DownloadQueue = Common.LoadIChapterCollection(FILENAME_ICHAPTER_COLLECTION);
             dgvQueueChapter.DataSource = DownloadQueue;
+
+            LoadBookmark();
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
@@ -260,6 +265,59 @@ namespace MangaRipper
         {
             FormOption form = new FormOption();
             form.ShowDialog(this);
+        }
+
+        private void LoadBookmark()
+        {
+            cbTitleUrl.Items.Clear();
+            StringCollection sc = MangaRipper.Properties.Settings.Default.Bookmark;
+            if (sc != null)
+            {
+                foreach (string item in sc)
+                {
+                    cbTitleUrl.Items.Add(item);
+                }
+            }
+        }
+
+        private void btnAddBookmark_Click(object sender, EventArgs e)
+        {
+            StringCollection sc = MangaRipper.Properties.Settings.Default.Bookmark;
+            if (sc == null)
+            {
+                sc = new StringCollection();
+            }
+            sc.Add(cbTitleUrl.Text);
+            MangaRipper.Properties.Settings.Default.Bookmark = sc;
+
+            LoadBookmark();
+        }
+
+        private void btnRemoveBookmark_Click(object sender, EventArgs e)
+        {
+            StringCollection sc = MangaRipper.Properties.Settings.Default.Bookmark;
+            if (sc != null)
+            {
+                sc.Remove(cbTitleUrl.Text);
+                MangaRipper.Properties.Settings.Default.Bookmark = sc;
+
+                LoadBookmark();
+            }
+        }
+
+        private void btnAddPrefixCounter_Click(object sender, EventArgs e)
+        {
+            var chapters = new List<IChapter>();
+            foreach (DataGridViewRow row in dgvChapter.Rows)
+            {
+                IChapter chapter = row.DataBoundItem as IChapter;
+                chapters.Add(chapter);
+            }
+
+            chapters.Reverse();
+            chapters.ForEach(r => r.Name = String.Format("[{0:000}] - {1}", chapters.IndexOf(r) + 1, r.Name));
+            chapters.Reverse();
+            dgvChapter.DataSource = chapters;
         }
     }
 }

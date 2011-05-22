@@ -106,5 +106,16 @@ namespace MangaRipper.Properties {
                 this["ProxyEnable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Bookmark {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Bookmark"]));
+            }
+            set {
+                this["Bookmark"] = value;
+            }
+        }
     }
 }

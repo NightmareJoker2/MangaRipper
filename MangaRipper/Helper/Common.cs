@@ -22,11 +22,18 @@ namespace MangaRipper
         /// <param name="fileName"></param>
         public static void SaveIChapterCollection(BindingList<IChapter> chapters, string fileName)
         {
-            using (IsolatedStorageFile scope = IsolatedStorageFile.GetUserStoreForApplication())
-            using (var fs = new IsolatedStorageFileStream(fileName, FileMode.Create, scope))
+            try
             {
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, chapters);
+                using (IsolatedStorageFile scope = IsolatedStorageFile.GetUserStoreForApplication())
+                using (var fs = new IsolatedStorageFileStream(fileName, FileMode.Create, scope))
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(fs, chapters);
+                }
+            }
+            catch
+            {
+                // Do nothings
             }
         }
 
@@ -50,7 +57,7 @@ namespace MangaRipper
                     }
                 }
             }
-            finally
+            catch
             {
                 if (result == null)
                 {

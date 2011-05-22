@@ -11,10 +11,11 @@ namespace MangaRipper
         event RunWorkerCompletedEventHandler DownloadImageCompleted;
 
         event System.ComponentModel.ProgressChangedEventHandler DownloadImageProgressChanged;
-    
+
         string Name
         {
             get;
+            set;
         }
 
         Uri Address
