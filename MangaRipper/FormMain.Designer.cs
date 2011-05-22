@@ -94,9 +94,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(152, 287);
+            this.btnAdd.Location = new System.Drawing.Point(153, 287);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(142, 23);
+            this.btnAdd.Size = new System.Drawing.Size(143, 23);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add Selected To Queue";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -104,9 +104,9 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.Location = new System.Drawing.Point(300, 287);
+            this.btnAddAll.Location = new System.Drawing.Point(302, 287);
             this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(137, 23);
+            this.btnAddAll.Size = new System.Drawing.Size(135, 23);
             this.btnAddAll.TabIndex = 6;
             this.btnAddAll.Text = "Add All To Queue";
             this.btnAddAll.UseVisualStyleBackColor = true;
@@ -408,7 +408,7 @@
             // 
             this.btnAddPrefixCounter.Location = new System.Drawing.Point(12, 287);
             this.btnAddPrefixCounter.Name = "btnAddPrefixCounter";
-            this.btnAddPrefixCounter.Size = new System.Drawing.Size(134, 23);
+            this.btnAddPrefixCounter.Size = new System.Drawing.Size(135, 23);
             this.btnAddPrefixCounter.TabIndex = 24;
             this.btnAddPrefixCounter.Text = "Add Prefix Counter";
             this.toolTip1.SetToolTip(this.btnAddPrefixCounter, "Add Prefix Counter to Chapter Name");
