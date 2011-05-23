@@ -38,7 +38,6 @@ namespace MangaRipper
                     break;
                 case "truyentranhtuan.com":
                 case "www.truyentranhtuan.com":
-                case "www.doujintoshokan.com":
                 default:
                     string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);

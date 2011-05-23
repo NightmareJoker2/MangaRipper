@@ -20,10 +20,11 @@ namespace MangaRipper
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
+            string title = ParseTitleName(html);
+
             foreach (Match match in matches)
             {
                 var value = new Uri(Address, match.Groups["Value"].Value + "/read/");
-                string title = ParseTitleName(html);
                 string name = String.Format("{0} {1}", title, match.Groups["Text"].Value);
                 IChapter chapter = new ChapterOtakuworks(name, value);
                 list.Add(chapter);
@@ -40,7 +41,7 @@ namespace MangaRipper
         private string ParseTitleName(string html)
         {
             string name = "";
-            Regex reg = new Regex(@"<title>(?<Text>[^"" \(""]+) \(Manga\)",
+            Regex reg = new Regex(@"<title>(?<Text>[^(]+)\s\(Manga\)",
                 RegexOptions.IgnoreCase);
 
             Match match = reg.Match(html);
