@@ -34,7 +34,6 @@ namespace MangaRipper
         protected override List<Uri> ParsePageAddresses(string html)
         {
             var list = new List<Uri>();
-            list.Add(Address);
             Regex reg = new Regex(@"create_jsnumsel2\('fpage1',(?<Min>[^,]+),(?<Max>[^,]+)",
                 RegexOptions.IgnoreCase);
             Match match = reg.Match(html);

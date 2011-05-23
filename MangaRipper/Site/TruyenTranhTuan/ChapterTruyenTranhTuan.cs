@@ -18,7 +18,7 @@ namespace MangaRipper
         protected override List<Uri> ParseImageAddresses(string html)
         {
             var list = new List<Uri>();
-            Regex reg = new Regex(@"\.html""><img src=""(?<Value>[^""]+)""",
+            Regex reg = new Regex("\"><img src=\"(?<Value>[^\"]+)\"",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
@@ -34,7 +34,6 @@ namespace MangaRipper
         protected override List<Uri> ParsePageAddresses(string html)
         {
             var list = new List<Uri>();
-            list.Add(Address);
             Regex reg = new Regex(@"<option value=""(?<Value>\d+)""(| selected=""selected"")>\d+",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
@@ -42,7 +41,11 @@ namespace MangaRipper
             foreach (Match match in matches)
             {
                 var value = new Uri(Address, match.Groups["Value"].Value + ".html");
-                list.Add(value);
+                int number = list.Where(uri => uri.AbsoluteUri == value.AbsoluteUri).Count();
+                if (number == 0)
+                {
+                    list.Add(value); 
+                }
             }
 
             return list;

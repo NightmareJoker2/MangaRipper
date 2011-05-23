@@ -34,7 +34,6 @@ namespace MangaRipper
         protected override List<Uri> ParsePageAddresses(string html)
         {
             var list = new List<Uri>();
-            list.Add(Address);
             Regex reg = new Regex(@"<option value=""(?<Value>/read/[^/]+/[^/]+/[^/]+/[^""]+)""(?:| selected=""selected"")>",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
