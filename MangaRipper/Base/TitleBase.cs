@@ -99,6 +99,7 @@ namespace MangaRipper
 
             var client = new WebClient();
             client.Proxy = Option.GetProxy();
+            client.Encoding = Encoding.UTF8;
             string html = client.DownloadString(Address);
 
             var sb = new StringBuilder();

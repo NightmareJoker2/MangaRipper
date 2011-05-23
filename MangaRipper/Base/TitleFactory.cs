@@ -38,6 +38,8 @@ namespace MangaRipper
                     break;
                 case "truyentranhtuan.com":
                 case "www.truyentranhtuan.com":
+                    title = new TitleTruyenTranhTuan(uri);
+                    break;
                 default:
                     string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);
@@ -58,7 +60,7 @@ namespace MangaRipper
             grid.Rows.Add("MangaShare", "http://read.mangashare.com/", "English");
             grid.Rows.Add("MangaToshokan", "http://www.mangatoshokan.com/", "English");
             grid.Rows.Add("Otakuworks", "http://www.otakuworks.com/", "English");
-            //grid.Rows.Add("TruyenTranhTuan", "http://www.truyentranhtuan.com/", "Vietnamese");
+            grid.Rows.Add("TruyenTranhTuan", "http://www.truyentranhtuan.com/", "Vietnamese");
         }
     }
 }
