@@ -223,6 +223,10 @@ namespace MangaRipper
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            this.Size = MangaRipper.Properties.Settings.Default.Size;
+            this.Location = MangaRipper.Properties.Settings.Default.Location;
+            this.WindowState = MangaRipper.Properties.Settings.Default.WindowState;
+
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
 
@@ -254,6 +258,17 @@ namespace MangaRipper
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                MangaRipper.Properties.Settings.Default.Size = this.Size;
+                MangaRipper.Properties.Settings.Default.Location = this.Location;
+                MangaRipper.Properties.Settings.Default.WindowState = this.WindowState;
+            }
+            else if (this.WindowState == FormWindowState.Maximized)
+            {
+                MangaRipper.Properties.Settings.Default.WindowState = this.WindowState;
+            }
+
             Properties.Settings.Default.Save();
             Common.SaveIChapterCollection(DownloadQueue, FILENAME_ICHAPTER_COLLECTION);
         }
