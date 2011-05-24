@@ -111,28 +111,10 @@ namespace MangaRipper
 
             string html = DownloadString(Address);
 
-            List<Uri> pageAddresses = ParsePageAddresses(html);
-
-            var sbHtml = new StringBuilder();
-
-            int countPage = 0;
-
-            foreach (Uri pageAddress in pageAddresses)
+            if (ImageAddresses == null)
             {
-                if (worker.CancellationPending == true)
-                {
-                    e.Cancel = true;
-                    throw new OperationCanceledException();
-                }
-                string content = DownloadString(pageAddress);
-                sbHtml.AppendLine(content);
-
-                countPage++;
-                int percent = countPage * 100 / (pageAddresses.Count * 2);
-                worker.ReportProgress(percent);
+                PopulateImageAddress(html);
             }
-
-            ImageAddresses = ParseImageAddresses(sbHtml.ToString());
 
             string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
             Directory.CreateDirectory(saveToFolder);
@@ -153,6 +135,31 @@ namespace MangaRipper
                 int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
                 worker.ReportProgress(percent);
             }
+        }
+
+        private void PopulateImageAddress(string html)
+        {
+            List<Uri> pageAddresses = ParsePageAddresses(html);
+
+            var sbHtml = new StringBuilder();
+
+            int countPage = 0;
+
+            foreach (Uri pageAddress in pageAddresses)
+            {
+                if (worker.CancellationPending == true)
+                {
+                    throw new OperationCanceledException();
+                }
+                string content = DownloadString(pageAddress);
+                sbHtml.AppendLine(content);
+
+                countPage++;
+                int percent = countPage * 100 / (pageAddresses.Count * 2);
+                worker.ReportProgress(percent);
+            }
+
+            ImageAddresses = ParseImageAddresses(sbHtml.ToString());
         }
 
         private void DownloadFile(Uri address, string fileName)
@@ -244,7 +251,7 @@ namespace MangaRipper
                 // Fox example: Set proxy to microsoft.com, port 80.
                 if (!(ex is OperationCanceledException))
                 {
-                    Thread.Sleep(1000); 
+                    Thread.Sleep(1000);
                 }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error);
