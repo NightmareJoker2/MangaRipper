@@ -312,10 +312,12 @@ namespace MangaRipper
                 IChapter chapter = row.DataBoundItem as IChapter;
                 chapters.Add(chapter);
             }
+            chapters = Common.CloneIChapterCollection(chapters);
 
             chapters.Reverse();
             chapters.ForEach(r => r.Name = String.Format("[{0:000}] - {1}", chapters.IndexOf(r) + 1, r.Name));
             chapters.Reverse();
+
             dgvChapter.DataSource = chapters;
         }
     }
