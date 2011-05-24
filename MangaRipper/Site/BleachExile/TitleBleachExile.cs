@@ -8,9 +8,9 @@ namespace MangaRipper
 {
     public class TitleBleachExile : TitleBase
     {
-        public TitleBleachExile(Uri url)
+        public TitleBleachExile(Uri address)
         {
-            Address = url;
+            Address = address;
         }
 
         protected override List<Uri> ParseChapterAddresses(string html)

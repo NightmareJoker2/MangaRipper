@@ -164,6 +164,7 @@ namespace MangaRipper
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
                     request.Proxy = Option.GetProxy();
                     request.Credentials = CredentialCache.DefaultCredentials;
+                    request.Referer = Address.AbsoluteUri;
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
                         using (Stream responseStream = response.GetResponseStream())

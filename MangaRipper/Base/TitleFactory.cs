@@ -40,6 +40,9 @@ namespace MangaRipper
                 case "www.truyentranhtuan.com":
                     title = new TitleTruyenTranhTuan(uri);
                     break;
+                case "manga.animevibe.net":
+                    title = new TitleAnimeVibe(uri);
+                    break;
                 default:
                     string message = String.Format("This site ({0}) is not supported.", uri.Host);
                     throw new Exception(message);
@@ -53,7 +56,7 @@ namespace MangaRipper
         /// <param name="grid"></param>
         public static void PopulateSiteGrid(DataGridView grid)
         {
-            grid.Rows.Clear();
+            grid.Rows.Add("AnimeVibe", "http://manga.animevibe.net/", "English");
             grid.Rows.Add("BleachExile", "http://manga.bleachexile.com/", "English");
             grid.Rows.Add("MangaFox", "http://www.mangafox.com/", "English");
             grid.Rows.Add("MangaHere", "http://www.mangahere.com/", "English");

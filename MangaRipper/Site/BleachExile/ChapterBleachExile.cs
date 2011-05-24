@@ -9,10 +9,10 @@ namespace MangaRipper
     [Serializable]
     public class ChapterBleachExile : ChapterBase
     {
-        public ChapterBleachExile(string name, Uri url)
+        public ChapterBleachExile(string name, Uri address)
         {
             Name = name;
-            Address = url;
+            Address = address;
         }
 
         protected override List<Uri> ParsePageAddresses(string html)

@@ -105,6 +105,8 @@
     <Compile Include="Form\FormOption.Designer.cs">
       <DependentUpon>FormOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Site\AnimeVibe\ChapterAnimeVibe.cs" />
+    <Compile Include="Site\AnimeVibe\TitleAnimeVibe.cs" />
     <Compile Include="Site\TruyenTranhTuan\ChapterTruyenTranhTuan.cs" />
     <Compile Include="Site\TruyenTranhTuan\TitleTruyenTranhTuan.cs" />
     <Compile Include="Site\Otakuworks\ChapterOtakuworks.cs" />

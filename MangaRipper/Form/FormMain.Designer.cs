@@ -96,7 +96,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(153, 287);
+            this.btnAdd.Location = new System.Drawing.Point(153, 288);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 23);
             this.btnAdd.TabIndex = 8;
@@ -107,7 +107,7 @@
             // btnAddAll
             // 
             this.btnAddAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddAll.Location = new System.Drawing.Point(302, 287);
+            this.btnAddAll.Location = new System.Drawing.Point(302, 288);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(135, 23);
             this.btnAddAll.TabIndex = 9;
@@ -202,7 +202,7 @@
             // btnChangeSaveTo
             // 
             this.btnChangeSaveTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChangeSaveTo.Location = new System.Drawing.Point(312, 316);
+            this.btnChangeSaveTo.Location = new System.Drawing.Point(312, 317);
             this.btnChangeSaveTo.Name = "btnChangeSaveTo";
             this.btnChangeSaveTo.Size = new System.Drawing.Size(30, 23);
             this.btnChangeSaveTo.TabIndex = 13;
@@ -214,7 +214,7 @@
             // btnOpenFolder
             // 
             this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpenFolder.Location = new System.Drawing.Point(348, 316);
+            this.btnOpenFolder.Location = new System.Drawing.Point(348, 317);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(89, 23);
             this.btnOpenFolder.TabIndex = 14;
@@ -226,7 +226,7 @@
             // 
             this.lbSaveTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbSaveTo.AutoSize = true;
-            this.lbSaveTo.Location = new System.Drawing.Point(12, 320);
+            this.lbSaveTo.Location = new System.Drawing.Point(12, 321);
             this.lbSaveTo.Name = "lbSaveTo";
             this.lbSaveTo.Size = new System.Drawing.Size(45, 13);
             this.lbSaveTo.TabIndex = 11;
@@ -272,13 +272,13 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSupportedSites.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSupportedSites.Location = new System.Drawing.Point(12, 345);
+            this.dgvSupportedSites.Location = new System.Drawing.Point(12, 346);
             this.dgvSupportedSites.MultiSelect = false;
             this.dgvSupportedSites.Name = "dgvSupportedSites";
             this.dgvSupportedSites.ReadOnly = true;
             this.dgvSupportedSites.RowHeadersVisible = false;
             this.dgvSupportedSites.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSupportedSites.Size = new System.Drawing.Size(425, 200);
+            this.dgvSupportedSites.Size = new System.Drawing.Size(425, 199);
             this.dgvSupportedSites.TabIndex = 15;
             this.dgvSupportedSites.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupportedSites_CellContentClick);
             // 
@@ -360,7 +360,7 @@
             this.dgvChapter.ReadOnly = true;
             this.dgvChapter.RowHeadersVisible = false;
             this.dgvChapter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChapter.Size = new System.Drawing.Size(425, 243);
+            this.dgvChapter.Size = new System.Drawing.Size(425, 244);
             this.dgvChapter.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn4
@@ -413,7 +413,7 @@
             // btnAddPrefixCounter
             // 
             this.btnAddPrefixCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddPrefixCounter.Location = new System.Drawing.Point(12, 287);
+            this.btnAddPrefixCounter.Location = new System.Drawing.Point(12, 288);
             this.btnAddPrefixCounter.Name = "btnAddPrefixCounter";
             this.btnAddPrefixCounter.Size = new System.Drawing.Size(135, 23);
             this.btnAddPrefixCounter.TabIndex = 7;
@@ -426,7 +426,7 @@
             // 
             this.txtSaveTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSaveTo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MangaRipper.Properties.Settings.Default, "SaveTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtSaveTo.Location = new System.Drawing.Point(66, 317);
+            this.txtSaveTo.Location = new System.Drawing.Point(66, 318);
             this.txtSaveTo.Name = "txtSaveTo";
             this.txtSaveTo.ReadOnly = true;
             this.txtSaveTo.Size = new System.Drawing.Size(240, 22);
