@@ -99,13 +99,12 @@
     <Compile Include="Helper\AppInfo.cs" />
     <Compile Include="Helper\Extension.cs" />
     <Compile Include="Helper\Option.cs" />
-    <Compile Include="FormOption.cs">
+    <Compile Include="Form\FormOption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOption.Designer.cs">
+    <Compile Include="Form\FormOption.Designer.cs">
       <DependentUpon>FormOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Compile Include="Site\TruyenTranhTuan\ChapterTruyenTranhTuan.cs" />
     <Compile Include="Site\TruyenTranhTuan\TitleTruyenTranhTuan.cs" />
     <Compile Include="Site\Otakuworks\ChapterOtakuworks.cs" />
@@ -115,16 +114,16 @@
     <Compile Include="Site\MangaToshokan\ChapterMangaToshokan.cs" />
     <Compile Include="Site\MangaToshokan\TitleMangaToshokan.cs" />
     <Compile Include="Site\MangaShare\ChapterMangaShare.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="Form\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Form\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AboutBox.cs">
+    <Compile Include="Form\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox.designer.cs">
+    <Compile Include="Form\AboutBox.designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\ChapterBase.cs" />
@@ -140,13 +139,13 @@
     <Compile Include="Site\MangaShare\TitleMangaShare.cs" />
     <Compile Include="Site\BleachExile\ChapterBleachExile.cs" />
     <Compile Include="Site\BleachExile\TitleBleachExile.cs" />
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Form\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutBox.resx">
+    <EmbeddedResource Include="Form\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOption.resx">
+    <EmbeddedResource Include="Form\FormOption.resx">
       <DependentUpon>FormOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
