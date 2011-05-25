@@ -24,10 +24,6 @@ namespace MangaRipper
         public FormMain()
         {
             InitializeComponent();
-
-            this.Size = MangaRipper.Properties.Settings.Default.Size;
-            this.Location = MangaRipper.Properties.Settings.Default.Location;
-            this.WindowState = MangaRipper.Properties.Settings.Default.WindowState;
         }
 
         private void btnGetChapter_Click(object sender, EventArgs e)
@@ -233,6 +229,10 @@ namespace MangaRipper
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            this.Size = MangaRipper.Properties.Settings.Default.Size;
+            this.Location = MangaRipper.Properties.Settings.Default.Location;
+            this.WindowState = MangaRipper.Properties.Settings.Default.WindowState;
+
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
 
