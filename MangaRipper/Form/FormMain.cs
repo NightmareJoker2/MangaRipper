@@ -24,6 +24,10 @@ namespace MangaRipper
         public FormMain()
         {
             InitializeComponent();
+
+            this.Size = MangaRipper.Properties.Settings.Default.Size;
+            this.Location = MangaRipper.Properties.Settings.Default.Location;
+            this.WindowState = MangaRipper.Properties.Settings.Default.WindowState;
         }
 
         private void btnGetChapter_Click(object sender, EventArgs e)
@@ -138,13 +142,19 @@ namespace MangaRipper
         {
             if (DownloadQueue.Count > 0 && AllowDownload == true)
             {
-                IChapter chapter = DownloadQueue.First();
+                int current = DownloadQueue.Where(c => c.IsBusy == true).Count();
+                int max = Convert.ToInt32(nudThread.Value);
+                int remain = max - current;
+                var chapters = DownloadQueue.Where(c => c.IsBusy == false).Take(remain);
 
-                chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
-                chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
+                foreach (var chapter in chapters)
+                {
+                    chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
+                    chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
 
-                btnDownload.Enabled = false;
-                chapter.DownloadImageAsync(txtSaveTo.Text);
+                    btnDownload.Enabled = false;
+                    chapter.DownloadImageAsync(txtSaveTo.Text);
+                }
             }
             else
             {
@@ -223,10 +233,6 @@ namespace MangaRipper
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            this.Size = MangaRipper.Properties.Settings.Default.Size;
-            this.Location = MangaRipper.Properties.Settings.Default.Location;
-            this.WindowState = MangaRipper.Properties.Settings.Default.WindowState;
-
             dgvQueueChapter.AutoGenerateColumns = false;
             dgvChapter.AutoGenerateColumns = false;
 

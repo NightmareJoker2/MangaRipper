@@ -219,7 +219,6 @@ namespace MangaRipper
             StringBuilder result = new StringBuilder();
             try
             {
-
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
                 request.Proxy = Option.GetProxy();
                 request.Credentials = CredentialCache.DefaultCredentials;

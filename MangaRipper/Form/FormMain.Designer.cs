@@ -64,9 +64,11 @@
             this.btnAddPrefixCounter = new System.Windows.Forms.Button();
             this.txtSaveTo = new System.Windows.Forms.TextBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
+            this.nudThread = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThread)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetChapter
@@ -85,9 +87,9 @@
             // 
             this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownload.Location = new System.Drawing.Point(665, 551);
+            this.btnDownload.Location = new System.Drawing.Point(719, 551);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(216, 23);
+            this.btnDownload.Size = new System.Drawing.Size(162, 23);
             this.btnDownload.TabIndex = 18;
             this.btnDownload.Text = "Start Download";
             this.btnDownload.UseVisualStyleBackColor = true;
@@ -442,11 +444,38 @@
             this.txtMessage.Size = new System.Drawing.Size(1004, 22);
             this.txtMessage.TabIndex = 23;
             // 
+            // nudThread
+            // 
+            this.nudThread.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudThread.Location = new System.Drawing.Point(666, 552);
+            this.nudThread.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudThread.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudThread.Name = "nudThread";
+            this.nudThread.ReadOnly = true;
+            this.nudThread.Size = new System.Drawing.Size(47, 22);
+            this.nudThread.TabIndex = 24;
+            this.nudThread.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.nudThread, "Max Connections Number");
+            this.nudThread.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 606);
+            this.Controls.Add(this.nudThread);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.btnAddPrefixCounter);
             this.Controls.Add(this.btnRemoveBookmark);
@@ -480,6 +509,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueueChapter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupportedSites)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChapter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThread)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,5 +550,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnAddPrefixCounter;
         private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.NumericUpDown nudThread;
     }
 }
