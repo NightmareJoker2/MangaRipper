@@ -58,7 +58,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>japan.ico</ApplicationIcon>
+    <ApplicationIcon>MangaRipper.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>5C3E0C775A90E1ECAB024F38E5BB908ABA8DBF4F</ManifestCertificateThumbprint>
@@ -196,7 +196,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="japan.ico" />
+    <Content Include="MangaRipper.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
