@@ -45,6 +45,8 @@ namespace MangaRipper
             }
         }
 
+        public IWebProxy Proxy { get; set; }
+
         public void CancelPopulateChapter()
         {
             if (IsBusy == true)
@@ -98,7 +100,7 @@ namespace MangaRipper
             }
 
             var client = new WebClient();
-            client.Proxy = Option.GetProxy();
+            client.Proxy = Proxy;
             client.Encoding = Encoding.UTF8;
             string html = client.DownloadString(Address);
 

@@ -34,7 +34,7 @@ namespace MangaRipper
                 ITitle title = TitleFactory.CreateTitle(titleUrl);
                 title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
                 title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
-
+                title.Proxy = Option.GetProxy();
                 btnGetChapter.Enabled = false;
                 title.PopulateChapterAsync();
             }
@@ -147,7 +147,7 @@ namespace MangaRipper
                 {
                     chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
                     chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
-
+                    chapter.Proxy = Option.GetProxy();
                     btnDownload.Enabled = false;
                     chapter.DownloadImageAsync(txtSaveTo.Text);
                 }

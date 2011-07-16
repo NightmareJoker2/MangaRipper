@@ -62,6 +62,8 @@ namespace MangaRipper
             }
         }
 
+        public IWebProxy Proxy { get; set; }
+
         public void DownloadImageAsync(string fileName)
         {
             SaveTo = fileName;
@@ -169,7 +171,7 @@ namespace MangaRipper
                 if (File.Exists(fileName) == false)
                 {
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
-                    request.Proxy = Option.GetProxy();
+                    request.Proxy = Proxy;
                     request.Credentials = CredentialCache.DefaultCredentials;
                     request.Referer = Address.AbsoluteUri;
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
@@ -220,7 +222,7 @@ namespace MangaRipper
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
-                request.Proxy = Option.GetProxy();
+                request.Proxy = Proxy;
                 request.Credentials = CredentialCache.DefaultCredentials;
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
