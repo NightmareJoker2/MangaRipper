@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Deployment.Application;
 using System.Collections.Specialized;
+using MangaCore;
 
 namespace MangaRipper
 {
@@ -238,7 +239,10 @@ namespace MangaRipper
 
             this.Text = String.Format("{0} {1}", Application.ProductName, AppInfo.DeploymentVersion);
 
-            TitleFactory.PopulateSiteGrid(dgvSupportedSites);
+            foreach (string[] item in TitleFactory.GetSupportedSites())
+            {
+                dgvSupportedSites.Rows.Add(item);
+            }
 
             if (String.IsNullOrEmpty(txtSaveTo.Text))
             {

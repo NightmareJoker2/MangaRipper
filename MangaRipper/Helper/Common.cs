@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
+using MangaCore;
 
 namespace MangaRipper
 {
