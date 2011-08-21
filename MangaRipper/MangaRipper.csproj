@@ -139,7 +139,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="ClassDiagram.cd" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -177,9 +176,9 @@
     <Content Include="MangaRipper.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MangaCore\MangaCore.csproj">
-      <Project>{ED6573EF-3CE4-4718-AB90-1F3312473EF4}</Project>
-      <Name>MangaCore</Name>
+    <ProjectReference Include="..\MangaRipper.Core\MangaRipper.Core.csproj">
+      <Project>{13EFFE36-DBB8-4573-9260-B601177F66E3}</Project>
+      <Name>MangaRipper.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Deployment.Application;
 using System.Collections.Specialized;
-using MangaCore;
+using MangaRipper.Core;
 
 namespace MangaRipper
 {
