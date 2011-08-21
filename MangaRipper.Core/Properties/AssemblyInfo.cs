@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MangaRipper.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NguyenDanPhuong")]
+[assembly: AssemblyCompany("Nguyen Dan Phuong")]
 [assembly: AssemblyProduct("MangaRipper.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
