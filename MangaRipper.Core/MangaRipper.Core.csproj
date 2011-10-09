@@ -53,6 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site\MangaFox\ChapterMangaFox.cs" />
     <Compile Include="Site\MangaFox\TitleMangaFox.cs" />
+    <Compile Include="Site\MangaHere\ChapterMangaHere.cs" />
+    <Compile Include="Site\MangaHere\TitleMangaHere.cs" />
     <Compile Include="Site\MangaShare\ChapterMangaShare.cs" />
     <Compile Include="Site\MangaShare\TitleMangaShare.cs" />
     <Compile Include="Site\MangaToshokan\ChapterMangaToshokan.cs" />
