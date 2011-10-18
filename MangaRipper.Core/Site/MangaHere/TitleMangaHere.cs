@@ -10,11 +10,6 @@ namespace MangaRipper.Core
     {
         public TitleMangaHere(Uri address) : base(address) { }
 
-        protected override List<Uri> ParseChapterAddresses(string html)
-        {
-            return null;
-        }
-
         protected override List<IChapter> ParseChapterObjects(string html)
         {
             var list = new List<IChapter>();

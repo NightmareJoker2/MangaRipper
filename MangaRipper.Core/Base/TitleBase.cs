@@ -16,7 +16,10 @@ namespace MangaRipper.Core
 
         protected BackgroundWorker worker;
 
-        abstract protected List<Uri> ParseChapterAddresses(string html);
+        protected virtual List<Uri> ParseChapterAddresses(string html)
+        {
+            return null;
+        }
 
         abstract protected List<IChapter> ParseChapterObjects(string html);
 

@@ -27,10 +27,5 @@ namespace MangaRipper.Core
 
             return list;
         }
-
-        protected override List<Uri> ParseChapterAddresses(string html)
-        {
-            return null;
-        }
     }
 }

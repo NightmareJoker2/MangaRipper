@@ -30,11 +30,6 @@ namespace MangaRipper.Core
             return list;
         }
 
-        protected override List<Uri> ParseChapterAddresses(string html)
-        {
-            return null;
-        }
-
         private string ParseTitleName(string html)
         {
             string name = "";
