@@ -8,11 +8,7 @@ namespace MangaRipper.Core
 {
     class ChapterMangaHere : ChapterBase
     {
-        public ChapterMangaHere(string name, Uri address)
-        {
-            Name = name;
-            Address = address;
-        }
+        public ChapterMangaHere(string name, Uri address) : base(name, address) { }
 
         protected override List<Uri> ParsePageAddresses(string html)
         {

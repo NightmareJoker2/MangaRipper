@@ -64,6 +64,12 @@ namespace MangaRipper.Core
 
         public IWebProxy Proxy { get; set; }
 
+        public ChapterBase(string name, Uri address)
+        {
+            Name = name;
+            Address = address;
+        }
+
         public void DownloadImageAsync(string fileName)
         {
             SaveTo = fileName;

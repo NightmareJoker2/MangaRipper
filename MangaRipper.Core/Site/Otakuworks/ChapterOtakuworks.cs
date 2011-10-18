@@ -9,11 +9,7 @@ namespace MangaRipper.Core
     [Serializable]
     public class ChapterOtakuworks : ChapterBase
     {
-        public ChapterOtakuworks(string name, Uri address)
-        {
-            Name = name;
-            Address = address;
-        }
+        public ChapterOtakuworks(string name, Uri address) : base(name, address) { }
 
         protected override List<Uri> ParseImageAddresses(string html)
         {
@@ -28,7 +24,7 @@ namespace MangaRipper.Core
                 list.Add(value);
             }
 
-            return list;
+            return list.Distinct().ToList();
         }
 
         protected override List<Uri> ParsePageAddresses(string html)
@@ -49,7 +45,7 @@ namespace MangaRipper.Core
                 }
             }
 
-            return list;
+            return list.Distinct().ToList();
         }
     }
 }

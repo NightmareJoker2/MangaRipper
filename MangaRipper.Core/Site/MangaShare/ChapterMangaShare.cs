@@ -9,11 +9,7 @@ namespace MangaRipper.Core
     [Serializable]
     public class ChapterMangaShare : ChapterBase
     {
-        public ChapterMangaShare(string name, Uri address)
-        {
-            Name = name;
-            Address = address;
-        }
+        public ChapterMangaShare(string name, Uri address) : base(name, address) { }
 
         protected override List<Uri> ParsePageAddresses(string html)
         {

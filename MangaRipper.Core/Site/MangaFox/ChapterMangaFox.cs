@@ -9,11 +9,7 @@ namespace MangaRipper.Core
     [Serializable]
     public class ChapterMangaFox : ChapterBase
     {
-        public ChapterMangaFox(string name, Uri address)
-        {
-            Name = name;
-            Address = address;
-        }
+        public ChapterMangaFox(string name, Uri address) : base(name, address) { }
 
         protected override List<Uri> ParseImageAddresses(string html)
         {
@@ -27,7 +23,7 @@ namespace MangaRipper.Core
                 var value = new Uri(Address, match.Groups["Value"].Value);
                 list.Add(value);
             }
-           
+
             return list;
         }
 
@@ -44,7 +40,7 @@ namespace MangaRipper.Core
                 var value = new Uri(Address, match.Groups["Value"].Value);
                 list.Add(value);
             }
-           
+
             return list;
         }
     }
