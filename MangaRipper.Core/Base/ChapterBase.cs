@@ -53,12 +53,7 @@ namespace MangaRipper.Core
         {
             get
             {
-                bool busy = false;
-                if (worker != null)
-                {
-                    busy = worker.IsBusy;
-                }
-                return busy;
+                return worker.IsBusy;
             }
         }
 
@@ -68,6 +63,13 @@ namespace MangaRipper.Core
         {
             Name = name;
             Address = address;
+
+            worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += new DoWorkEventHandler(DoWork);
+            worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
         }
 
         public void DownloadImageAsync(string fileName)
@@ -75,14 +77,6 @@ namespace MangaRipper.Core
             SaveTo = fileName;
             if (IsBusy == false)
             {
-                worker = new BackgroundWorker();
-                worker.WorkerReportsProgress = true;
-                worker.WorkerSupportsCancellation = true;
-
-                worker.DoWork += new DoWorkEventHandler(DoWork);
-                worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
-
                 worker.RunWorkerAsync();
             }
         }
