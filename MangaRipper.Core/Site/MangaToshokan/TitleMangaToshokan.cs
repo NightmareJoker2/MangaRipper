@@ -8,10 +8,8 @@ namespace MangaRipper.Core
 {
     public class TitleMangaToshokan : TitleBase
     {
-        public TitleMangaToshokan(Uri address)
-        {
-            Address = address;
-        }
+        public TitleMangaToshokan(Uri address) : base(address) { }
+
         protected override List<IChapter> ParseChapterObjects(string html)
         {
             var list = new List<IChapter>();

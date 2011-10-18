@@ -8,10 +8,7 @@ namespace MangaRipper.Core
 {
     public class TitleOtakuworks : TitleBase
     {
-        public TitleOtakuworks(Uri address)
-        {
-            Address = address;
-        }
+        public TitleOtakuworks(Uri address) : base(address) { }
 
         protected override List<IChapter> ParseChapterObjects(string html)
         {

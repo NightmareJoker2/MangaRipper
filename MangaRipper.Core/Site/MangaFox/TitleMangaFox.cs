@@ -8,10 +8,8 @@ namespace MangaRipper.Core
 {
     public class TitleMangaFox : TitleBase
     {
-        public TitleMangaFox(Uri address)
-        {
-            Address = address;
-        }
+        public TitleMangaFox(Uri address) : base(address) { }
+
         protected override List<IChapter> ParseChapterObjects(string html)
         {
             var list = new List<IChapter>();

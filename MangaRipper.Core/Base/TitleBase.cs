@@ -47,6 +47,11 @@ namespace MangaRipper.Core
 
         public IWebProxy Proxy { get; set; }
 
+        public TitleBase(Uri address)
+        {
+            Address = address;
+        }
+
         public void CancelPopulateChapter()
         {
             if (IsBusy == true)
