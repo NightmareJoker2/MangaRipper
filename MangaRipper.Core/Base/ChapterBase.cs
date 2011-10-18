@@ -212,7 +212,7 @@ namespace MangaRipper.Core
                     Thread.Sleep(1000);
                 }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
-                throw new Exception(error);
+                throw new Exception(error, ex);
             }
         }
 
@@ -255,7 +255,7 @@ namespace MangaRipper.Core
                     Thread.Sleep(1000);
                 }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
-                throw new Exception(error);
+                throw new Exception(error, ex);
             }
         }
     }
