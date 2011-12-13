@@ -19,13 +19,15 @@ namespace MangaRipper.Core
         [field: NonSerialized]
         public event ProgressChangedEventHandler DownloadImageProgressChanged;
 
+        [NonSerialized]
+        private CancellationToken _cancellationToken;
+
+        [NonSerialized]
+        private Task _task;
+
         abstract protected List<Uri> ParsePageAddresses(string html);
 
         abstract protected List<Uri> ParseImageAddresses(string html);
-
-        private CancellationToken _cancellationToken;
-
-        private Task _task;
 
         public string Name
         {
