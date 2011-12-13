@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Net;
+using System.Threading;
 
 namespace MangaRipper.Core
 {
@@ -40,8 +41,6 @@ namespace MangaRipper.Core
             set;
         }
 
-        void DownloadImageAsync(string fileName);
-
-        void CancelDownloadImage();
+        void DownloadImageAsync(string fileName, CancellationToken cancellationToken);
     }
 }

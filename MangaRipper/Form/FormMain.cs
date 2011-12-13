@@ -21,7 +21,7 @@ namespace MangaRipper
 
         protected const string FILENAME_ICHAPTER_COLLECTION = "IChapterCollection.bin";
 
-        private bool AllowDownload = true;
+        private CancellationTokenSource _cts;
 
         public FormMain()
         {
@@ -132,13 +132,13 @@ namespace MangaRipper
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            AllowDownload = true;
+            _cts = new CancellationTokenSource();
             DownloadChapter();
         }
 
         private void DownloadChapter()
         {
-            if (DownloadQueue.Count > 0 && AllowDownload == true)
+            if (DownloadQueue.Count > 0 && _cts.IsCancellationRequested == false)
             {
                 int current = DownloadQueue.Where(c => c.IsBusy == true).Count();
                 int max = Convert.ToInt32(nudThread.Value);
@@ -151,7 +151,7 @@ namespace MangaRipper
                     chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
                     chapter.Proxy = Option.GetProxy();
                     btnDownload.Enabled = false;
-                    chapter.DownloadImageAsync(txtSaveTo.Text);
+                    chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token);
                 }
             }
             else
@@ -164,12 +164,11 @@ namespace MangaRipper
         {
             IChapter chapter = (IChapter)sender;
 
-            if (e.Cancelled == false && e.Error == null)
+            if (e.Error == null)
             {
                 DownloadQueue.Remove(chapter);
             }
-
-            if (e.Error != null)
+            else
             {
                 txtMessage.Text = e.Error.Message;
             }
@@ -199,11 +198,7 @@ namespace MangaRipper
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            AllowDownload = false;
-            foreach (var item in DownloadQueue)
-            {
-                item.CancelDownloadImage();
-            }
+            _cts.Cancel();
         }
 
         private void btnChangeSaveTo_Click(object sender, EventArgs e)

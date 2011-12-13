@@ -44,9 +44,7 @@ namespace MangaRipper.Core
 
         public void PopulateChapterAsync()
         {
-            var taskSync = TaskScheduler.FromCurrentSynchronizationContext();
-
-            var task = Task.Factory.StartNew(() =>
+            Task task = Task.Factory.StartNew(() =>
             {
                 ReportProgress(0);
 
@@ -85,8 +83,7 @@ namespace MangaRipper.Core
                     var arg = new RunWorkerCompletedEventArgs(null, ex, task.IsCanceled);
                     PopulateChapterCompleted(this, arg);
                 }
-            }, taskSync);
-
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
 

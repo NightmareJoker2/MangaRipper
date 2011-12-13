@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MangaRipper.Core
 {
@@ -18,12 +19,13 @@ namespace MangaRipper.Core
         [field: NonSerialized]
         public event ProgressChangedEventHandler DownloadImageProgressChanged;
 
-        [NonSerialized]
-        protected BackgroundWorker worker;
-
         abstract protected List<Uri> ParsePageAddresses(string html);
 
         abstract protected List<Uri> ParseImageAddresses(string html);
+
+        private CancellationToken _cancellationToken;
+
+        private Task _task;
 
         public string Name
         {
@@ -53,7 +55,21 @@ namespace MangaRipper.Core
         {
             get
             {
-                return worker == null ? false : worker.IsBusy;
+                bool result = false;
+                if (_task != null)
+                {
+                    switch (_task.Status)
+                    {
+                        case TaskStatus.Created:
+                        case TaskStatus.Running:
+                        case TaskStatus.WaitingForActivation:
+                        case TaskStatus.WaitingForChildrenToComplete:
+                        case TaskStatus.WaitingToRun:
+                            result = true;
+                            break;
+                    }
+                }
+                return result;
             }
         }
 
@@ -66,82 +82,61 @@ namespace MangaRipper.Core
 
         }
 
-        public void DownloadImageAsync(string fileName)
+        public void DownloadImageAsync(string fileName, CancellationToken cancellationToken)
         {
-            if (worker == null)
+            if (IsBusy)
             {
-                worker = new BackgroundWorker();
-                worker.WorkerReportsProgress = true;
-                worker.WorkerSupportsCancellation = true;
-                worker.DoWork += new DoWorkEventHandler(DoWork);
-                worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
+                return;
             }
 
+            _cancellationToken = cancellationToken;
             SaveTo = fileName;
-            if (IsBusy == false)
+
+            _task = Task.Factory.StartNew(() =>
             {
-                worker.RunWorkerAsync();
-            }
+                ReportProgress(0);
+                string html = DownloadString(Address);
+                if (ImageAddresses == null)
+                {
+                    PopulateImageAddress(html);
+                }
+
+                string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
+                Directory.CreateDirectory(saveToFolder);
+
+                int countImage = 0;
+
+                foreach (Uri imageAddress in ImageAddresses)
+                {
+                    _cancellationToken.ThrowIfCancellationRequested();
+                    string filename = saveToFolder + "\\" + Path.GetFileName(imageAddress.LocalPath);
+                    DownloadFile(imageAddress, filename);
+
+                    countImage++;
+                    int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
+                    ReportProgress(percent);
+                }
+            }, cancellationToken,TaskCreationOptions.None,TaskScheduler.Default);
+
+            _task.ContinueWith(delegate
+            {
+                if (DownloadImageCompleted != null)
+                {
+                    var ex = _task.Exception == null ? null : _task.Exception.InnerException;
+                    var arg = new RunWorkerCompletedEventArgs(null, ex, _task.IsCanceled);
+                    DownloadImageCompleted(this, arg);
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext());//
         }
 
-        public void CancelDownloadImage()
-        {
-            if (IsBusy == true)
-            {
-                worker.CancelAsync();
-            }
-        }
-
-        private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (DownloadImageCompleted != null)
-            {
-                bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
-                var arg = new RunWorkerCompletedEventArgs(null, e.Error, cancelled);
-                DownloadImageCompleted(this, arg);
-            }
-        }
-
-        private void ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void ReportProgress(int percent)
         {
             if (DownloadImageProgressChanged != null)
             {
-                DownloadImageProgressChanged(this, e);
+                DownloadImageProgressChanged(this, new ProgressChangedEventArgs(percent, null));
             }
         }
 
-        private void DoWork(object sender, DoWorkEventArgs e)
-        {
-            worker.ReportProgress(0);
-
-            string html = DownloadString(Address);
-
-            if (ImageAddresses == null)
-            {
-                PopulateImageAddress(html);
-            }
-
-            string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
-            Directory.CreateDirectory(saveToFolder);
-
-            int countImage = 0;
-
-            foreach (Uri imageAddress in ImageAddresses)
-            {
-                if (worker.CancellationPending == true)
-                {
-                    e.Cancel = true;
-                    throw new OperationCanceledException();
-                }
-                string filename = saveToFolder + "\\" + Path.GetFileName(imageAddress.LocalPath);
-                DownloadFile(imageAddress, filename);
-
-                countImage++;
-                int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
-                worker.ReportProgress(percent);
-            }
-        }
 
         private void PopulateImageAddress(string html)
         {
@@ -153,16 +148,13 @@ namespace MangaRipper.Core
 
             foreach (Uri pageAddress in pageAddresses)
             {
-                if (worker.CancellationPending == true)
-                {
-                    throw new OperationCanceledException();
-                }
+                _cancellationToken.ThrowIfCancellationRequested();
                 string content = DownloadString(pageAddress);
                 sbHtml.AppendLine(content);
 
                 countPage++;
                 int percent = countPage * 100 / (pageAddresses.Count * 2);
-                worker.ReportProgress(percent);
+                ReportProgress(percent);
             }
 
             ImageAddresses = ParseImageAddresses(sbHtml.ToString());
@@ -190,10 +182,7 @@ namespace MangaRipper.Core
                                 int bytesSize = 0;
                                 while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
                                 {
-                                    if (worker.CancellationPending == true)
-                                    {
-                                        throw new OperationCanceledException();
-                                    }
+                                    _cancellationToken.ThrowIfCancellationRequested();
                                     strLocal.Write(downBuffer, 0, bytesSize);
                                 }
 
@@ -206,15 +195,6 @@ namespace MangaRipper.Core
             }
             catch (Exception ex)
             {
-                // If the server responce very fast and there is exception. The async thread will completed almost immediately.
-                // Then the UI thread will re-download this chapter and exception is fired again and again.
-                // It an endless loop like while(true) that make UI thread stop to response.
-                // Sleep make the async thread run at least 1s before completed.
-                // Fox example: Set proxy to microsoft.com, port 80.
-                if (!(ex is OperationCanceledException))
-                {
-                    Thread.Sleep(1000);
-                }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error, ex);
             }
@@ -236,28 +216,15 @@ namespace MangaRipper.Core
                         int bytesSize = 0;
                         while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
                         {
-                            if (worker.CancellationPending == true)
-                            {
-                                throw new OperationCanceledException();
-                            }
+                            _cancellationToken.ThrowIfCancellationRequested();
                             result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
                         }
                     }
                 }
                 return result.ToString();
             }
-
             catch (Exception ex)
             {
-                // If the server responce very fast and there is exception. The async thread will completed almost immediately.
-                // Then the UI thread will re-download this chapter and exception is fired again and again.
-                // It an endless loop like while(true) that make UI thread stop to response.
-                // Sleep make the async thread run at least 1s before completed.
-                // Fox example: Set proxy to microsoft.com, port 80.
-                if (!(ex is OperationCanceledException))
-                {
-                    Thread.Sleep(1000);
-                }
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
                 throw new Exception(error, ex);
             }
