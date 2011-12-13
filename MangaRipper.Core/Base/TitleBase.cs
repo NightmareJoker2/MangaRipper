@@ -75,12 +75,12 @@ namespace MangaRipper.Core
                 ReportProgress(100);
             });
 
-            task.ContinueWith(delegate
+            task.ContinueWith(t =>
             {
                 if (PopulateChapterCompleted != null)
                 {
-                    var ex = task.Exception == null ? null : task.Exception.InnerException;
-                    var arg = new RunWorkerCompletedEventArgs(null, ex, task.IsCanceled);
+                    var ex = t.Exception == null ? null : t.Exception.InnerException;
+                    var arg = new RunWorkerCompletedEventArgs(null, ex, t.IsCanceled);
                     PopulateChapterCompleted(this, arg);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());

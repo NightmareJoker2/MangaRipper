@@ -116,14 +116,14 @@ namespace MangaRipper.Core
                     int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
                     ReportProgress(percent);
                 }
-            }, cancellationToken,TaskCreationOptions.None,TaskScheduler.Default);
+            }, cancellationToken, TaskCreationOptions.None, TaskScheduler.Default);
 
-            _task.ContinueWith(delegate
+            _task.ContinueWith(t =>
             {
                 if (DownloadImageCompleted != null)
                 {
-                    var ex = _task.Exception == null ? null : _task.Exception.InnerException;
-                    var arg = new RunWorkerCompletedEventArgs(null, ex, _task.IsCanceled);
+                    var ex = t.Exception == null ? null : t.Exception.InnerException;
+                    var arg = new RunWorkerCompletedEventArgs(null, ex, t.IsCanceled);
                     DownloadImageCompleted(this, arg);
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());//
