@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Deployment.Application;
 using System.Collections.Specialized;
 using MangaRipper.Core;
+using System.Threading;
 
 namespace MangaRipper
 {

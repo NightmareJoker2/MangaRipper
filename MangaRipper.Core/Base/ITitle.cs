@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Net;
+using System.Threading;
 
 namespace MangaRipper.Core
 {
@@ -23,11 +24,6 @@ namespace MangaRipper.Core
             get;
         }
 
-        bool IsBusy
-        {
-            get;
-        }
-
         IWebProxy Proxy
         {
             get;
@@ -35,7 +31,5 @@ namespace MangaRipper.Core
         }
 
         void PopulateChapterAsync();
-
-        void CancelPopulateChapter();
     }
 }

@@ -5,6 +5,8 @@ using System.Text;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace MangaRipper.Core
 {
@@ -13,8 +15,6 @@ namespace MangaRipper.Core
         public event RunWorkerCompletedEventHandler PopulateChapterCompleted;
 
         public event ProgressChangedEventHandler PopulateChapterProgressChanged;
-
-        protected BackgroundWorker worker;
 
         protected virtual List<Uri> ParseChapterAddresses(string html)
         {
@@ -35,97 +35,67 @@ namespace MangaRipper.Core
             protected set;
         }
 
-        public bool IsBusy
-        {
-            get
-            {
-                return worker.IsBusy;
-            }
-        }
-
         public IWebProxy Proxy { get; set; }
 
         public TitleBase(Uri address)
         {
             Address = address;
-
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += new DoWorkEventHandler(DoWork);
-            worker.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(RunWorkerCompleted);
-        }
-
-        public void CancelPopulateChapter()
-        {
-            if (IsBusy == true)
-            {
-                worker.CancelAsync();
-            }
         }
 
         public void PopulateChapterAsync()
         {
-            if (IsBusy == false)
+            var taskSync = TaskScheduler.FromCurrentSynchronizationContext();
+
+            var task = Task.Factory.StartNew(() =>
             {
-                worker.RunWorkerAsync();
-            }
+                ReportProgress(0);
+
+                var client = new WebClient();
+                client.Proxy = Proxy;
+                client.Encoding = Encoding.UTF8;
+                string html = client.DownloadString(Address);
+
+                var sb = new StringBuilder();
+                sb.AppendLine(html);
+
+                List<Uri> uris = ParseChapterAddresses(html);
+
+                if (uris != null)
+                {
+                    int count = 0;
+                    foreach (Uri item in uris)
+                    {
+                        string content = client.DownloadString(item);
+                        sb.AppendLine(content);
+                        count++;
+                        ReportProgress(count * 100 / uris.Count);
+                    }
+                }
+
+                Chapters = ParseChapterObjects(sb.ToString());
+
+                ReportProgress(100);
+            });
+
+            task.ContinueWith(delegate
+            {
+                if (PopulateChapterCompleted != null)
+                {
+                    var ex = task.Exception == null ? null : task.Exception.InnerException;
+                    var arg = new RunWorkerCompletedEventArgs(null, ex, task.IsCanceled);
+                    PopulateChapterCompleted(this, arg);
+                }
+            }, taskSync);
+
         }
 
-        private void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (PopulateChapterCompleted != null)
-            {
-                bool cancelled = (worker.CancellationPending == true || e.Cancelled == true);
-                var arg = new RunWorkerCompletedEventArgs(null, e.Error, cancelled);
-                PopulateChapterCompleted(this, arg);
-            }
-        }
 
-        private void ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void ReportProgress(int percent)
         {
             if (PopulateChapterProgressChanged != null)
             {
-                PopulateChapterProgressChanged(this, e);
+                PopulateChapterProgressChanged(this, new ProgressChangedEventArgs(percent, null));
             }
-        }
-
-        private void DoWork(object sender, DoWorkEventArgs e)
-        {
-            worker.ReportProgress(0);
-
-            if (worker.CancellationPending == true)
-            {
-                e.Cancel = true;
-                return;
-            }
-
-            var client = new WebClient();
-            client.Proxy = Proxy;
-            client.Encoding = Encoding.UTF8;
-            string html = client.DownloadString(Address);
-
-            var sb = new StringBuilder();
-            sb.AppendLine(html);
-
-            List<Uri> uris = ParseChapterAddresses(html);
-
-            if (uris != null)
-            {
-                int count = 0;
-                foreach (Uri item in uris)
-                {
-                    string content = client.DownloadString(item);
-                    sb.AppendLine(content);
-                    count++;
-                    worker.ReportProgress(count * 100 / uris.Count);
-                }
-            }
-
-            worker.ReportProgress(100);
-
-            Chapters = ParseChapterObjects(sb.ToString());
         }
     }
 }
