@@ -12,8 +12,6 @@ namespace MangaRipper.Core
 {
     public abstract class TitleBase : ITitle
     {
-        public event RunWorkerCompletedEventHandler PopulateChapterCompleted;
-
         public event ProgressChangedEventHandler PopulateChapterProgressChanged;
 
         protected virtual List<Uri> ParseChapterAddresses(string html)
@@ -42,9 +40,9 @@ namespace MangaRipper.Core
             Address = address;
         }
 
-        public void PopulateChapterAsync()
+        public Task PopulateChapterAsync()
         {
-            Task task = Task.Factory.StartNew(() =>
+            return Task.Factory.StartNew(() =>
             {
                 ReportProgress(0);
 
@@ -74,16 +72,6 @@ namespace MangaRipper.Core
 
                 ReportProgress(100);
             });
-
-            task.ContinueWith(t =>
-            {
-                if (PopulateChapterCompleted != null)
-                {
-                    var ex = t.Exception == null ? null : t.Exception.InnerException;
-                    var arg = new RunWorkerCompletedEventArgs(null, ex, t.IsCanceled);
-                    PopulateChapterCompleted(this, arg);
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
 

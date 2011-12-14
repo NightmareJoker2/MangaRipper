@@ -14,9 +14,6 @@ namespace MangaRipper.Core
     public abstract class ChapterBase : IChapter
     {
         [field: NonSerialized]
-        public event RunWorkerCompletedEventHandler DownloadImageCompleted;
-
-        [field: NonSerialized]
         public event ProgressChangedEventHandler DownloadImageProgressChanged;
 
         [NonSerialized]
@@ -84,13 +81,8 @@ namespace MangaRipper.Core
 
         }
 
-        public void DownloadImageAsync(string fileName, CancellationToken cancellationToken)
+        public Task DownloadImageAsync(string fileName, CancellationToken cancellationToken)
         {
-            if (IsBusy)
-            {
-                return;
-            }
-
             _cancellationToken = cancellationToken;
             SaveTo = fileName;
 
@@ -120,15 +112,7 @@ namespace MangaRipper.Core
                 }
             }, cancellationToken, TaskCreationOptions.None, TaskScheduler.Default);
 
-            _task.ContinueWith(t =>
-            {
-                if (DownloadImageCompleted != null)
-                {
-                    var ex = t.Exception == null ? null : t.Exception.InnerException;
-                    var arg = new RunWorkerCompletedEventArgs(null, ex, t.IsCanceled);
-                    DownloadImageCompleted(this, arg);
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());//
+            return _task;
         }
 
         private void ReportProgress(int percent)

@@ -12,6 +12,7 @@ using System.Deployment.Application;
 using System.Collections.Specialized;
 using MangaRipper.Core;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MangaRipper
 {
@@ -34,11 +35,20 @@ namespace MangaRipper
             {
                 var titleUrl = new Uri(cbTitleUrl.Text);
                 ITitle title = TitleFactory.CreateTitle(titleUrl);
-                title.PopulateChapterCompleted += new RunWorkerCompletedEventHandler(ITitle_PopulateChapterCompleted);
                 title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
                 title.Proxy = Option.GetProxy();
                 btnGetChapter.Enabled = false;
-                title.PopulateChapterAsync();
+                var task = title.PopulateChapterAsync();
+                task.ContinueWith(t =>
+                {
+                    btnGetChapter.Enabled = true;
+                    dgvChapter.DataSource = title.Chapters;
+
+                    if (t.Exception != null && t.Exception.InnerException != null)
+                    {
+                        txtMessage.Text = t.Exception.InnerException.Message;
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext());
             }
             catch (Exception ex)
             {
@@ -58,17 +68,6 @@ namespace MangaRipper
             }
         }
 
-        protected void ITitle_PopulateChapterCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            btnGetChapter.Enabled = true;
-            ITitle title = (ITitle)sender;
-            dgvChapter.DataSource = title.Chapters;
-
-            if (e.Error != null)
-            {
-                txtMessage.Text = e.Error.Message;
-            }
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -148,10 +147,29 @@ namespace MangaRipper
                 foreach (var chapter in chapters)
                 {
                     chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
-                    chapter.DownloadImageCompleted += new RunWorkerCompletedEventHandler(IChapter_DownloadImageCompleted);
                     chapter.Proxy = Option.GetProxy();
                     btnDownload.Enabled = false;
-                    chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token);
+                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token);
+                    task.ContinueWith(t =>
+                    {
+                        if (t.IsCompleted)
+                        {
+                            DownloadQueue.Remove(chapter);
+                        }
+                        else if(t.IsFaulted)
+                        {
+                            txtMessage.Text = t.Exception.InnerException.Message;
+                        }
+
+                        if (!t.IsCanceled)
+                        {
+                            DownloadChapter();
+                        }
+                        else
+                        {
+                            btnDownload.Enabled = true;
+                        }
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
                 }
             }
             else
@@ -160,28 +178,6 @@ namespace MangaRipper
             }
         }
 
-        protected void IChapter_DownloadImageCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            IChapter chapter = (IChapter)sender;
-
-            if (e.Error == null)
-            {
-                DownloadQueue.Remove(chapter);
-            }
-            else
-            {
-                txtMessage.Text = e.Error.Message;
-            }
-
-            if (e.Cancelled == false)
-            {
-                DownloadChapter();
-            }
-            else
-            {
-                btnDownload.Enabled = true;
-            }
-        }
 
         protected void IChapter_DownloadImageProgressChanged(object sender, ProgressChangedEventArgs e)
         {

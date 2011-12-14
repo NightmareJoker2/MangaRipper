@@ -5,13 +5,12 @@ using System.Text;
 using System.ComponentModel;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MangaRipper.Core
 {
     public interface ITitle
     {
-        event RunWorkerCompletedEventHandler PopulateChapterCompleted;
-
         event ProgressChangedEventHandler PopulateChapterProgressChanged;
 
         List<IChapter> Chapters
@@ -30,6 +29,6 @@ namespace MangaRipper.Core
             set;
         }
 
-        void PopulateChapterAsync();
+        Task PopulateChapterAsync();
     }
 }

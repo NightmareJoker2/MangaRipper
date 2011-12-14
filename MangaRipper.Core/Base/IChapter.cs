@@ -5,13 +5,12 @@ using System.Text;
 using System.ComponentModel;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MangaRipper.Core
 {
     public interface IChapter
     {
-        event RunWorkerCompletedEventHandler DownloadImageCompleted;
-
         event System.ComponentModel.ProgressChangedEventHandler DownloadImageProgressChanged;
 
         string Name
@@ -41,6 +40,6 @@ namespace MangaRipper.Core
             set;
         }
 
-        void DownloadImageAsync(string fileName, CancellationToken cancellationToken);
+        Task DownloadImageAsync(string fileName, CancellationToken cancellationToken);
     }
 }
