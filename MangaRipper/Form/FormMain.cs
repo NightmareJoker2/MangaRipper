@@ -35,10 +35,9 @@ namespace MangaRipper
             {
                 var titleUrl = new Uri(cbTitleUrl.Text);
                 ITitle title = TitleFactory.CreateTitle(titleUrl);
-                title.PopulateChapterProgressChanged += new ProgressChangedEventHandler(ITitle_PopulateChapterProgressChanged);
                 title.Proxy = Option.GetProxy();
                 btnGetChapter.Enabled = false;
-                var task = title.PopulateChapterAsync();
+                var task = title.PopulateChapterAsync(new Progress<int>(progress => txtPercent.Text = progress + "%"));
                 task.ContinueWith(t =>
                 {
                     btnGetChapter.Enabled = true;
@@ -55,19 +54,6 @@ namespace MangaRipper
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        protected void ITitle_PopulateChapterProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(() => txtPercent.Text = e.ProgressPercentage + "%"));
-            }
-            else
-            {
-                txtPercent.Text = e.ProgressPercentage + "%";
-            }
-        }
-
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -146,17 +132,27 @@ namespace MangaRipper
 
                 foreach (var chapter in chapters)
                 {
-                    chapter.DownloadImageProgressChanged += new ProgressChangedEventHandler(IChapter_DownloadImageProgressChanged);
                     chapter.Proxy = Option.GetProxy();
                     btnDownload.Enabled = false;
-                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token);
+                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token, new Progress<int>(p =>
+                        {
+                            foreach (DataGridViewRow item in dgvQueueChapter.Rows)
+                            {
+                                if (chapter == item.DataBoundItem)
+                                {
+                                    item.Cells[ColChapterStatus.Name].Value = p + "%";
+                                    break;
+                                }
+                            }
+                        }));
+
                     task.ContinueWith(t =>
                     {
                         if (t.IsCompleted)
                         {
                             DownloadQueue.Remove(chapter);
                         }
-                        else if(t.IsFaulted)
+                        else if (t.IsFaulted)
                         {
                             txtMessage.Text = t.Exception.InnerException.Message;
                         }
@@ -175,20 +171,6 @@ namespace MangaRipper
             else
             {
                 btnDownload.Enabled = true;
-            }
-        }
-
-
-        protected void IChapter_DownloadImageProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            IChapter chapter = (IChapter)sender;
-            foreach (DataGridViewRow item in dgvQueueChapter.Rows)
-            {
-                if (chapter == item.DataBoundItem)
-                {
-                    item.Cells[ColChapterStatus.Name].Value = e.ProgressPercentage.ToString() + "%";
-                    break;
-                }
             }
         }
 

@@ -11,8 +11,6 @@ namespace MangaRipper.Core
 {
     public interface IChapter
     {
-        event System.ComponentModel.ProgressChangedEventHandler DownloadImageProgressChanged;
-
         string Name
         {
             get;
@@ -40,6 +38,6 @@ namespace MangaRipper.Core
             set;
         }
 
-        Task DownloadImageAsync(string fileName, CancellationToken cancellationToken);
+        Task DownloadImageAsync(string fileName, CancellationToken cancellationToken, Progress<int> progress);
     }
 }

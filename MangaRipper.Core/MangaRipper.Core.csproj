@@ -50,6 +50,7 @@
     <Compile Include="Base\TitleBase.cs" />
     <Compile Include="Base\TitleFactory.cs" />
     <Compile Include="Helper\Extension.cs" />
+    <Compile Include="Base\Progress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site\MangaFox\ChapterMangaFox.cs" />
     <Compile Include="Site\MangaFox\TitleMangaFox.cs" />

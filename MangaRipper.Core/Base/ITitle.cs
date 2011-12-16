@@ -11,8 +11,6 @@ namespace MangaRipper.Core
 {
     public interface ITitle
     {
-        event ProgressChangedEventHandler PopulateChapterProgressChanged;
-
         List<IChapter> Chapters
         {
             get;
@@ -29,6 +27,6 @@ namespace MangaRipper.Core
             set;
         }
 
-        Task PopulateChapterAsync();
+        Task PopulateChapterAsync(Progress<int> progress);
     }
 }

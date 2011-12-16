@@ -13,14 +13,14 @@ namespace MangaRipper.Core
     [Serializable]
     public abstract class ChapterBase : IChapter
     {
-        [field: NonSerialized]
-        public event ProgressChangedEventHandler DownloadImageProgressChanged;
-
         [NonSerialized]
         private CancellationToken _cancellationToken;
 
         [NonSerialized]
         private Task _task;
+
+        [NonSerialized]
+        private Progress<int> _progress;
 
         abstract protected List<Uri> ParsePageAddresses(string html);
 
@@ -81,14 +81,15 @@ namespace MangaRipper.Core
 
         }
 
-        public Task DownloadImageAsync(string fileName, CancellationToken cancellationToken)
+        public Task DownloadImageAsync(string fileName, CancellationToken cancellationToken, Progress<int> progress)
         {
             _cancellationToken = cancellationToken;
+            _progress = progress;
             SaveTo = fileName;
 
             _task = Task.Factory.StartNew(() =>
             {
-                ReportProgress(0);
+                _progress.ReportProgress(0);
                 string html = DownloadString(Address);
                 if (ImageAddresses == null)
                 {
@@ -108,19 +109,11 @@ namespace MangaRipper.Core
 
                     countImage++;
                     int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
-                    ReportProgress(percent);
+                    _progress.ReportProgress(percent);
                 }
             }, cancellationToken, TaskCreationOptions.None, TaskScheduler.Default);
 
             return _task;
-        }
-
-        private void ReportProgress(int percent)
-        {
-            if (DownloadImageProgressChanged != null)
-            {
-                DownloadImageProgressChanged(this, new ProgressChangedEventArgs(percent, null));
-            }
         }
 
 
@@ -140,7 +133,7 @@ namespace MangaRipper.Core
 
                 countPage++;
                 int percent = countPage * 100 / (pageAddresses.Count * 2);
-                ReportProgress(percent);
+                _progress.ReportProgress(percent);
             }
 
             ImageAddresses = ParseImageAddresses(sbHtml.ToString());
