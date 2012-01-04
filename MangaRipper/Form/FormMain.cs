@@ -121,6 +121,13 @@ namespace MangaRipper
             DownloadChapter();
         }
 
+
+        private void DownloadChapter(int millisecond)
+        {
+            timer1.Interval = millisecond;
+            timer1.Enabled = true;
+        }
+
         private void DownloadChapter()
         {
             if (DownloadQueue.Count > 0 && _cts.IsCancellationRequested == false)
@@ -148,22 +155,21 @@ namespace MangaRipper
 
                     task.ContinueWith(t =>
                     {
-                        if (t.IsCompleted)
+                        switch (t.Status)
                         {
-                            DownloadQueue.Remove(chapter);
-                        }
-                        else if (t.IsFaulted)
-                        {
-                            txtMessage.Text = t.Exception.InnerException.Message;
-                        }
-
-                        if (!t.IsCanceled)
-                        {
-                            DownloadChapter();
-                        }
-                        else
-                        {
-                            btnDownload.Enabled = true;
+                            case TaskStatus.Canceled:
+                                btnDownload.Enabled = true;
+                                break;
+                            case TaskStatus.Faulted:
+                                txtMessage.Text = t.Exception.InnerException.Message;
+                                DownloadChapter(1000);
+                                break;
+                            case TaskStatus.RanToCompletion:
+                                DownloadQueue.Remove(chapter);
+                                DownloadChapter();
+                                break;
+                            default:
+                                break;
                         }
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                 }
@@ -318,6 +324,12 @@ namespace MangaRipper
             chapters.Reverse();
 
             dgvChapter.DataSource = chapters;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            DownloadChapter();
         }
     }
 }

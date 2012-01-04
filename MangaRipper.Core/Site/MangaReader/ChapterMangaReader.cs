@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 namespace MangaRipper.Core
 {
     [Serializable]
-    public class ChapterMangaFox : ChapterBase
+    public class ChapterMangaReader : ChapterBase
     {
-        public ChapterMangaFox(string name, Uri address) : base(name, address) { }
+        public ChapterMangaReader(string name, Uri address) : base(name, address) { }
 
         protected override List<Uri> ParseImageAddresses(string html)
         {
             var list = new List<Uri>();
-            Regex reg = new Regex(@"<img src=""(?<Value>[^""]+)"" width=""\d+"" id=""image""",
+            Regex reg = new Regex(@"<img id=""img"" width=""\d+"" height=""\d+"" src=""(?<Value>[^""]+)""",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
@@ -30,16 +30,22 @@ namespace MangaRipper.Core
         protected override List<Uri> ParsePageAddresses(string html)
         {
             var list = new List<Uri>();
-            Regex reg = new Regex(@"<option value=""(?<Value>[^""]+)"" (|selected=""selected"")>\d+</option>", RegexOptions.IgnoreCase);
+            list.Add(Address);
+
+            Regex reg = new Regex(@"<option value=""(?<Value>[^""]+)""(| selected=""selected"")>\d+</option>",
+                RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
             foreach (Match match in matches)
             {
-                var value = new Uri(Address, (match.Groups["Value"].Value + ".html"));
-                list.Add(value);
+                var value = new Uri(Address, (match.Groups["Value"].Value ));
+                if(list.Contains(value) == false)
+                {
+                    list.Add(value);
+                }                
             }
 
-            return list.Distinct().ToList();
+            return list;
         }
     }
 }

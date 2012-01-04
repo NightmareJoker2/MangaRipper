@@ -172,10 +172,14 @@ namespace MangaRipper.Core
                     }
                 }
             }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 string error = String.Format("{0} - Error while download: {2} - Reason: {3}", DateTime.Now.ToLongTimeString(), this.Name, address.AbsoluteUri, ex.Message);
-                throw new Exception(error, ex);
+                throw new OperationCanceledException(error, ex);
             }
         }
 
@@ -201,6 +205,10 @@ namespace MangaRipper.Core
                     }
                 }
                 return result.ToString();
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
