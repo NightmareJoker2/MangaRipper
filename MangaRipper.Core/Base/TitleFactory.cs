@@ -17,7 +17,7 @@ namespace MangaRipper.Core
             ITitle title = null;
             switch (uri.Host)
             {
-                case "www.mangafox.com":
+                case "mangafox.me":
                     title = new TitleMangaFox(uri);
                     break;
                 case "read.mangashare.com":
@@ -49,7 +49,7 @@ namespace MangaRipper.Core
         public static List<string[]> GetSupportedSites()
         {
             var lst = new List<string[]>();
-            lst.Add(new string[] { "MangaFox", "http://www.mangafox.com/", "English" });
+            lst.Add(new string[] { "MangaFox", "http://mangafox.me/", "English" });
             lst.Add(new string[] { "MangaHere", "http://www.mangahere.com/", "English" });
             lst.Add(new string[] { "MangaReader", "http://www.mangareader.net/", "English" });
             lst.Add(new string[] { "MangaShare", "http://read.mangashare.com/", "English" });
