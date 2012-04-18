@@ -49,6 +49,7 @@
     <Compile Include="Base\ITitle.cs" />
     <Compile Include="Base\TitleBase.cs" />
     <Compile Include="Base\TitleFactory.cs" />
+    <Compile Include="Helper\ChapterProgress.cs" />
     <Compile Include="Helper\Extension.cs" />
     <Compile Include="Base\Progress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

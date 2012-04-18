@@ -38,6 +38,6 @@ namespace MangaRipper.Core
             set;
         }
 
-        Task DownloadImageAsync(string fileName, CancellationToken cancellationToken, Progress<int> progress);
+        Task DownloadImageAsync(string fileName, CancellationToken cancellationToken, Progress<ChapterProgress> progress);
     }
 }

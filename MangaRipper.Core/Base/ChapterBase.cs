@@ -20,7 +20,7 @@ namespace MangaRipper.Core
         private Task _task;
 
         [NonSerialized]
-        private Progress<int> _progress;
+        private Progress<ChapterProgress> _progress;
 
         abstract protected List<Uri> ParsePageAddresses(string html);
 
@@ -81,7 +81,7 @@ namespace MangaRipper.Core
 
         }
 
-        public Task DownloadImageAsync(string fileName, CancellationToken cancellationToken, Progress<int> progress)
+        public Task DownloadImageAsync(string fileName, CancellationToken cancellationToken, Progress<ChapterProgress> progress)
         {
             _cancellationToken = cancellationToken;
             _progress = progress;
@@ -89,7 +89,7 @@ namespace MangaRipper.Core
 
             _task = Task.Factory.StartNew(() =>
             {
-                _progress.ReportProgress(0);
+                _progress.ReportProgress(new ChapterProgress(this, 0));
                 string html = DownloadString(Address);
                 if (ImageAddresses == null)
                 {
@@ -109,7 +109,7 @@ namespace MangaRipper.Core
 
                     countImage++;
                     int percent = (countImage * 100 / ImageAddresses.Count / 2) + 50;
-                    _progress.ReportProgress(percent);
+                    _progress.ReportProgress(new ChapterProgress(this, percent));
                 }
             }, cancellationToken, TaskCreationOptions.None, TaskScheduler.Default);
 
@@ -133,7 +133,7 @@ namespace MangaRipper.Core
 
                 countPage++;
                 int percent = countPage * 100 / (pageAddresses.Count * 2);
-                _progress.ReportProgress(percent);
+                _progress.ReportProgress(new ChapterProgress(this, percent));
             }
 
             ImageAddresses = ParseImageAddresses(sbHtml.ToString());

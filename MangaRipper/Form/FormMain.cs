@@ -141,13 +141,13 @@ namespace MangaRipper
                 {
                     chapter.Proxy = Option.GetProxy();
                     btnDownload.Enabled = false;
-                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token, new Progress<int>(p =>
+                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token, new Progress<ChapterProgress>(c =>
                         {
                             foreach (DataGridViewRow item in dgvQueueChapter.Rows)
                             {
-                                if (chapter == item.DataBoundItem)
+                                if (c.Chapter == item.DataBoundItem)
                                 {
-                                    item.Cells[ColChapterStatus.Name].Value = p + "%";
+                                    item.Cells[ColChapterStatus.Name].Value = c.Percent + "%";
                                     break;
                                 }
                             }
