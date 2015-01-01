@@ -26,7 +26,7 @@ namespace MangaRipper.Core
                 case "www.mangatoshokan.com":
                     title = new TitleMangaToshokan(uri);
                     break;
-                case "www.mangahere.com":
+                case "www.mangahere.co":
                     title = new TitleMangaHere(uri);
                     break;
                 case "www.otakuworks.com":
@@ -50,7 +50,7 @@ namespace MangaRipper.Core
         {
             var lst = new List<string[]>();
             lst.Add(new string[] { "MangaFox", "http://mangafox.me/", "English" });
-            lst.Add(new string[] { "MangaHere", "http://www.mangahere.com/", "English" });
+            lst.Add(new string[] { "MangaHere", "http://www.mangahere.co/", "English" });
             lst.Add(new string[] { "MangaReader", "http://www.mangareader.net/", "English" });
             lst.Add(new string[] { "MangaShare", "http://read.mangashare.com/", "English" });
             lst.Add(new string[] { "MangaToshokan", "http://www.mangatoshokan.com/", "English" });

@@ -15,7 +15,7 @@ namespace MangaRipper.Core
         {
             var list = new List<Uri>();
             list.Add(Address);
-            Regex reg = new Regex(@"<option value=""(?<Value>http://www.mangahere.com/manga/[^""]+)"" (|selected=""selected"")>\d+</option>",
+            Regex reg = new Regex(@"<option value=""(?<Value>http://www.mangahere.co/manga/[^""]+)"" (|selected=""selected"")>\d+</option>",
                 RegexOptions.IgnoreCase);
             MatchCollection matches = reg.Matches(html);
 
