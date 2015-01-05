@@ -182,7 +182,17 @@ namespace MangaRipper
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            _cts.Cancel();
+            try
+            {
+                _cts.Cancel();
+            }
+            catch (Exception ex)
+            {
+                if (ex != null)
+                {
+                    MessageBox.Show(ex.StackTrace, ex.Message);
+                }
+            }
         }
 
         private void btnChangeSaveTo_Click(object sender, EventArgs e)
