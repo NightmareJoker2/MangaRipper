@@ -1,8 +1,11 @@
-MangaRiper
+MangaRipper
 ===
 
+This is a fork of the project at https://mangaripper.codeplex.com/ by [Nguyen Dan Phuong](https://www.codeplex.com/site/users/view/NguyenDanPhuong "CodePlex - NguyenDanPhuong") licensed under MS-PL. I have just been toying around with it for a bit.
+Not to be confused with the other fork at https://mangaripper2.codeplex.com/
+
 ### Project Description
-MangaRipper is a small and very easy to use application that is able to automatically download your favorites manga series from some 'read manga online' websites.
+MangaRipper is a small and very easy to use application that is able to automatically download your favorite manga series from some 'read manga online' websites.
 
 First time here? Please see [How to use!](http://mangaripper.codeplex.com/documentation "")
 
@@ -24,3 +27,4 @@ More will be added in the future.
 * Bookmark your favorite mangas.
 * Use proxy.
 * ...
+
