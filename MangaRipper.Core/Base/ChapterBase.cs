@@ -97,7 +97,10 @@ namespace MangaRipper.Core
                 }
 
                 string saveToFolder = SaveTo + "\\" + this.Name.RemoveFileNameInvalidChar();
-                Directory.CreateDirectory(saveToFolder);
+                if (!Directory.Exists(saveToFolder))
+                {
+                    Directory.CreateDirectory(saveToFolder);
+                }
 
                 int countImage = 0;
 
@@ -151,24 +154,34 @@ namespace MangaRipper.Core
                     request.Referer = Address.AbsoluteUri;
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
-                        using (Stream responseStream = response.GetResponseStream())
-                        {
-                            string tmpFileName = Path.GetTempFileName();
-
-                            using (Stream strLocal = new FileStream(tmpFileName, FileMode.Create))
+                        //if (response.StatusCode == HttpStatusCode.OK)
+                        //{
+                            // actually, leave this at throwing the standard exceptions for now...
+                            using (Stream responseStream = response.GetResponseStream())
                             {
-                                byte[] downBuffer = new byte[2048];
-                                int bytesSize = 0;
-                                while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                                string tmpFileName = Path.GetTempFileName();
+
+                                using (Stream strLocal = new FileStream(tmpFileName, FileMode.Create))
                                 {
-                                    _cancellationToken.ThrowIfCancellationRequested();
-                                    strLocal.Write(downBuffer, 0, bytesSize);
+                                    byte[] downBuffer = new byte[2048];
+                                    int bytesSize = 0;
+                                    while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                                    {
+                                        _cancellationToken.ThrowIfCancellationRequested();
+                                        strLocal.Write(downBuffer, 0, bytesSize);
+                                    }
+                                    if (response.ContentLength > 0 && strLocal.Length != response.ContentLength)
+                                    {
+                                        long streamSize = strLocal.Length;
+                                        strLocal.Dispose();
+                                        File.Delete(tmpFileName);
+                                        throw new WebException(string.Format("Content-Length mismatch [file: {0}, header: {1}]", streamSize, response.ContentLength), WebExceptionStatus.ConnectionClosed);
+                                    }
                                 }
 
+                                File.Move(tmpFileName, fileName);
                             }
-
-                            File.Move(tmpFileName, fileName);
-                        }
+                        //}
                     }
                 }
             }
@@ -195,12 +208,25 @@ namespace MangaRipper.Core
                 {
                     using (Stream responseStream = response.GetResponseStream())
                     {
-                        byte[] downBuffer = new byte[2048];
-                        int bytesSize = 0;
-                        while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                        using (MemoryStream strCache = new MemoryStream())
                         {
-                            _cancellationToken.ThrowIfCancellationRequested();
-                            result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
+                            byte[] downBuffer = new byte[2048];
+                            int bytesSize = 0;
+                            while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                            {
+                                _cancellationToken.ThrowIfCancellationRequested();
+                                strCache.Write(downBuffer, 0, downBuffer.Length);
+                            }
+                            if (response.ContentLength > 0 && strCache.Length != response.ContentLength)
+                            {
+                                long streamSize = strCache.Length;
+                                strCache.Dispose();
+                                throw new WebException(string.Format("Content-Length mismatch [cache: {0}, header: {1}]", streamSize, response.ContentLength), WebExceptionStatus.ConnectionClosed);
+                            }
+                            else
+                            {
+                                result.Append(Encoding.UTF8.GetString(strCache.ToArray()));
+                            }
                         }
                     }
                 }
