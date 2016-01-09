@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MangaRipper")]
 [assembly: AssemblyDescription("MangaRipper is a small and very easy to use application that is able to automatically download your favorites manga series from some 'read manga online' websites.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nguyen Dan Phuong")]
+[assembly: AssemblyCompany("MangaRipper Contributors")]
 [assembly: AssemblyProduct("MangaRipper")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+//
+// [assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -37,7 +37,7 @@ namespace MangaRipper
                 ITitle title = TitleFactory.CreateTitle(titleUrl);
                 title.Proxy = Option.GetProxy();
                 btnGetChapter.Enabled = false;
-                var task = title.PopulateChapterAsync(new Progress<int>(progress => txtPercent.Text = progress + "%"));
+                var task = title.PopulateChapterAsync(new Core.Progress<int>(progress => txtPercent.Text = progress + "%"));
                 task.ContinueWith(t =>
                 {
                     btnGetChapter.Enabled = true;
@@ -141,7 +141,7 @@ namespace MangaRipper
                 {
                     chapter.Proxy = Option.GetProxy();
                     btnDownload.Enabled = false;
-                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token, new Progress<ChapterProgress>(c =>
+                    var task = chapter.DownloadImageAsync(txtSaveTo.Text, _cts.Token, new Core.Progress<ChapterProgress>(c =>
                         {
                             foreach (DataGridViewRow item in dgvQueueChapter.Rows)
                             {
