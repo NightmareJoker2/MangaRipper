@@ -212,11 +212,16 @@ namespace MangaRipper.Core
                         {
                             byte[] downBuffer = new byte[2048];
                             int bytesSize = 0;
-                            while ((bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length)) > 0)
+                            do
                             {
                                 _cancellationToken.ThrowIfCancellationRequested();
-                                strCache.Write(downBuffer, 0, downBuffer.Length);
-                            }
+                                bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length);
+                                if (bytesSize != 0)
+                                {
+                                    strCache.Write(downBuffer, 0, downBuffer.Length);
+                                    result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
+                                }
+                            } while (bytesSize > 0);
                             if (response.ContentLength > 0 && strCache.Length != response.ContentLength)
                             {
                                 long streamSize = strCache.Length;
@@ -225,7 +230,7 @@ namespace MangaRipper.Core
                             }
                             else
                             {
-                                result.Append(Encoding.UTF8.GetString(strCache.ToArray()));
+                                //result.Append(Encoding.UTF8.GetString(strCache.ToArray()));
                             }
                         }
                     }
