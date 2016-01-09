@@ -17,9 +17,9 @@ namespace MangaRipper.Core
         /// <returns></returns>
         public static string RemoveFileNameInvalidChar(this String input)
         {
-            return input.Replace("\\", "").Replace("/", "").Replace(":", "")
-                        .Replace("*", "").Replace("?", "").Replace("\"", "")
-                        .Replace("<", "").Replace(">", "").Replace("|", "");
+            return input.Replace('\\', '＼').Replace('/', '／').Replace(':', '：')
+                        .Replace('*', '＊').Replace('?', '？').Replace('"', '\'')
+                        .Replace('<', '＜').Replace('>', '＞').Replace('|', '｜'); //Wide-latin characters are awesome, aren't they?
         }
     }
 }

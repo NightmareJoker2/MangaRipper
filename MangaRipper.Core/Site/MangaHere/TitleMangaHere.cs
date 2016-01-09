@@ -39,7 +39,7 @@ namespace MangaRipper.Core
                     }
                     name = string.Concat("ch", name);
                     string volume = node.Descendants("span").FirstOrDefault().Descendants("span").FirstOrDefault().InnerText.Trim();
-                    string chapterTitle = node.Descendants("span").FirstOrDefault().Descendants("#text").LastOrDefault().InnerText.Trim().Replace('/', '／').Replace('\\', '＼').Replace('?', '？').Replace('"', '\'').Replace(':', '：');
+                    string chapterTitle = node.Descendants("span").FirstOrDefault().Descendants("#text").LastOrDefault().InnerText.Trim();
                     //if (!string.IsNullOrWhiteSpace(chapterTitle))
                     //{
                     //    if (!string.IsNullOrWhiteSpace(volume) && volume != chapterTitle)
