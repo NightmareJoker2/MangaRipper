@@ -218,7 +218,7 @@ namespace MangaRipper.Core
                                 bytesSize = responseStream.Read(downBuffer, 0, downBuffer.Length);
                                 if (bytesSize != 0)
                                 {
-                                    strCache.Write(downBuffer, 0, downBuffer.Length);
+                                    strCache.Write(downBuffer, 0, bytesSize);
                                     result.Append(Encoding.UTF8.GetString(downBuffer, 0, bytesSize));
                                 }
                             } while (bytesSize > 0);
