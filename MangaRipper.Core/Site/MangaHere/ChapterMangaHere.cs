@@ -18,17 +18,17 @@ namespace MangaRipper.Core
             list.Add(Address);
             HtmlDocument htmlDocument = new HtmlDocument() { };
             htmlDocument.LoadHtml(html);
-            HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//section[contains(@class, 'readpage_top')]/div[contains(@class, 'go_page')]/span[contains(@class, 'right')]/select/option");
+            HtmlNodeCollection pageNodes = htmlDocument.DocumentNode.SelectNodes("//section[contains(@class, 'readpage_top')]/div[contains(@class, 'go_page')]/span[contains(@class, 'right')]/select/option");
 
             //Regex reg = new Regex(@"<option value=""(?<Value>http://www.mangahere.co/manga/[^""]+)"" (|selected=""selected"")>\d+</option>",
             //    RegexOptions.IgnoreCase);
             //MatchCollection matches = reg.Matches(html);
 
-            foreach (HtmlNode node in nodes)
+            foreach (HtmlNode pageNode in pageNodes)
             {
                 try
                 {
-                    string value = node.Attributes.Where(x => x.Name == "value").First().Value;
+                    string value = pageNode.Attributes.Where(x => x.Name == "value").First().Value;
                     if (value.StartsWith("//") || !value.Contains("://") || value.StartsWith("http://www.mangahere.co/manga/") || value.StartsWith("https://www.mangahere.co/manga/"))
                     {
                         Uri uri = new Uri(Address, value);
@@ -55,7 +55,10 @@ namespace MangaRipper.Core
             var list = new List<Uri>();
             HtmlDocument htmlDocument = new HtmlDocument() { };
             htmlDocument.LoadHtml(html);
-            HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[@id='image']");
+            //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[@id='image']");
+            //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[boolean(@src)][boolean(@onerror)]");
+            //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[contains(translate(./@id,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'image')]");
+            IEnumerable<HtmlNode> nodes = htmlDocument.DocumentNode.Descendants("img").Where(x => x.Id == "image").ToArray();
 
             //Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" onerror",
             //    RegexOptions.IgnoreCase);
