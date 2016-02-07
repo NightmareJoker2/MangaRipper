@@ -38,19 +38,21 @@ namespace MangaRipper.Core
             return list;
         }
 
-        protected override List<Uri> ParseImageAddresses(string html)
+        protected override List<Uri> ParseImageAddresses(List<string> html)
         {
             var list = new List<Uri>();
             Regex reg = new Regex(@"<img src=""(?<Value>[^""]+)"" border=""0"" alt=""[^""]+"" />\n",
                 RegexOptions.IgnoreCase);
-            MatchCollection matches = reg.Matches(html);
-
-            foreach (Match match in matches)
+            foreach (string htmlPage in html)
             {
-                var value = new Uri(Address, match.Groups["Value"].Value);
-                list.Add(value);
-            }
+                MatchCollection matches = reg.Matches(htmlPage);
 
+                foreach (Match match in matches)
+                {
+                    var value = new Uri(Address, match.Groups["Value"].Value);
+                    list.Add(value);
+                }
+            }
             return list;
         }
     }

@@ -11,17 +11,20 @@ namespace MangaRipper.Core
     {
         public ChapterOtakuworks(string name, Uri address) : base(name, address) { }
 
-        protected override List<Uri> ParseImageAddresses(string html)
+        protected override List<Uri> ParseImageAddresses(List<string> html)
         {
             var list = new List<Uri>();
             Regex reg = new Regex(@"(?<Value>http://static\.otakuworks\.net/viewer/[^""]+)",
                 RegexOptions.IgnoreCase);
-            MatchCollection matches = reg.Matches(html);
-
-            foreach (Match match in matches)
+            foreach (string htmlPage in html)
             {
-                var value = new Uri(Address, match.Groups["Value"].Value);
-                list.Add(value);
+                MatchCollection matches = reg.Matches(htmlPage);
+
+                foreach (Match match in matches)
+                {
+                    var value = new Uri(Address, match.Groups["Value"].Value);
+                    list.Add(value);
+                }
             }
 
             return list.Distinct().ToList();

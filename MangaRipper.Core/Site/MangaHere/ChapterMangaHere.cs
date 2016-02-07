@@ -50,38 +50,41 @@ namespace MangaRipper.Core
             return list.Distinct().ToList();
         }
 
-        protected override List<Uri> ParseImageAddresses(string html)
+        protected override List<Uri> ParseImageAddresses(List<string> html)
         {
             var list = new List<Uri>();
-            HtmlDocument htmlDocument = new HtmlDocument() { };
-            htmlDocument.LoadHtml(html);
-            //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[@id='image']");
-            //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[boolean(@src)][boolean(@onerror)]");
-            //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[contains(translate(./@id,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'image')]");
-            IEnumerable<HtmlNode> nodes = htmlDocument.DocumentNode.Descendants("img").Where(x => x.Id == "image").ToArray();
-
-            //Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" onerror",
-            //    RegexOptions.IgnoreCase);
-            //MatchCollection matches = reg.Matches(html);
-
-            foreach (HtmlNode node in nodes)
+            foreach (string htmlPage in html)
             {
-                try
-                {
-                    Uri value = new Uri(Address, node.Attributes.Where(x => x.Name == "src").First().Value);
-                    list.Add(value);
-                }
-                catch
-                {
+                HtmlDocument htmlDocument = new HtmlDocument() { };
+                htmlDocument.LoadHtml(htmlPage);
+                //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[@id='image']");
+                //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[boolean(@src)][boolean(@onerror)]");
+                //HtmlNodeCollection nodes = htmlDocument.DocumentNode.SelectNodes("//img[contains(translate(./@id,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), 'image')]");
+                IEnumerable<HtmlNode> nodes = htmlDocument.DocumentNode.Descendants("img").Where(x => x.Id == "image").ToArray();
 
+                //Regex reg = new Regex("<img src=\"(?<Value>[^\"]+)\" onerror",
+                //    RegexOptions.IgnoreCase);
+                //MatchCollection matches = reg.Matches(html);
+
+                foreach (HtmlNode node in nodes)
+                {
+                    try
+                    {
+                        Uri value = new Uri(Address, node.Attributes.Where(x => x.Name == "src").First().Value);
+                        list.Add(value);
+                    }
+                    catch
+                    {
+
+                    }
                 }
+
+                //foreach (Match match in matches)
+                //{
+                //    var value = new Uri(Address, match.Groups["Value"].Value);
+                //    list.Add(value);
+                //}
             }
-
-            //foreach (Match match in matches)
-            //{
-            //    var value = new Uri(Address, match.Groups["Value"].Value);
-            //    list.Add(value);
-            //}
 
             return list;
         }

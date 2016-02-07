@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Cache;
 
 namespace MangaRipper.Core
 {
@@ -24,7 +25,7 @@ namespace MangaRipper.Core
 
         abstract protected List<Uri> ParsePageAddresses(string html);
 
-        abstract protected List<Uri> ParseImageAddresses(string html);
+        abstract protected List<Uri> ParseImageAddresses(List<string> html);
 
         public string Name
         {
@@ -122,24 +123,53 @@ namespace MangaRipper.Core
 
         private void PopulateImageAddress(string html)
         {
-            List<Uri> pageAddresses = ParsePageAddresses(html);
-
-            var sbHtml = new StringBuilder();
-
-            int countPage = 0;
-
-            foreach (Uri pageAddress in pageAddresses)
+            try
             {
-                _cancellationToken.ThrowIfCancellationRequested();
-                string content = DownloadString(pageAddress);
-                sbHtml.AppendLine(content);
+                
+                List<Uri> pageAddresses = ParsePageAddresses(html);
 
-                countPage++;
-                int percent = countPage * 100 / (pageAddresses.Count * 2);
-                _progress.ReportProgress(new ChapterProgress(this, percent));
+                var sbHtml = new List<string>();
+
+                int countPage = 0;
+
+                foreach (Uri pageAddress in pageAddresses)
+                {
+                    _cancellationToken.ThrowIfCancellationRequested();
+                    bool htmlRetrieved = false;
+                    string content = string.Empty;
+                    while (!htmlRetrieved)
+                    {
+                        content = DownloadString(pageAddress).Trim();
+                        if (content[0] == '<')
+                        {
+                            htmlRetrieved = true;
+                        }
+                    }
+                    sbHtml.Add(content);
+                    htmlRetrieved = false;
+
+                    countPage++;
+                    int percent = countPage * 100 / (pageAddresses.Count * 2);
+                    _progress.ReportProgress(new ChapterProgress(this, percent));
+                }
+
+                ImageAddresses = ParseImageAddresses(sbHtml);
+
+                if (ImageAddresses.Count != pageAddresses.Count)
+                {
+                    ImageAddresses = null;
+                    throw new WebException("ImageCount != PageCount");
+                }
             }
-
-            ImageAddresses = ParseImageAddresses(sbHtml.ToString());
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                string error = String.Format("{0} - Error while download. - Reason: {2}", DateTime.Now.ToLongTimeString(), this.Name, ex.Message);
+                throw new OperationCanceledException(error, ex);
+            }
         }
 
         private void DownloadFile(Uri address, string fileName)
@@ -203,7 +233,10 @@ namespace MangaRipper.Core
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
                 request.Proxy = Proxy;
+                HttpRequestCachePolicy noCachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+                request.CachePolicy = noCachePolicy;
                 request.Credentials = CredentialCache.DefaultCredentials;
+                request.KeepAlive = false;
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (Stream responseStream = response.GetResponseStream())
